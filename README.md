@@ -250,7 +250,7 @@ deactivate DjangoBackend
 
 <!-- May need to actually draw this using something like mermaid for the README-->
 
-![System Architecture Diagram](images/SystemArchDiagram.jpg)
+![System Architecture Diagram](Images/SystemArchDiagram.jpg)
 
 ### Standards & Conventions
 
