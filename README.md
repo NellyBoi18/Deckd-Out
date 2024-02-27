@@ -246,6 +246,12 @@ DjangoBackend -->> ReactFrontend: JSON Response
 deactivate DjangoBackend
 ```
 
+#### System Architecture Diagram
+
+<!-- May need to actually draw this using something like mermaid for the README-->
+
+![System Architecture Diagram](images/SystemArchDiagram.jpg)
+
 ### Standards & Conventions
 
 <!--Here you can document your coding standards and conventions. This includes decisions about naming, style guides, etc.-->
