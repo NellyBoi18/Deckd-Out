@@ -33,9 +33,28 @@ In terms of the population who might eventually our system, I would say that for
 
 <!--Use cases and user stories that support the user requirements in the previous section. The use cases should be based off user stories. Every major scenario should be represented by a use case, and every use case should say something not already illustrated by the other use cases. Diagrams (such as sequence charts) are encouraged. Ask the customer what are the most important use cases to implement by the deadline. You can have a total ordering, or mark use cases with “must have,” “useful,” or “optional.” For each use case you may list one or more concrete acceptance tests (concrete scenarios that the customer will try to see if the use case is implemented).-->
 
-Here is a sample user story from [Clean Agile](https://learning-oreilly-com.ezproxy.library.wisc.edu/library/view/clean-agile-back/9780135782002/ch03.xhtml#ch03lev1sec1) using a markdown block quote:
+As a user, I want to log into the card app using a username and password so that I can access the features available to my account.
 
-> As the driver of a car, in order to increase my velocity, I will press my foot harder on the accelerator pedal.
+As a user, I want to be able to use the graphical user interface (GUI) to select the mode of operation.
+
+As a user, I want to be able to use the GUI to view all the past card games I played while logged into my account.
+
+As a user, while viewing past card games, I want the application to show the optimal move for any given card hand, based only on the information known to the player.
+
+As a user, I want to play a legal game of Euchre against a computer player.
+
+As a user, I want to play a legal game of Spades against a computer player.
+
+As a user, I want the card application to prevent me from making an illegal move.
+
+As a user, I want to play a legal game of Euchre against a human player over the internet.
+
+As a user, I want to play a legal game of Spades against a human player over the internet.
+
+As a user, I want to be able to view my game statistics, including the number of wins and losses in each card game.
+
+As a user, I want to be able to view a leaderboard to see how I rank against other players.
+
 
 ### User Interface Requirements
 
@@ -49,14 +68,20 @@ Images can be included with `![alt_text](image_path)`
 
 <!--Discuss what security requirements are necessary and why. Are there privacy or confidentiality issues? Is your system vulnerable to denial-of-service attacks?-->
 
+| ID   | Description                                                  | Priority | Status |
+| ---- | ------------------------------------------------------------ | -------- | ------ |
+| R11  | Users should be able to safely input their username and password and know it is protected. | Med      | Open   |
+| R12  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High     | Open   |
+| R13  | Incorrect username / password pairs should be allowed to access accounts. | Med     | Open   |
+
+
 ### System Requirements
 
 <!--List here all of the external entities, other than users, on which your system will depend. For example, if your system inter-operates with sendmail, or if you will depend on Apache for the web server, or if you must target both Unix and Windows, list those requirements here. List also memory requirements, performance/speed requirements, data capacity requirements, if applicable.-->
 
-| You    |    can    |    also |
-| ------ | :-------: | ------: |
-| change |    how    | columns |
-| are    | justified |         |
+| ID   | Description                                                  | Priority | Status |
+| ---- | ------------------------------------------------------------ | -------- | ------ |
+| R11  | We are targeting Windows users with our application. | Med      | Open   |
 
 ### Specification
 
@@ -66,7 +91,7 @@ Images can be included with `![alt_text](image_path)`
 
 <!--Included below are some sample diagrams, including some example tech stack diagrams.-->
 
-You can make headings at different levels by writing `# Heading` with the number of `#` corresponding to the heading level (e.g. `## h2`).
+TODO! Later!
 
 #### Technology Stack
 
