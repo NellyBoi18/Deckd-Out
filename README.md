@@ -96,51 +96,36 @@ TODO! Later!
 #### Technology Stack
 
 User Interface Frontend:
-- Technologies: React.js, javascript, HTML, CSS
-- Purpose: This layer handles the presentation and interactivity with the
-user, delivering a responsive and accessible experience.
+- Technologies: Java
+- Purpose: This layer handles the presentation and interactivity with the user, delivering a responsive and accessible experience.
 
 Backend:
-- Technologies: JAVA, Node.js
-- Purpose: The backend serves as the bridge between the frontend and the
-game engine, handling requests, and processing the game logic.
+- Technologies: Java
+- Purpose: The backend serves as the bridge between the frontend and the game engine, handling requests, and processing the game logic.
 
 Game Engine:
-- Technologies: Java or Unity Engine if it's a graphical game
-- Purpose: The core of the game's operation, managing game state,
-enforcing rules, and running the main game loop.
+- Technologies: Java 
+- Purpose: The core of the game's operation, managing game state, enforcing rules, and running the main game loop.
 
 Game Logic:
-- Technologies: Java and javascript
-- Purpose: Implements the specific rules and mechanics of each game
-(Cribbage, Euchre, Spades, Sheepshead), including scoring calculations
-and decision-making.
+- Technologies: Java 
+- Purpose: Implements the specific rules and mechanics of each game (Cribbage, Euchre, Spades, Sheepshead), including scoring calculations and decision-making.
 
 Networking:
-- Technologies: Java sockets for network communication, and Java RMI
-(Remote Method Invocation) for distributed object applications.
-- Purpose: To handle multiplayer interactions, synchronization of game
-state across clients, and to facilitate communication with the backend for
-authentication and database interactions.
+- Technologies: Java sockets for network communication, and Java RMI (Remote Method Invocation) for distributed object applications.
+- Purpose: To handle multiplayer interactions, synchronization of game state across clients, and to facilitate communication with the backend for authentication and database interactions.
 
 User Authentication:
-- Technologies: JSON Web Tokens (JWT)
-- Purpose: To securely identify users and manage sessions, ensuring that
-users can securely log in and interact with the system.
+- Technologies: JSON Web Tokens (JWT) 
+- Purpose: To securely identify users and manage sessions, ensuring that users can securely log in and interact with the system.
 
 Database:
 - Technologies: SQL Database ( MySQL or NoSQL)
-- Purpose: To store user information, game states, scores, and potentially
-complex game-related data structures.
+- Purpose: To store user information, game states, scores, and potentially complex game-related data structures.
 
 Score Calculation (Specific to Each Game):
-- Technologies: Java methods and classes specifically tailored to handle
-the scoring systems of Cribbage, Euchre, Spades, and Sheepshead.
-- Purpose: To calculate and maintain scores based on the rules of Cribbage,
-Euchre, Spades, and Sheepshead, respectively.
-
-
-
+- Technologies: Java 
+- Purpose: To calculate and maintain scores based on the rules of Cribbage, Euchre, Spades, and Sheepshead, respectively. 
 
 
 #### Database
