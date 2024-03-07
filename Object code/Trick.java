@@ -31,16 +31,5 @@ public class Trick{
         return cardCompareSpades(leadingSuit, trickCards);
     }
 
-    /**
-     * Performs the logic required in a trick
-     * 
-     * @return
-     */
-    public ArrayList<Card> trickLogic(){
-
-        winningCard = winnerOfTrick();
-        this.winningPlayer = winningCard.getOwner();
-
-        return trickCards;
-    }
+    
 }
