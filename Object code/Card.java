@@ -15,6 +15,7 @@ public class Card{
      * @param value integer variable of the card value 11-J, 12-Q, 13-K
      * @param owner string variable for the card owner
      */
+     //TODO: change to cardValue
     public Card(String suit, int value, String owner){
         this.suit = suit;
         this.cardValue = value;
@@ -93,6 +94,7 @@ public class Card{
      * toString method for Card object
      * 
      * @return the Suit, Value, and Owner of the card
+     * TODO: add ace card
      */
     public String toString(){
         if(cardValue == 11){
