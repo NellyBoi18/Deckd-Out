@@ -5,6 +5,8 @@ public class Round {
     private String player1, player2, player3, player4;
     private Trick[] tricks;
     private int startPlayer;
+    //TODO: add individual bids
+    //TODO: javadocs
 
     public Round(int team1Pred, int team2Pred, String player1, String player2, String player3, String player4){
         this.team1Pred = team1Pred;
