@@ -1,11 +1,13 @@
-# General
+# VSCode Workspace
+*.code-workspace
+
+# Mac General
 .DS_Store
 .AppleDouble
 .LSOverride
 
 # Icon must end with two \r
 Icon
-
 
 # Thumbnails
 ._*
@@ -27,3 +29,28 @@ Temporary Items
 .apdisk
 
 # Courtesy of https://github.com/github/gitignore/blob/main/Global/macOS.gitignore
+
+# Windows thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Dump file
+*.stackdump
+
+# Folder config file
+[Dd]esktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
