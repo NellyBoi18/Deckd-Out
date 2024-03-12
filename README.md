@@ -132,40 +132,68 @@ Score Calculation (Specific to Each Game):
 
 ```mermaid
 ---
-title: Sample Database ERD for an Order System
+title: Deck'd Out Database ERD
 ---
 erDiagram
-    Customer ||--o{ Order : "placed by"
-    Order ||--o{ OrderItem : "contains"
-    Product ||--o{ OrderItem : "included in"
-
-    Customer {
-        int customer_id PK
-        string name
-        string email
-        string phone
+    Users {
+        int ID PK, UK
+        varchar email
+        varchar username UK
+        varchar verySecurePlainTextPassword
+        varchar firstName
+        varchar lastName
+        date DOB
     }
 
-    Order {
-        int order_id PK
-        int customer_id FK
-        string order_date
-        string status
+    Users ||--o{ Spades : played
+
+    Spades {
+        int USER_ID FK, UK
+        int highScore
+        int numGames
+        int gamesWon
     }
 
-    Product {
-        int product_id PK
-        string name
-        string description
-        decimal price
+    Spades ||--|{ UserSpadesGame : contains
+
+    UserSpadesGame {
+        int USER_ID FK
+        int GAME_ID PK, UK
     }
 
-    OrderItem {
-        int order_item_id PK
-        int order_id FK
-        int product_id FK
-        int quantity
+    UserSpadesGame ||--|{ SpadesGameHistoryTemplate : contains
+
+    SpadesGameHistoryTemplate {
+        int GAME_ID FK
+        time timestamp
+        varchar move
     }
+
+    Users ||--o{ Euchre : played
+
+    Euchre {
+        int USER_ID FK
+        int highScore
+        int numGames
+        int gamesWon
+    }
+
+    Euchre ||--|{ UserEuchreGame : contains
+
+    UserEuchreGame {
+        int USER_ID FK
+        int GAME_ID PK, UK
+    }
+
+    UserEuchreGame ||--|{ EuchreGameHistoryTemplate : contains
+
+    EuchreGameHistoryTemplate {
+        int GAME_ID FK
+        time timestamp
+        varchar move
+    }
+
+
 ```
 
 #### Class Diagram

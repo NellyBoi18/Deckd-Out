@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  db:
+    image: mysql/mysql-server:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
+      MYSQL_DATABASE: DeckdOut
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - DeckdOut:/var/lib/mysql
+    ports:
+      - "53306:3306"
+  phpmyadmin9:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
+    ports:
+      - "50080:80"
+
+volumes:
+  DeckdOut:
