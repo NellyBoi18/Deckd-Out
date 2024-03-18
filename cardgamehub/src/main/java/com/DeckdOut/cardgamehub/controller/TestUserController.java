@@ -17,12 +17,12 @@ public class TestUserController {
     TestUserService testUserService;
 
     @PostMapping("/add")
-    public String addStudent( @RequestBody TestUser testUser){
+    public String addTestUser( @RequestBody TestUser testUser){
         return testUserService.addTestUser(testUser);
     }
 
     @GetMapping
-    public List<TestUser> findALlStudents(){
+    public List<TestUser> findAllTestUsers(){
         return testUserService.findAllTestUser();
     }
 }

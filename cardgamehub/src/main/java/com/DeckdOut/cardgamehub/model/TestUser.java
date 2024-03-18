@@ -3,7 +3,7 @@ package com.DeckdOut.cardgamehub.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "TestUser")
+//@Table(name = "TestUser")
 public class TestUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
