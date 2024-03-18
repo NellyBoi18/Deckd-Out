@@ -12,13 +12,12 @@ public class Card{
      * Creates card with private values for suit, card value, and card owner
      * 
      * @param suit string variable for the card suit
-     * @param value integer variable of the card value 11-J, 12-Q, 13-K
+     * @param cardValue integer variable of the card value 11-J, 12-Q, 13-K
      * @param owner string variable for the card owner
      */
-     //TODO: change to cardValue
-    public Card(String suit, int value, String owner){
+    public Card(String suit, int cardValue, String owner){
         this.suit = suit;
-        this.cardValue = value;
+        this.cardValue = cardValue;
         this.owner = owner;
     }
 
