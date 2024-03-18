@@ -4,7 +4,7 @@
 public class Card{
     private String suit; //suit of the card 
     private int cardValue; //value of the card, 11-J, 12-Q, 13-K
-    private String owner; //owner of the card ie who's hand the card came from
+    private Player owner; //owner of the card ie who's hand the card came from
     private boolean dealt; //if the card has been dealt to a player
 
     /**
@@ -13,9 +13,9 @@ public class Card{
      * 
      * @param suit string variable for the card suit
      * @param cardValue integer variable of the card value 11-J, 12-Q, 13-K
-     * @param owner string variable for the card owner
+     * @param owner player variable for the card owner
      */
-    public Card(String suit, int cardValue, String owner){
+    public Card(String suit, int cardValue, Player owner){
         this.suit = suit;
         this.cardValue = cardValue;
         this.owner = owner;
@@ -38,9 +38,9 @@ public class Card{
      * Setter method for the card owner
      * This is for when the card is dealt to a player
      * 
-     * @param owner string variable for the player name
+     * @param owner player variable for the player name
      */
-    public void setOwner(String owner){
+    public void setOwner(Player owner){
         this.owner = owner;
     }
 
@@ -83,9 +83,9 @@ public class Card{
     /**
      * Getter method for owner
      * 
-     * @return string of the owner of the card
+     * @return player of the owner of the card
      */
-    public String getOwner(){
+    public Player getOwner(){
         return owner;
     }
 
@@ -97,16 +97,16 @@ public class Card{
      */
     public String toString(){
         if(cardValue == 11){
-            return "Suit: " + suit + " | Value: Jack" + " | Owner: " + owner + " | Dealt: " + dealt;
+            return "Suit: " + suit + " | Value: Jack" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
         if(cardValue == 12){
-            return "Suit: " + suit + " | Value: Queen" + " | Owner: " + owner + " | Dealt: " + dealt;
+            return "Suit: " + suit + " | Value: Queen" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
         if(cardValue == 13){
-            return "Suit: " + suit + " | Value: King" + " | Owner: " + owner + " | Dealt: " + dealt;
+            return "Suit: " + suit + " | Value: King" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
         else{
-            return "Suit: " + suit + " | Value: " + cardValue + " | Owner: " + owner + " | Dealt: " + dealt;
+            return "Suit: " + suit + " | Value: " + cardValue + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
     }
 }
