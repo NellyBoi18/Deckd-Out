@@ -1,11 +1,12 @@
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Round {
     private int p1Bid, p2Bid, p3Bid, p4Bid; //prediction of the number of traick a player will win
-    private int p1PT = 0; //point tracker for players
-    private int p2PT = 0; //point tracker for players
-    private int p3PT = 0; //point tracker for players
-    private int p4PT = 0; //point tracker for players
+    private int p1Tricks = 0; //point tracker for players
+    private int p2Tricks = 0; //point tracker for players
+    private int p3Tricks = 0; //point tracker for players
+    private int p4Tricks = 0; //point tracker for players
     private int team1Pred = p1Bid + p3Bid; //prediciton of the number of tricks team 1 will win
     private int team2Pred = p2Bid + p4Bid; //prediction of the number of tricks team 2 will win 
     private String player1, player2, player3, player4;
@@ -13,6 +14,8 @@ public class Round {
     private String startPlayer;
     private Deck deck = new Deck();
     private Player p1, p2, p3, p4;
+    private int team1OverTricks;
+    private int team2OverTricks;
 
 
     /**
@@ -41,13 +44,14 @@ public class Round {
      * Method that contains the logic for a trick of Spades
      */
     public void trickLogicSpades(ArrayList<Card> p1Hand, ArrayList<Card> p2Hand, ArrayList<Card> p3Hand, ArrayList<Card> p4Hand){
-        ArrayList<Card> trickCards;
+        ArrayList<Card> trickCards = new ArrayList<>();
         //TODO:
         //Player method to play card in order.
         //determine order of cards played
         //Need a method to loop from 4th player to 1st player ie something like p2 -> p3 -> p4 -> p1
         //add cards to trickCards arraylist
 
+        
         //trickCards.add(p1.pickCard(card))
         //p1.removePlayedCard(card);
         //trickCards.add(p2.pickCard(card))
@@ -59,19 +63,19 @@ public class Round {
 
         Trick trick = new Trick(trickCards);
         Card winningCard = trick.winnerOfTrick();
-        if(winnerCard.getOwner.equals(player1)){
-            p1PT++;
+        if(winningCard.getOwner().equals(player1)){
+            p1Tricks++;
         }
-        else if(winnerCard.getOwner.equals(player2)){
-            p2PT++;
+        else if(winningCard.getOwner().equals(player2)){
+            p2Tricks++;
         }
-        else if(winnerCard.getOnwer.equals(player3)){
-            p3PT++;
+        else if(winningCard.getOwner().equals(player3)){
+            p3Tricks++;
         }
         else{
-            p4PT++;
+            p4Tricks++;
         }
-        startPlayer = winningCard.getOwner;
+        startPlayer = winningCard.getOwner();
     }
 
     /**
@@ -82,14 +86,20 @@ public class Round {
         int firstPlayer = rand.nextInt(4); //who plays first in a round
         deck.shuffle();
         
-        ArrayList<Card> p1Hand = deck.spadesDeal(player1)
+        ArrayList<Card> p1Hand = deck.spadesDeal(player1);
         p1.setHand(p1Hand);
-        ArrayList<Card> p2Hand = deck.spadesDeal(player2)
+        ArrayList<Card> p2Hand = deck.spadesDeal(player2);
         p2.setHand(p2Hand);
-        ArrayList<Card> p3Hand = deck.spadesDeal(player3)
+        ArrayList<Card> p3Hand = deck.spadesDeal(player3);
         p3.setHand(p3Hand);
-        ArrayList<Card> p4Hand = deck.spadesDeal(player4)
+        ArrayList<Card> p4Hand = deck.spadesDeal(player4);
         p4.setHand(p4Hand);
+
+
+        //TODO: GET BOTH TEAMS PREDICTIONS FROM FRONTEND --> HARDCODED HERE
+        team1Pred = 6;
+        team2Pred = 7;
+
         
         //first trick of a round 
         if(firstPlayer == 0){
@@ -113,18 +123,41 @@ public class Round {
         for(int i = 0; i < 12; i++){
             trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
         }
+        
+        //calculate scores after all rounds
+        int team1Pts = pointCalc(p1Tricks, p3Tricks, team1Pred, team1OverTricks);
+        int team2Pts = pointCalc(p2Tricks, p4Tricks, team2Pred, team2OverTricks);
+        int[] roundPoints = new int[]{team1Pts, team2Pts};
 
-        int team1PT = p1PT + p3PT;
-        int team2PT = p2PT + p4PT; 
+        return roundPoints;
 
 
     }
 
     /**
-     * Method that calculates the points a team earns after a round of Spades
+     * Method that calculates the points that a single team earn after a round of Spades
      * 
      */
-    public int pointCalc(int team1PT, int team2PT, int team1Pred, int team2Pred){
+    public int pointCalc(int player1Tricks, int player2Tricks, int prediction, int teamOverTricks){
+        int finalPoints = 0; 
+        int totalTricks = player1Tricks + player2Tricks;
+        int diff = totalTricks -= prediction;
 
+        //if bid (i.e. prediction) was met
+        if(totalTricks >= prediction) {
+            finalPoints += prediction * 10;
+            //if team had any overtricks
+            if(diff > 0) {
+                finalPoints += diff;
+                teamOverTricks += diff; 
+            }
+        }
+
+        //check for overtricks, if 10+ minus 100 from total score
+        if(teamOverTricks > 10) {
+            finalPoints -= 100;
+        }
+
+        return finalPoints;
     }
 }
