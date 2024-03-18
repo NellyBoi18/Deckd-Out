@@ -46,10 +46,10 @@ public class Deck{
      * Sets the owner of the card and marks the card as being dealt so it cannot be dealt again
      * This should be used 4 times, 1 for each player
      * 
-     * @param playerName string variable for the name of the player
+     * @param playerName player variable for the name of the player
      * @return an ArrayList of Card objects, this is the hand of cards the player is dealt
      */
-    public ArrayList<Card> spadesDeal(String playerName){
+    public ArrayList<Card> spadesDeal(Player playerName){
         ArrayList<Card> hand = new ArrayList<>();
         int cardsDealt = 0;
         int i = 0;
@@ -75,10 +75,10 @@ public class Deck{
      * Sets the owner of the card and marks the card as being dealt so it cannot be dealt again
      * This should be used 5 times, 4 for players, 1 for the left over cards
      * 
-     * @param playerName string variable for the name of the player
+     * @param playerName player variable for the name of the player
      * @return an ArrayList of Card objects, this is the hand of cards the player is dealt
      */
-    public ArrayList<Card> euchreDeal(String playerName){
+    public ArrayList<Card> euchreDeal(Player playerName){
         ArrayList<Card> hand = new ArrayList<>();
         int cardsDealt = 0;
         int i = 0;
@@ -140,6 +140,7 @@ public class Deck{
 
     }
 
+    //TODO
     public Card cardCompareEuchre(){
         return null;
     }
