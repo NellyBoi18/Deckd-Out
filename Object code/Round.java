@@ -3,17 +3,17 @@ import java.util.ArrayList;
 
 public class Round {
     private int p1Bid, p2Bid, p3Bid, p4Bid; //prediction of the number of traick a player will win
-    private int p1Tricks = 0; //point tracker for players
-    private int p2Tricks = 0; //point tracker for players
-    private int p3Tricks = 0; //point tracker for players
-    private int p4Tricks = 0; //point tracker for players
+    private int p1Tricks = 0; //number of tricks player 1 wins
+    private int p2Tricks = 0; //number of tricks player 2 wins
+    private int p3Tricks = 0; //number of tricks player 3 wins
+    private int p4Tricks = 0; //number of tricks player 4 wins
     private int team1Pred = p1Bid + p3Bid; //prediciton of the number of tricks team 1 will win
     private int team2Pred = p2Bid + p4Bid; //prediction of the number of tricks team 2 will win 
-    private String player1, player2, player3, player4;
-    private Trick[] tricks;
-    private String startPlayer;
-    private Deck deck = new Deck();
-    private Player p1, p2, p3, p4;
+    private String player1, player2, player3, player4; 
+    private Trick[] tricks; 
+    private Player startPlayer;
+    private Deck deck = new Deck(); //the deck of cards
+    private Player p1, p2, p3, p4; ////the 4 different players in the game 
     private int team1OverTricks;
     private int team2OverTricks;
 
@@ -29,13 +29,13 @@ public class Round {
      * @param player3 string variable of the name of player 3
      * @param player4 string variable of the name of player 4
      */
-    public Round(int team1Pred, int team2Pred, String player1, String player2, String player3, String player4){
+    public Round(int team1Pred, int team2Pred, Player p1, Player p2, Player p3, Player p4){
         this.team1Pred = team1Pred;
         this.team2Pred = team2Pred;
-        this.player1 = player1;
-        this.player2 = player2;
-        this.player3 = player3;
-        this.player4 = player4;
+        this.p1 = p1;
+        this.p2 = p2;
+        this.p3 = p3;
+        this.p4 = p4;
         this.tricks = new Trick[13];
 
     }
@@ -63,13 +63,13 @@ public class Round {
 
         Trick trick = new Trick(trickCards);
         Card winningCard = trick.winnerOfTrick();
-        if(winningCard.getOwner().equals(player1)){
+        if(winningCard.getOwner().equals(p1)){
             p1Tricks++;
         }
-        else if(winningCard.getOwner().equals(player2)){
+        else if(winningCard.getOwner().equals(p2)){
             p2Tricks++;
         }
-        else if(winningCard.getOwner().equals(player3)){
+        else if(winningCard.getOwner().equals(p3)){
             p3Tricks++;
         }
         else{
@@ -86,13 +86,13 @@ public class Round {
         int firstPlayer = rand.nextInt(4); //who plays first in a round
         deck.shuffle();
         
-        ArrayList<Card> p1Hand = deck.spadesDeal(player1);
+        ArrayList<Card> p1Hand = deck.spadesDeal(p1);
         p1.setHand(p1Hand);
-        ArrayList<Card> p2Hand = deck.spadesDeal(player2);
+        ArrayList<Card> p2Hand = deck.spadesDeal(p2);
         p2.setHand(p2Hand);
-        ArrayList<Card> p3Hand = deck.spadesDeal(player3);
+        ArrayList<Card> p3Hand = deck.spadesDeal(p3);
         p3.setHand(p3Hand);
-        ArrayList<Card> p4Hand = deck.spadesDeal(player4);
+        ArrayList<Card> p4Hand = deck.spadesDeal(p4);
         p4.setHand(p4Hand);
 
 
@@ -103,19 +103,19 @@ public class Round {
         
         //first trick of a round 
         if(firstPlayer == 0){
-            startPlayer = player1;
+            startPlayer = p1;
             trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
         }
         else if(firstPlayer == 1){
-            startPlayer = player2;
+            startPlayer = p2;
             trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
         }
         else if(firstPlayer == 2){
-            startPlayer = player3;
+            startPlayer = p3;
             trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
         }
         else{
-            startPlayer = player4;
+            startPlayer = p4;
             trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
         }
 
