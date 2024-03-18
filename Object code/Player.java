@@ -90,4 +90,14 @@ public class Player {
     public void sortHand(ArrayList<Card> hand) { }
     */
 
+    /**
+     * Getter method for the username of the player
+     * 
+     * @param return the username (in string format) of the player
+     */  
+    public String getuserName(){
+        return userName;
+    }
+
+
 }
