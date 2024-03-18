@@ -141,7 +141,7 @@ public class Deck{
     }
 
     public Card cardCompareEuchre(){
-
+        return null;
     }
 
     /**
