@@ -35,7 +35,7 @@ public class Deck{
     }
 
     /**
-     * Shuffle method 
+     * Shuffles the deck 
      */
     public void shuffle(){
         Collections.shuffle(deck);
@@ -148,7 +148,7 @@ public class Deck{
     /**
      * toString method for Deck object
      * 
-     * Returns the entire playable deck, i.e. all the cards in the ArrayList
+     * @return Returns the entire playable deck, i.e. all the cards in the ArrayList
      */
     public String toString(){
         for(int i = 0; i < deck.size(); i++){
