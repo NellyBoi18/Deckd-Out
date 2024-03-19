@@ -11,7 +11,7 @@ public class Trick{
     private String trumpSuit; //the trump suit
     private Card winningCard; //the card that wins a trick
     private ArrayList<Card> trickCards; //cards that are played in the trick, from first played to last played
-    private String winningPlayer; 
+    private Player winningPlayer; //the player who wins the trick 
 
     /**
      * Constructor 
@@ -35,5 +35,14 @@ public class Trick{
         return cardCompareSpades(leadingSuit, trickCards);
     }
 
-    
+
+    /**
+     * Gets the winning player of the trick
+     * 
+     * @return the wining player of the trick
+     */
+    public Player getWinningPlayer() {
+        return winningPlayer;
+    }
+
 }
