@@ -6,11 +6,15 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 
+/**
+ * Component for rendering the application's app bar.
+ */
 export default function Appbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+          {/* Icon button placeholder */}
           <IconButton
             size="large"
             edge="start"
@@ -19,9 +23,11 @@ export default function Appbar() {
             sx={{ mr: 2 }}
           >
           </IconButton>
+          {/* Application title */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Test Users
           </Typography>
+          {/* Button to add test user */}
           <Button color="inherit">Add Test User</Button>
         </Toolbar>
       </AppBar>
