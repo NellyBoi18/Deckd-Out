@@ -10,10 +10,11 @@ public class Player {
 
     /**
      * Constructor, sets the name of the player
+     * 
+     * @param userName the String username of the player
      */
     public Player(String userName) {
-        this.userName = userName;
-        
+        this.userName = userName; 
     }
 
     /**
@@ -50,7 +51,7 @@ public class Player {
      * Getter method for the bid of the player
      * This gets the bid of the player to be whatever is passed
      * 
-     * @param return the amount of tricks that the player predicts they will win
+     * @return return the amount of tricks that the player predicts they will win
      */ 
     public int getBid(){
         return bid;
@@ -70,7 +71,7 @@ public class Player {
      * Getter method for the hand of the player
      * This gets which cards are in the user's hand
      * 
-     * @param return the list of cards that a user has in their hand
+     * @return the list of cards that a user has in their hand
      */  
     public ArrayList<Card> getHand(){
         return hand;
@@ -93,11 +94,9 @@ public class Player {
     /**
      * Getter method for the username of the player
      * 
-     * @param return the username (in string format) of the player
+     * @return the username (in string format) of the player
      */  
     public String getuserName(){
         return userName;
     }
-
-
 }
