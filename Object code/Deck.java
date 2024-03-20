@@ -96,49 +96,7 @@ public class Deck{
         return hand;
     }
     
-    /**
-     * Compares the played cards in a trick based on the suit first, then the value of the card.
-     * For Spades game only
-     * 
-     * @param leadingSuit string variable of the leading suit played
-     * @param trickCards ArrayList variable of Card objects of the played cards in the trick
-     * @return the card the wins the trick
-     */
-    //Card card1, Card card2, Card card3, Card card4
-    public Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards){
-        boolean spadePresent = false;
-        Card highestCard = null;
-        int maxCardVal = 0;
-        for(int i = 0; i < 4; i++){
-            if(trickCards.get(i).getSuit().equals("Spades")){
-                spadePresent = true;
-            }
-        }
-
-        if(spadePresent){
-            for(int i = 0; i < 4; i++){
-                if(trickCards.get(i).getSuit().equals("Spades")){
-                    if(maxCardVal < trickCards.get(i).getCardValue()){
-                        maxCardVal = trickCards.get(i).getCardValue();
-                        highestCard = trickCards.get(i);
-                    }
-                }
-            }
-            return highestCard;
-        }
-        else{
-            for(int i = 0; i < 4; i++){
-                if(trickCards.get(i).getSuit().equals(leadingSuit)){
-                    if(maxCardVal < trickCards.get(i).getCardValue()){
-                        maxCardVal = trickCards.get(i).getCardValue();
-                        highestCard = trickCards.get(i);
-                    }
-                }
-            }
-            return highestCard;
-        }
-
-    }
+    
 
     //TODO
     public Card cardCompareEuchre(){
