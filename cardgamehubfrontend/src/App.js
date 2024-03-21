@@ -1,15 +1,17 @@
-import AddTestUser from "./component/AddTestUser";
-import Appbar from "./component/Appbar";
-import DisplayTestUser from "./component/DisplayTestUser";
-import Footer from "./component/Footer";
+// import AddTestUser from "./component/AddTestUser";
+// import Appbar from "./component/Appbar";
+// import DisplayTestUser from "./component/DisplayTestUser";
+// import Footer from "./component/Footer";
+import CGRouter from "./component/nav/CGRouter";
 
 function App() {
   return (
     <div className="app">
-      <Appbar/>
+      {/* <Appbar/>
       <AddTestUser/>
       <DisplayTestUser/>
-      <Footer/>
+      <Footer/> */}
+      <CGRouter/>
     </div>
   );
 }
