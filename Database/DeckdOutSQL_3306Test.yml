@@ -1,14 +1,14 @@
 version: '3.8'
 services:
-  db:
+  db1:
     image: mysql/mysql-server:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
-      MYSQL_DATABASE: DeckdOut
+      MYSQL_DATABASE: DeckdOut3306Test
       MYSQL_ROOT_HOST: '%'
     volumes:
-      - DeckdOut:/var/lib/mysql
+      - DeckdOut3306Test:/var/lib/mysql
     ports:
       - "3306:3306"
   phpmyadmin9:
@@ -22,4 +22,4 @@ services:
       - "80:80"
 
 volumes:
-  DeckdOut:
+  DeckdOut3306Test:
