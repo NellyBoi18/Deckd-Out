@@ -10,7 +10,7 @@ services:
     volumes:
       - DeckdOut:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "53306:3306"
   phpmyadmin9:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
@@ -19,7 +19,7 @@ services:
       PMA_USER: root
       MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
     ports:
-      - "80:80"
+      - "50080:80"
 
 volumes:
   DeckdOut:
