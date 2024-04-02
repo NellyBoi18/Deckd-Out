@@ -67,6 +67,9 @@ As a user, I want to be able to view my game statistics, including the number of
 
 As a user, I want to be able to view a leaderboard to see how I rank against other players.
 
+As a user, I want to be able to view my leaderboard rank change as I play more games against other players.
+
+As a user, I want to be able to navigate betwee screens.
 
 ### User Interface Requirements
 
@@ -110,7 +113,7 @@ Technoloy Stack also found below!
 #### Technology Stack
 
 User Interface Frontend:
-- Technologies: Java
+- Technologies: JavaScript, Maven
 - Purpose: This layer handles the presentation and interactivity with the user, delivering a responsive and accessible experience.
 
 Backend:
