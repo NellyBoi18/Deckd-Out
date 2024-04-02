@@ -217,7 +217,7 @@ erDiagram
 
 ```mermaid
 ---
-title: Sample Class Diagram for Animal Program
+title: Class Diagram
 ---
 classDiagram
     class Player {
