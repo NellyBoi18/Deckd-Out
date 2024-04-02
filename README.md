@@ -250,7 +250,7 @@ classDiagram
         + String toString()
     }
 
-    class Deck {}
+    class Deck {
         - ArrayList<Card> deck
         + Deck()
         + void shuffle()
