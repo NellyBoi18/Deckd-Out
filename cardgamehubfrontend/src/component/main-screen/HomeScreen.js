@@ -3,7 +3,9 @@ import { styled } from '@mui/system';
 import { Container, Typography, Button, Grid, Avatar } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 import SpadesIcon from '../../assets/spades-icon.png';
-import EuchreIcon from '../../assets/euchre-icon.webp';
+import EuchreIcon from '../../assets/euchre-icon.png';
+import DefaultProfileIcon from '../../assets/default-icon.webp';
+import SettingsIcon from '../../assets/settings-icon.png';
 
 /**
  * Define custom styles using styled
@@ -30,14 +32,44 @@ const LogoImage = styled('img')({
 /**
  * Custom button component with styled
  */
-const CustomButton = styled(Button)({
+const PlayButton = styled(Button)({
   backgroundColor: '#CC4124',
   color: 'white',
   border: '3px solid white',
   borderRadius: '20px',
   padding: '18px 6px',
-  width: '220px',
-  height: '200px',
+  width: '200px',
+  height: '180px',
+  textTransform: 'none',
+  '&:hover': {
+    backgroundColor: '#B33020',
+  },
+});
+
+/**
+ * Custom button component with styled
+ */
+const SecondaryOrangeButton = styled(Button)({
+  backgroundColor: '#EC8F47',
+  color: 'white',
+  border: '3px solid white',
+  borderRadius: '20px',
+  height: '50px',
+  textTransform: 'none',
+  '&:hover': {
+    backgroundColor: '#DE8036',
+  },
+});
+
+/**
+ * Custom button component with styled
+ */
+const SecondaryRedButton = styled(Button)({
+  backgroundColor: '#CC4124',
+  color: 'white',
+  border: '3px solid white',
+  borderRadius: '20px',
+  height: '50px',
   textTransform: 'none',
   '&:hover': {
     backgroundColor: '#B33020',
@@ -62,7 +94,7 @@ function HomeScreen() {
       <LogoImage src={Logo} alt="Logo" />
       <Grid container spacing={15} alignItems="center" justifyContent="center">
         <Grid item>
-          <CustomButton variant="contained">
+          <PlayButton variant="contained">
             <Grid container alignItems="center" justifyContent="center" direction="column">
               <Grid item sx={{ marginBottom: '0.5rem' }}>
                 <Avatar alt="Spades Icon" src={SpadesIcon} sx={{ width: 80, height: 80, marginLeft: '0.5rem' }} />
@@ -71,19 +103,46 @@ function HomeScreen() {
                 <ButtonText variant="button">Play Spades</ButtonText>
               </Grid>
             </Grid>
-          </CustomButton>
+          </PlayButton>
         </Grid>
         <Grid item>
-          <CustomButton variant="contained">
+          <PlayButton variant="contained">
             <Grid container alignItems="center" justifyContent="center" direction="column">
               <Grid item sx={{ marginBottom: '0.5rem' }}>
-                <Avatar alt="Euchre Icon" src={EuchreIcon} sx={{ width: 80, height: 80, marginLeft: '0.5rem' }} />
+                <Avatar alt="Euchre Icon" src={EuchreIcon} sx={{ width: 80, height: 80, marginLeft: '0.5rem', borderRadius: 0 }} />
               </Grid>
               <Grid item>
                 <ButtonText variant="button">Play Euchre</ButtonText>
               </Grid>
             </Grid>
-          </CustomButton>
+          </PlayButton>
+        </Grid>
+      </Grid>
+      <Grid container justifyContent="flex-start" sx={{ marginTop: '2rem', width: '100%', paddingLeft: '1rem' }}>
+        <Grid item>
+          <SecondaryOrangeButton variant="contained" sx={{ position: 'fixed', bottom: 0, left: 0, marginLeft: '1rem', marginBottom: '1rem' }}>
+          <ButtonText variant="button">Leaderboard</ButtonText>
+          </SecondaryOrangeButton>
+        </Grid>
+        <Grid item>
+          <SecondaryOrangeButton variant="contained" sx={{ position: 'fixed', bottom: 0, left: 160, marginLeft: '1rem', marginBottom: '1rem' }}>
+          <ButtonText variant="button">Stats</ButtonText>
+          </SecondaryOrangeButton>
+        </Grid>
+        <Grid item>
+            <SecondaryRedButton variant="contained" sx={{ position: 'fixed', bottom: 0, right: 75, marginRight: '1rem', marginBottom: '1rem' }}>
+              <Grid item sx={{ marginRight: '0.5rem' }}>
+                    <Avatar alt="Default Profile Icon" src={DefaultProfileIcon} sx={{ width: 30, height: 30 }} />
+              </Grid>
+            <ButtonText variant="button">username</ButtonText>
+          </SecondaryRedButton>
+        </Grid>
+        <Grid item>
+            <SecondaryRedButton variant="contained" sx={{ position: 'fixed', bottom: 0, right: 0, marginRight: '1rem', marginBottom: '1rem' }}>
+              <Grid item>
+                    <Avatar alt="Settings Icon" src={SettingsIcon} sx={{ width: 30, height: 50 }} />
+              </Grid>
+          </SecondaryRedButton>
         </Grid>
       </Grid>
     </RootContainer>
