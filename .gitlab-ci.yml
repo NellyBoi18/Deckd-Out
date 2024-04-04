@@ -40,7 +40,7 @@ build_react:
   script:
     - cd cardgamehubfrontend 
     - npm install
-    - npm run build
+    - npm start
   artifacts:
     paths:
       - cardgamehubfrontend/build
