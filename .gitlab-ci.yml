@@ -8,7 +8,7 @@ stages:
 default:
   image: node:latest
   before_script:
-    - apt-get update
+    - apt-get update > /dev/null
     - apt-get -qq install -y maven
 
 
