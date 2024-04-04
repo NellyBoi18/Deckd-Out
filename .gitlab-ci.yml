@@ -1,0 +1,69 @@
+# Define the stages used in the pipeline
+stages:
+  - build
+  - test
+  - deploy
+
+# Define variables
+variables:
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+# Cache dependencies to speed up builds
+cache:
+  paths:
+    - .m2/repository/
+    - node_modules/
+
+# This job builds the Spring Boot application
+build_spring_boot:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS clean package
+  artifacts:
+    paths:
+      - target/*.jar
+  only:
+    - main
+
+# This job runs tests for the Spring Boot application
+test_spring_boot:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+  only:
+    - main
+
+# This job installs node dependencies and builds the React app
+build_react:
+  stage: build
+  script:
+    - cd cardgamehubfrontend 
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - cardgamehubfrontend/build
+  only:
+    - main
+
+# This job runs tests for the React application
+test_react:
+  stage: test
+  script:
+    - cd cardgamehubfrontend
+    - npm install
+    - npm test
+  only:
+    - main
+
+# This job handles the deployment of both applications
+deploy_to_staging:
+  stage: deploy
+  script:
+    - echo "Deploying to staging server..."
+    # Add your deployment scripts here
+  environment:
+    name: staging
+  only:
+    - main
