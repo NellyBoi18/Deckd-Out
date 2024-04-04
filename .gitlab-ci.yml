@@ -16,7 +16,7 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-stages:          # List of stages for jobs, and their order of execution
+
 # Define the stages used in the pipeline
 stages:
   - build
@@ -57,12 +57,12 @@ test_spring_boot:
 build_react:
   stage: build
   script:
-    - cd path_to_react_app # Replace with the actual path to your React application
+    - cd cardgamehubfrontend # Replace with the actual path to your React application
     - npm install
     - npm run build
   artifacts:
     paths:
-      - path_to_react_app/build
+      - cardgamehubfrontend/build
   only:
     - main
 
@@ -70,7 +70,7 @@ build_react:
 test_react:
   stage: test
   script:
-    - cd path_to_react_app # Replace with the actual path to your React application
+    - cd cardgamehubfrontend# Replace with the actual path to your React application
     - npm test
   only:
     - main
