@@ -38,7 +38,7 @@ test_spring_boot:
 build_react:
   stage: build
   script:
-    - cd cardgamehubfrontend # Replace with the actual path to your React application
+    - cd cardgamehubfrontend 
     - npm install
     - npm run build
   artifacts:
@@ -51,7 +51,8 @@ build_react:
 test_react:
   stage: test
   script:
-    - cd cardgamehubfrontend# Replace with the actual path to your React application
+    - cd cardgamehubfrontend
+    - npm install
     - npm test
   only:
     - main
