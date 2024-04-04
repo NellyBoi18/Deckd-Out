@@ -41,15 +41,17 @@ test_spring_boot:
 # This job installs node dependencies and builds the React app
 build_react:
   stage: build
+  image: node:latest  # Specify a Node.js Docker image
   script:
     - cd cardgamehubfrontend 
     - npm install
-    - npm start
+    - npm run build  # It's more common to use `npm run build` for React apps in CI/CD pipelines
   artifacts:
     paths:
       - cardgamehubfrontend/build
   only:
     - main
+
 
 # This job runs tests for the React application
 test_react:
