@@ -27,7 +27,7 @@ In terms of the population who might eventually our system, I would say that for
 | R13  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | Med      | Open   |
 | R14  | When the user clicks on the profile button on any screen that is appears, the frontend SHALL display the profile page. | Med      | Open   |
 | R15  | When the user clicks on the settings button on any screen that is appears, the frontend SHALL display the settings page. | Med      | Open   |
-| R16  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the playRound() method. | Med      | Open   |
+| R16  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | Med      | Open   |
 | R17  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
 | R18  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
 | R19  | When the user selects a card to play, the card will be inserted into the trick, the card will be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | Med      | Open   |
@@ -35,11 +35,11 @@ In terms of the population who might eventually our system, I would say that for
 | R21  | After a round of spades, the correct number of points will be calculated and added to each teams total, and if one team has over 500 points then they will be declared the winner of the game. | Med      | Open   |
 | R22  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | Med      | Open   |
 | R23  | Users should be able to sign into the application with an account and access their high scores. | Med      | Open   |
-| R22  | Users should be able to play the specified card games against other players. | High     | Open   |
-| R24  | There should be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
-| R25  | The user should be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
-| R26  | The logic of each card game should work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
-| R27  | Application UI should be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
+| R24  | Users should be able to play the specified card games against other players. | High     | Open   |
+| R25  | There should be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
+| R26  | The user should be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
+| R27  | The logic of each card game should work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
+| R28  | Application UI should be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
 
 ### Use Cases & User Stories
 
@@ -65,9 +65,11 @@ As a user, I want to play a legal game of Spades against a human player over the
 
 As a user, I want to be able to view my game statistics, including the number of wins and losses in each card game.
 
+As a user, I want to my game statistics to update after I play games. 
+
 As a user, I want to be able to view a leaderboard to see how I rank against other players.
 
-As a user, I want to be able to view my leaderboard rank change as I play more games against other players.
+As a user, I want to be able to view my leaderboard rank update as I play more games against other players.
 
 As a user, I want to be able to navigate betwee screens.
 
@@ -126,7 +128,7 @@ Game Engine:
 
 Game Logic:
 - Technologies: Java 
-- Purpose: Implements the specific rules and mechanics of each game (Cribbage, Euchre, Spades, Sheepshead), including scoring calculations and decision-making.
+- Purpose: Implements the specific rules and mechanics of each game (Euchre, Spades), including scoring calculations and decision-making.
 
 Networking:
 - Technologies: Java sockets for network communication, and Java RMI (Remote Method Invocation) for distributed object applications.
@@ -142,7 +144,7 @@ Database:
 
 Score Calculation (Specific to Each Game):
 - Technologies: Java 
-- Purpose: To calculate and maintain scores based on the rules of Cribbage, Euchre, Spades, and Sheepshead, respectively. 
+- Purpose: To calculate and maintain scores based on the rules of Euchre and Spades, respectively. 
 
 
 #### Database
