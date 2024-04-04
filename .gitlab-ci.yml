@@ -1,3 +1,6 @@
+# Define the Docker image used for the pipeline
+image: node:latest
+
 # Define the stages used in the pipeline
 stages:
   - build
