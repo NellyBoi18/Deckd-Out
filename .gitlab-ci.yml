@@ -41,6 +41,7 @@ build_spring_boot:
 test_spring_boot:
   stage: test
   script:
+    - cd cardgamehub
     - mvn $MAVEN_CLI_OPTS test
   only:
     variables:
@@ -63,6 +64,7 @@ build_react:
 # This job runs tests for the React application
 test_react:
   stage: test
+  image: maven:latest
   script:
     - cd cardgamehubfrontend
     - npm install
