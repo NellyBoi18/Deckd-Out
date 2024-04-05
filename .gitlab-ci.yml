@@ -33,18 +33,16 @@ build_spring_boot:
       junit:
         # THE CURRENT DATABASE TEST DOES NOT WORK because gitlab runner does not have access to the database
         # - "cardgamehub/src/test/**/*Tests.java"
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    - if: $CI_COMMIT_BRANCH
 
 # This job runs tests for the Spring Boot application
 test_spring_boot:
   stage: test
   script:
     - mvn $MAVEN_CLI_OPTS test
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job installs node dependencies and builds the React app
 build_react:
@@ -56,9 +54,8 @@ build_react:
   artifacts:
     paths:
       - cardgamehubfrontend/build
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job runs tests for the React application
 test_react:
@@ -67,9 +64,8 @@ test_react:
     - cd cardgamehubfrontend
     - npm install
     - npm test
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job handles the deployment of both applications
 deploy_to_staging:
@@ -79,6 +75,5 @@ deploy_to_staging:
     # Add your deployment scripts here
   environment:
     name: staging
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
