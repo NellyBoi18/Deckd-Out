@@ -1,3 +1,6 @@
+# Define the Docker image used for the jobs
+image: maven:latest
+
 # Define the stages used in the pipeline
 stages:
   - build
@@ -19,43 +22,58 @@ cache:
 build_spring_boot:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS clean package
+    - cd cardgamehub
+    - mvn $MAVEN_CLI_OPTS verify
   artifacts:
+    name: "Maven artifacts from $CI_PROJECT_NAME on $CI_COMMIT_REF_SLUG"
     paths:
-      - target/*.jar
+      - "**/target"
+    reports:
+      # Declare the JUnit reports for GitLab to pick them up
+      junit:
+        # THE CURRENT DATABASE TEST DOES NOT WORK because gitlab runner does not have access to the database
+        # - "cardgamehub/src/test/**/*Tests.java"
   only:
-    - main
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job runs tests for the Spring Boot application
 test_spring_boot:
   stage: test
   script:
+    - cd cardgamehub
     - mvn $MAVEN_CLI_OPTS test
   only:
-    - main
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job installs node dependencies and builds the React app
 build_react:
   stage: build
+  image: node:latest  # Specify a Node.js Docker image
   script:
     - cd cardgamehubfrontend 
     - npm install
-    - npm start
+    - npm run build  # It's more common to use `npm run build` for React apps in CI/CD pipelines
   artifacts:
     paths:
       - cardgamehubfrontend/build
   only:
-    - main
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
 
 # This job runs tests for the React application
 test_react:
   stage: test
+  image: node:latest
   script:
     - cd cardgamehubfrontend
     - npm install
     - npm test
   only:
-    - main
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job handles the deployment of both applications
 deploy_to_staging:
@@ -66,4 +84,5 @@ deploy_to_staging:
   environment:
     name: staging
   only:
-    - main
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
