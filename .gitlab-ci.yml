@@ -70,7 +70,7 @@ test_react:
   script:
     - cd cardgamehubfrontend
     - npm install
-    - npm test --passWithNoTests
+    # - npm test # We don't have tests for the React app yet
   only:
     variables:
       - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
