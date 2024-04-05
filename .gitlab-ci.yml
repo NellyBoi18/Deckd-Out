@@ -66,7 +66,7 @@ build_react:
 # This job runs tests for the React application
 test_react:
   stage: test
-  image: maven:latest
+  image: node:latest
   script:
     - cd cardgamehubfrontend
     - npm install
