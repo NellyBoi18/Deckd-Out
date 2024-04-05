@@ -1,3 +1,6 @@
+# Define the Docker image used for the jobs
+image: maven:latest
+
 # Define the stages used in the pipeline
 stages:
   - build
@@ -5,11 +8,11 @@ stages:
   - deploy
 
 # Define the image used for the jobs
-default:
-  image: node:latest
-  before_script:
-    - apt-get update > /dev/null
-    - apt-get -qq install -y maven
+#default:
+#  image: node:latest
+#  before_script:
+#    - apt-get update > /dev/null
+#    - apt-get install -y maven > /dev/null
 
 
 # Define variables
@@ -27,10 +30,17 @@ cache:
 build_spring_boot:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS clean package
+    - mvn $MAVEN_CLI_OPTS verify
   artifacts:
+    name: "Maven artifacts from $CI_PROJECT_NAME on $CI_COMMIT_REF_SLUG"
     paths:
-      - target/*.jar
+      - "**/target"
+    reports:
+      # declare the JUnit reports (recursive pattern for multi-module projects)
+      junit:
+        - "**/target/*-reports/TEST-*.xml"
+    #paths:
+      #- target/*.jar
   only:
     - main
 
