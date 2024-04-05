@@ -29,11 +29,10 @@ build_spring_boot:
     paths:
       - "**/target"
     reports:
-      # declare the JUnit reports (recursive pattern for multi-module projects)
+      # Declare the JUnit reports for GitLab to pick them up
       junit:
-        - "cardgamehub/src/test/**/*Tests.java"
-    #paths:
-      #- target/*.jar
+        # THE CURRENT DATABASE TEST DOES NOT WORK because gitlab runner does not have access to the database
+        # - "cardgamehub/src/test/**/*Tests.java"
   only:
     - main
 
