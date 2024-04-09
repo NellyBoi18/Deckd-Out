@@ -1,6 +1,11 @@
+//TODO REWORK TO COUCH PLAY WITH 4 PLAYERS LOCALLY
+
 import java.util.Random;
 import java.util.ArrayList;
 
+/**
+ * Class for a single round in the card game
+ */
 public class Round {
     private int p1Bid, p2Bid, p3Bid, p4Bid; //prediction of the number of traick a player will win
     private int p1Tricks = 0; //number of tricks player 1 wins
@@ -9,24 +14,24 @@ public class Round {
     private int p4Tricks = 0; //number of tricks player 4 wins
     private int team1Pred = p1Bid + p3Bid; //prediciton of the number of tricks team 1 will win
     private int team2Pred = p2Bid + p4Bid; //prediction of the number of tricks team 2 will win 
-    private String player1, player2, player3, player4; 
-    private Trick[] tricks; 
-    private Player startPlayer;
+    private Trick[] tricks; //arraylist of cards in trick 
+    private Player startPlayer; //the starting player of a trick (i.e. the one who leads)
     private Deck deck = new Deck(); //the deck of cards
     private Player p1, p2, p3, p4; ////the 4 different players in the game 
     private int team1OverTricks; //the number of overtricks for team 1
     private int team2OverTricks; //the number of overtricks for team 2
-
+    private boolean roundEnd;
+    private String leadingSuit;
 
     /**
      * Constructor
-     * Sets up a round of Spades
+     * Sets up a round of Spades by initializing the global fields
      * 
      * @param team1Pred integer variable of number of tricks the first team will win
      * @param team2Pred integer variable of number of tricks the second team will win
      * @param player1 player variable of the name of player 1
      * @param player2 player variable of the name of player 2
-     * @param player3 player variable of the name of player 3
+     * @param player3 player variable of the name of player 3 
      * @param player4 player variable of the name of player 4
      */
     public Round(int team1Pred, int team2Pred, Player p1, Player p2, Player p3, Player p4){
@@ -40,6 +45,37 @@ public class Round {
 
     }
 
+
+
+    //p1CheckLegalCards
+    public Card p1GetLegalCard() {
+        Card playerCard;
+        //if user goes first -- can play anything
+        if(startPlayer.equals(p1)) {
+            return p1.pickCard(p1);
+        }
+        //if user has neither leadingSuit nor Spades -- can play anything
+        if(!p1.hasTrump(p1.getHand()) && !p1.hasLeadingSuit(p1.getHand(), leadingSuit)) {
+            return p1.pickCard(p1); 
+        }
+
+        //if user has either trump or leadingSuit, can play either
+        if(p1.hasTrump(p1.getHand()) || p1.hasLeadingSuit(p1.getHand(), leadingSuit)) {
+            boolean finished = false;
+            while(!finished) {
+                playerCard = pickCard(p1); //GET FROM FRONTEND
+                if(playerCard.getSuit().equals(leadingSuit) || playerCard.getSuit().equals("Spades")) {
+                    finished = true;
+                    leadingSuit = playerCard.getSuit();
+                }
+            }
+        }
+        
+        return playerCard;
+    } 
+
+
+
     /**
      * Method that contains the logic for a trick of Spades
      * 
@@ -47,26 +83,103 @@ public class Round {
      * @param p2Hand the hand of cards of the second player
      * @param p3Hand the hand of cards of the third player
      * @param p4Hand the hand of cards of the fourth player
+     * @return the winner of the trick
      */
-    public void trickLogicSpades(ArrayList<Card> p1Hand, ArrayList<Card> p2Hand, ArrayList<Card> p3Hand, ArrayList<Card> p4Hand){
+    public Player trickLogicSpades(ArrayList<Card> p1Hand, ArrayList<Card> p2Hand, ArrayList<Card> p3Hand, ArrayList<Card> p4Hand, Player startPlayer){
         ArrayList<Card> trickCards = new ArrayList<>();
         //TODO:
         //Player method to play card in order.
         //determine order of cards played
         //Need a method to loop from 4th player to 1st player ie something like p2 -> p3 -> p4 -> p1
-        //add cards to trickCards arraylist
+        
+  
+        boolean done = false;
+        while(!done) {
+            p1Card = p1.pickCard(card));  //GET FROM FRONTEND
+            p1Card = p1GetLegalCard(p1Card); 
+            if(result) {
+                done = true;
+            }
+        }
+
+
+        //if player is first, can play any card even trump
+
+        //other option is to just do nothing when bad card is played (i.e. return null) 
+
+       
+        if(startPlayer.equals(p1)) { 
+            trickCards.add(p1.pickCard());  //note: can play anything
+            //p1.removePlayedCard(card); 
+            
+            //other users
+
+            trickCards.add(p2.pickCard(card));
+            //p2.removePlayedCard(card);
+            trickCards.add(p3.pickCard(card));
+            //p3.removePlayedCard(card);
+            trickCards.add(p4.pickCard(card));
+            //p4.removePlayedCard(card);
+        }
+
+        //p2 case
+        else if(startPlayer.equals(p2)) {
+            trickCards.add(p2.pickCard(card));
+            //p2.removePlayedCard(card);
+
+            //other users
+
+            trickCards.add(p3.pickCard(card));
+            //p3.removePlayedCard(card);
+            trickCards.add(p4.pickCard(card));
+            //p4.removePlayedCard(card);
+            boolean done = false;
+            while(!done) {
+                p1Card = p1.pickCard(card));  //GET FROM FRONTEND
+                boolean result = p1GetLegalCard(p1Card); 
+                if(result) {
+                    done = true;
+                }
+            }
+            //p1.removePlayedCard(p1Card);
+        }
+
+        //p3 case
+        else if(startPlayer.equals(p3)) {
+            trickCards.add(p3.pickCard(card));
+            //p3.removePlayedCard(card);
+
+            //other users
+
+            trickCards.add(p4.pickCard(card));
+            //p4.removePlayedCard(card);
+            trickCards.add(p1.pickCard(card));
+            //p1.removePlayedCard(card);
+            trickCards.add(p2.pickCard(card));
+            //p2.removePlayedCard(card);
+        }
+        //p4 case
+        else if(startPlayer.equals(p4)) {
+            trickCards.add(p4.pickCard(card));
+            //p4.removePlayedCard(card);
+
+            //other users
+
+            
+            trickCards.add(p1.pickCard(card));
+            //p1.removePlayedCard(card);
+            trickCards.add(p2.pickCard(card));
+            //p2.removePlayedCard(card);
+            trickCards.add(p3.pickCard(card));
+            //p3.removePlayedCard(card);
+        }
+        
 
         
-        //trickCards.add(p1.pickCard(card))
-        //p1.removePlayedCard(card);
-        //trickCards.add(p2.pickCard(card))
-        //p2.removePlayedCard(card);
-        //trickCards.add(p3.pickCard(card))
-        //p3.removePlayedCard(card);
-        //trickCards.add(p4.pickCard(card))
-        //p4.removePlayedCard(card);
 
         Trick trick = new Trick(trickCards);
+
+
         Card winningCard = trick.winnerOfTrick();
         if(winningCard.getOwner().equals(p1)){
             p1Tricks++;
@@ -81,7 +194,7 @@ public class Round {
             p4Tricks++;
         }
         startPlayer = winningCard.getOwner();
-        //TODO SEND WINNING PLAYER TO FRONTEND
+        return startPlayer;
     }
 
     /**
@@ -105,31 +218,30 @@ public class Round {
 
 
         //TODO: GET BOTH TEAMS PREDICTIONS FROM FRONTEND --> HARDCODED HERE
-        team1Pred = 6;
-        team2Pred = 7;
-
+        team1Pred = 6; //set team 1 predictions
+        team2Pred = 7; //set team 2 predictions
         
         //first trick of a round 
         if(firstPlayer == 0){
             startPlayer = p1;
-            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
+            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p1);
         }
         else if(firstPlayer == 1){
             startPlayer = p2;
-            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
+            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p2);
         }
         else if(firstPlayer == 2){
             startPlayer = p3;
-            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
+            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p3);
         }
         else{
             startPlayer = p4;
-            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
+            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p4);
         }
 
         //the rest of the tricks of a round
         for(int i = 0; i < 12; i++){
-            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand);
+            trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, startPlayer);
         }
         
         //calculate scores after all rounds
@@ -137,6 +249,7 @@ public class Round {
         int team2Pts = pointCalc(p2Tricks, p4Tricks, team2Pred, team2OverTricks, "team2");
         int[] roundPoints = new int[]{team1Pts, team2Pts};
 
+        //return the array of team 1 and 2 points earned in a round
         return roundPoints;
     }
 
@@ -153,7 +266,7 @@ public class Round {
     public int pointCalc(int player1Tricks, int player2Tricks, int prediction, int teamOverTricks, String team){
         int finalPoints = 0; 
         int totalTricks = player1Tricks + player2Tricks;
-        int diff = totalTricks -= prediction;
+        int diff = totalTricks - prediction;
 
         //if bid (i.e. prediction) was met
         if(totalTricks >= prediction) {
@@ -192,5 +305,18 @@ public class Round {
     public void setTeam2OvrTricks(int num) {
         this.team2OverTricks = num;
     }
+
+
+
+    public ArrayList<Card> getLegalCards(String leadingSuit) {
+        ArrayList<Card> legalCards = new ArrayList<Card>();
+        for(Card card1 : p1.getHand())
+            if(card1.getSuit().equals(leadingSuit) || card1.getSuit().equals("Spades")) {
+                legalCards.add(card1);
+            }
+        return legalCards;
+    }
+
+
 
 }
