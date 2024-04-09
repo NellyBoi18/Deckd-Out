@@ -1,10 +1,13 @@
+//TODO ADD LOGIC TO PREVENT ILLEGAL MOVE
+
+
 import java.util.ArrayList;
 
 /**
  * Class pertaining to the player including information such as username, bid, and hand.
  */
 public class Player {
-    private String userName; //username of the player (NOTE: GET FROM FRONTEND --> HOW?)
+    private String userName; //username of the player (NOTE: GET FROM FRONTEND --> HOW? TODO change to FROM daatbase
     private int bid; // how many tricks the player thinks they will win in a round 
     private ArrayList<Card> hand; // the player's hand of cards
 
@@ -18,23 +21,14 @@ public class Player {
     }
 
     /**
-     * Returns the card that the user chooses to play (Note: card from frontend)
+     * Returns the card that the user chooses to play (Note: card FROM frontend)
      * 
      * @param card the card that is picked by the player (from frontend)
      * @return the card object that the user has picked
-     */ 
-    public Card pickCard(Card card) {
-        /*
-        for(int i = 0; i < 13; i++){
-            if(hand.get(i).equals(card)){
-                break;
-            }
-            if(i == 12 && !hand.get(i).equals(card)){
-                
-            }
-        }
-        */
-       return card;
+     */
+    //THIS METHOD NEEDS TO BE IN FRONTEND, NOT IN BACKEND
+    public Card pickCard(Player player) {
+        return cardFromFrontend;
     }
 
     /**
@@ -82,14 +76,9 @@ public class Player {
      * 
      * @param playedCard the card that will be removed from the player's hand; also the card that has been played
      */ 
-    public void removePlayedCard(Card playedCard){
+    public void removePlayedCard(Card playedCard) {
         hand.remove(playedCard);
     }
-    
-    /*
-    //SCOPE UP -- QOL Change
-    public void sortHand(ArrayList<Card> hand) { }
-    */
 
     /**
      * Getter method for the username of the player
@@ -99,4 +88,39 @@ public class Player {
     public String getuserName(){
         return userName;
     }
+
+
+
+
+
+    //HASTRUMP METHOD
+    public boolean hasTrump(ArrayList<Card> hand) {
+        for(Card card : hand) {
+            if(card.getSuit().equals("Spades")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    //HEAD LEADING SUIT METHOD
+    public boolean hasLeadingSuit(ArrayList<Card> hand, String leadingSuit) {
+        for(Card card : hand) {
+            if(card.getSuit().equals(leadingSuit)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+    /*
+    //SCOPE UP -- QOL Change
+    public void sortHand(ArrayList<Card> hand) { }
+    */
+
 }
