@@ -1,0 +1,83 @@
+# Define the Docker image used for the jobs
+image: maven:latest
+
+# Define the stages used in the pipeline
+stages:
+  - build
+  - test
+  - deploy
+
+# Define variables
+variables:
+  MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+# Cache dependencies to speed up builds
+cache:
+  paths:
+    - .m2/repository/
+    - node_modules/
+
+# This job builds the Spring Boot application
+build_spring_boot:
+  stage: build
+  script:
+    - cd cardgamehub
+    - mvn $MAVEN_CLI_OPTS verify
+  artifacts:
+    name: "Maven artifacts from $CI_PROJECT_NAME on $CI_COMMIT_REF_SLUG"
+    paths:
+      - "**/target"
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# This job runs tests for the Spring Boot application
+test_spring_boot:
+  stage: test
+  script:
+    - cd cardgamehub
+    # - mvn $MAVEN_CLI_OPTS test
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# This job installs node dependencies and builds the React app
+build_react:
+  stage: build
+  image: node:latest  # Specify a Node.js Docker image
+  script:
+    - cd cardgamehubfrontend 
+    - npm install
+    - npm run build  # It's more common to use `npm run build` for React apps in CI/CD pipelines
+  artifacts:
+    paths:
+      - cardgamehubfrontend/build
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+
+# This job runs tests for the React application
+test_react:
+  stage: test
+  image: node:latest
+  script:
+    - cd cardgamehubfrontend
+    - npm install
+    # - npm test # We don't have tests for the React app yet
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# This job handles the deployment of both applications
+deploy_to_staging:
+  stage: deploy
+  script:
+    - echo "Deploying to staging server..."
+    # Add your deployment scripts here
+  environment:
+    name: staging
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

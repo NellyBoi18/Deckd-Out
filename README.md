@@ -8,7 +8,7 @@ Deck’d Out
 
 <!--A one paragraph summary of what the software will do.-->
 
-This application will be a graphical user interface that will act as a hub for the user to access each of the card games that we choose to develop, with the options being Cribbage, Euchre, Spades, and Sheepshead. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track user high scores and will be able to rank the users against each other. 
+This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: spades and euchre. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track user high scores and will be able to rank the users against each other. 
 
 ### Customer
 
@@ -22,12 +22,24 @@ In terms of the population who might eventually our system, I would say that for
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| R11  | Users should be able to sign into the application with an account and access their high scores. | Med      | Open   |
-| R12  | Users should be able to play the specified card games against other players. | High     | Open   |
-| R13  | There should be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
-| R14  | The user should be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
-| R15  | The logic of each card game should work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
-| R16  | Application UI should be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
+| R11  | When the user first opens the application or when the user logs out, the frontend SHALL display the login page. | Med      | Open   |
+| R12  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | Med      | Open   |
+| R13  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | Med      | Open   |
+| R14  | When the user clicks on the profile button on any screen that is appears, the frontend SHALL display the profile page. | Med      | Open   |
+| R15  | When the user clicks on the settings button on any screen that is appears, the frontend SHALL display the settings page. | Med      | Open   |
+| R16  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | Med      | Open   |
+| R17  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
+| R18  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
+| R19  | When the user selects a card to play, the card will be inserted into the trick, the card will be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | Med      | Open   |
+| R20  | When the winner of a trick is determined, the application will display who won the trick to the user. | Med      | Open   |
+| R21  | After a round of spades, the correct number of points will be calculated and added to each teams total, and if one team has over 500 points then they will be declared the winner of the game. | Med      | Open   |
+| R22  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | Med      | Open   |
+| R23  | Users should be able to sign into the application with an account and access their high scores. | Med      | Open   |
+| R24  | Users should be able to play the specified card games against other players. | High     | Open   |
+| R25  | There should be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
+| R26  | The user should be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
+| R27  | The logic of each card game should work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
+| R28  | Application UI should be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
 
 ### Use Cases & User Stories
 
@@ -53,8 +65,13 @@ As a user, I want to play a legal game of Spades against a human player over the
 
 As a user, I want to be able to view my game statistics, including the number of wins and losses in each card game.
 
+As a user, I want to my game statistics to update after I play games. 
+
 As a user, I want to be able to view a leaderboard to see how I rank against other players.
 
+As a user, I want to be able to view my leaderboard rank update as I play more games against other players.
+
+As a user, I want to be able to navigate betwee screens.
 
 ### User Interface Requirements
 
@@ -91,12 +108,14 @@ Images can be included with `![alt_text](image_path)`
 
 <!--Included below are some sample diagrams, including some example tech stack diagrams.-->
 
-TODO! Later!
+Database architecture found below!
+
+Technoloy Stack also found below!
 
 #### Technology Stack
 
 User Interface Frontend:
-- Technologies: Java
+- Technologies: JavaScript, Maven
 - Purpose: This layer handles the presentation and interactivity with the user, delivering a responsive and accessible experience.
 
 Backend:
@@ -109,7 +128,7 @@ Game Engine:
 
 Game Logic:
 - Technologies: Java 
-- Purpose: Implements the specific rules and mechanics of each game (Cribbage, Euchre, Spades, Sheepshead), including scoring calculations and decision-making.
+- Purpose: Implements the specific rules and mechanics of each game (Euchre, Spades), including scoring calculations and decision-making.
 
 Networking:
 - Technologies: Java sockets for network communication, and Java RMI (Remote Method Invocation) for distributed object applications.
@@ -125,7 +144,7 @@ Database:
 
 Score Calculation (Specific to Each Game):
 - Technologies: Java 
-- Purpose: To calculate and maintain scores based on the rules of Cribbage, Euchre, Spades, and Sheepshead, respectively. 
+- Purpose: To calculate and maintain scores based on the rules of Euchre and Spades, respectively. 
 
 
 #### Database
@@ -200,31 +219,81 @@ erDiagram
 
 ```mermaid
 ---
-title: Sample Class Diagram for Animal Program
+title: Class Diagram
 ---
 classDiagram
-    class Animal {
-        - String name
-        + Animal(String name)
-        + void setName(String name)
-        + String getName()
-        + void makeSound()
+    class Player {
+        - String userName
+        - int bid 
+        - ArrayList<Card> hand
+        + Player(String userName)
+        + Card pickCard(Card card)
+        + void setBid(int bid)
+        + int getBid()
+        + void setHand(ArrayList<Card> hand)
+        + ArrayList<Card> getHand()
+        + void removePlayedCard(Card playedCard)
+        + String getuserName()
     }
-    class Dog {
-        + Dog(String name)
-        + void makeSound()
+
+    class Card {
+        - String suit 
+        - int cardValue 
+        - Player owner 
+        - boolean dealt 
+        + Card(String suit, int cardValue, Player owner)
+        + Card(String suit, int value)
+        + void setOwner(Player owner)
+        + void setDealt(boolean dealt)
+        + boolean getDealt()
+        + String getSuit()
+        + int getCardValue()
+        + Player getOwner()
+        + String toString()
     }
-    class Cat {
-        + Cat(String name)
-        + void makeSound()
+
+    class Deck {
+        - ArrayList<Card> deck
+        + Deck()
+        + void shuffle()
+        + ArrayList<Card> spadesDeal(Player playerName)
+        + ArrayList<Card> euchreDeal(Player playerName)
+        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
+        + Card cardCompareEuchre()
+        + String toString()
     }
-    class Bird {
-        + Bird(String name)
-        + void makeSound()
+    
+    class Round {
+        - int p1Bid, p2Bid, p3Bid, p4Bid
+        - int p1Tricks = 0
+        - int p2Tricks = 0
+        - int p3Tricks = 0
+        - int p4Tricks = 0
+        - int team1Pred = p1Bid + p3Bid;
+        - int team2Pred = p2Bid + p4Bid;
+        - String player1, player2, player3, player4
+        - Trick[] tricks; 
+        - Player startPlayer;
+        - Deck deck = new Deck();
+        - Player p1, p2, p3, p4;
+        - int team1OverTricks;
+        - int team2OverTricks;
+        + Round(int team1Pred, int team2Pred, Player p1, Player p2, Player p3, Player p4)
+        + void trickLogicSpades(ArrayList<Card> p1Hand, ArrayList<Card> p2Hand, ArrayList<Card> p3Hand, ArrayList<Card> p4Hand)
+        + int[] playRoundSpades()
+        + int pointCalc(int player1Tricks, int player2Tricks, int prediction, int teamOverTricks)
     }
-    Animal <|-- Dog
-    Animal <|-- Cat
-    Animal <|-- Bird
+
+    class Trick {
+        - String leadingSuit
+        - String trumpSuit
+        - Card winningCard
+        - ArrayList<Card> trickCards
+        - Player winningPlayer
+        + Trick(ArrayList<Card> trickCards)
+        + Card winnerOfTrick()
+        + Player getWinningPlayer()
+    }
 ```
 
 #### Flowchart

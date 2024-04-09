@@ -7,6 +7,7 @@ class MysqlCon {
         try {
             Connection dbCxn = DriverManager.getConnection(
                 "jdbc:mysql://localhost:53306/deckdout", "root", "verySecurePlainTextPass123"
+                // spring.datasource.url=jdbc:mysql://localhost:53306/DeckdOut
             );
             Statement select = dbCxn.createStatement();
             // ResultSet rs = select.executeQuery("select * from users");
