@@ -19,7 +19,7 @@ public class DatabaseTests {
      */
     @BeforeAll
     public static void setUp() throws SQLException {
-        String url = "jdbc:mysql://localhost:53306/DeckdOut";
+        String url = "jdbc:mysql://cs506-team-33.cs.wisc.edu:3306/DeckdOut";
         String username = "root";
         String password = "verySecurePlainTextPass123";
         connection = DriverManager.getConnection(url, username, password);
