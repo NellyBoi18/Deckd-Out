@@ -93,6 +93,25 @@ public class DBSpadesTableTests {
     }
 
     /**
+     * Test method to verify the insertion of data into the Spades table.
+     * @throws SQLException if a database access error occurs
+     */
+    @Test
+    public void testInsertIntoSpades() throws SQLException { // TODO Move before last test
+        // Insert test data
+        int userId = insertTestDataIntoUsers("test_insert_spades@example.com", "testuser_insert_spades");
+
+        // Perform INSERT operation
+        int rowsAffected = insertTestDataIntoSpades(userId);
+
+        // Verify the INSERT operation
+        Assertions.assertEquals(1, rowsAffected, "Failed to insert into Spades table");
+
+        // Delete inserted data
+        deleteTestDataFromUsers(userId);
+    }
+
+    /**
      * Test to verify the selection of data from the Spades table.
      * @throws SQLException if a database access error occurs
      */
@@ -110,26 +129,7 @@ public class DBSpadesTableTests {
 
         // Delete inserted data
         deleteTestDataFromUsers(userId);
-    }
-
-    /**
-     * Test method to verify the insertion of data into the Spades table.
-     * @throws SQLException if a database access error occurs
-     */
-    @Test
-    public void testInsertIntoSpades() throws SQLException {
-        // Insert test data
-        int userId = insertTestDataIntoUsers("test_insert_spades@example.com", "testuser_insert_spades");
-
-        // Perform INSERT operation
-        int rowsAffected = insertTestDataIntoSpades(userId);
-
-        // Verify the INSERT operation
-        Assertions.assertEquals(1, rowsAffected, "Failed to insert into Spades table");
-
-        // Delete inserted data
-        deleteTestDataFromUsers(userId);
-    }
+    } 
 
     /**
      * Test method to verify the update of data in the Spades table.
