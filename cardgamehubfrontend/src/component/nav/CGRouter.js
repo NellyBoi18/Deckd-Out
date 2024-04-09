@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeScreen from "../main-screen/HomeScreen";
 import RegisterScreen from "../main-screen/RegisterScreen";
 import LoginScreen from "../main-screen/LoginScreen";
+import Leaderboard from "../main-screen/Leaderboard";
 
 export default function CGRouter() {
     /**
@@ -22,6 +23,7 @@ export default function CGRouter() {
                 <Route path="/home" element={<HomeScreen />} />
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/login" element={<LoginScreen />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
 
                 {/* (temporary reference for how to set up navigation)
                 <Route path="/" element={<BadgerBuds />}>

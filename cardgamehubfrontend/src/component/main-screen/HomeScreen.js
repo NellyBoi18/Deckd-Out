@@ -120,7 +120,7 @@ function HomeScreen() {
       </Grid>
       <Grid container justifyContent="flex-start" sx={{ marginTop: '2rem', width: '100%', paddingLeft: '1rem' }}>
         <Grid item>
-          <SecondaryOrangeButton variant="contained" sx={{ position: 'fixed', bottom: 0, left: 0, marginLeft: '1rem', marginBottom: '1rem' }}>
+          <SecondaryOrangeButton href="/leaderboard" variant="contained" sx={{ position: 'fixed', bottom: 0, left: 0, marginLeft: '1rem', marginBottom: '1rem' }}>
           <ButtonText variant="button">Leaderboard</ButtonText>
           </SecondaryOrangeButton>
         </Grid>
