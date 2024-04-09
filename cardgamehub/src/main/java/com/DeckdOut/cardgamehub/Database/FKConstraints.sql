@@ -5,7 +5,7 @@ the Users table is deleted..
 */
 
 /* Adds an ON DELETE CASCADE to the Spades table USER_ID foreign key that 
-automatically deletes associated rows from the Spades table when a user is 
+automatically deletes associated rows from the Spades table when a user is
 deleted from the Users table
 */
 ALTER TABLE `Spades`
