@@ -99,8 +99,9 @@ public class Deck{
         return hand;
     }
     
+    
 
-    //TODO once spades is completed
+    //TODO
     public Card cardCompareEuchre(){
         return null;
     }
