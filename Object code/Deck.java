@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Class relating to the deck of cards used in the games
+ */
 public class Deck{
     private ArrayList<Card> deck; //the deck of cards
 

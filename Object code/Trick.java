@@ -19,8 +19,8 @@ public class Trick{
      * 
      * @param leadingSuit string variable of the leading suit in a trick of Spades
      */
-    public Trick(ArrayList<Card> trickCards){
-        this.leadingSuit = trickCards.get(1).getSuit();
+    public Trick(ArrayList<Card> trickCards) {
+        this.leadingSuit = trickCards.get(0).getSuit();
         this.trickCards = trickCards;
     }
 
@@ -29,9 +29,7 @@ public class Trick{
      * 
      * @return the card that wins the trick
      */
-    //TODO FIX cardCompareSpades inheritence
     public Card winnerOfTrick(){
-        //return new Card("Spades", 5, "Eddie");
         return cardCompareSpades(leadingSuit, trickCards);
     }
 
