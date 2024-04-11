@@ -73,20 +73,36 @@ const RootContainer = styled(Container)({
 
 export default function RegisterScreen() {
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [email, setEmail] = useState('');
 
-    const handleRegister = () => {
-        // if (!username || !password || !email) {
-        //     alert('You must provide a username, email, and password!');
-        // } else if (password !== confirmPassword) {
-        //     alert('Your passwords do not match!');
-        // } else {
-        //     // Make a POST request to the registration API
-        //     window.location.href = '/home';
-        // }
+    const handleRegister = (e) => {
+      e.preventDefault();
+      const userData = { email, username, password};
+      if (!username) {
+        alert('You must provide a username!');
+      } else if(!password){
+        alert('You must provide a password!');
+      } else if(!confirmPassword){
+        alert('You must confirm your password!');
+      }else if(!email){
+        alert('You must provide an email!');
+      }else if (password !== confirmPassword) {
+          alert('Your passwords do not match!');
+      } else {
+          // Make a POST request to the registration API
+          fetch("http://localhost:8080/Users/add", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData)
+        })
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
+        console.log("user created");
         window.location.href = '/home';
+      }
+      //window.location.href = '/home';
     };
 
     return (
