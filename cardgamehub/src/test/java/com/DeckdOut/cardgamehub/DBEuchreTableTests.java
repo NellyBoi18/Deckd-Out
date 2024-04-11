@@ -10,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class DBEuchreTableTests {
 
+    // Import the DBUsersTableTests class 
+    private DBUsersTableTests Users = new DBUsersTableTests();
+
     // Establish a connection to the MySQL database
     private static Connection connection;
 
@@ -34,37 +37,6 @@ public class DBEuchreTableTests {
         if (connection != null) {
             connection.close();
         }
-    }
-
-    /**
-     * Inserts test data into the Users table.
-     * @param email the email address to insert
-     * @param username the username to insert
-     * @return the ID of the inserted row
-     * @throws SQLException if a database access error occurs
-     */
-    private int insertTestDataIntoUsers(String email, String username) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("INSERT INTO Users (email, username, verySecurePlainTextPassword) " +
-                "VALUES ('" + email + "', '" + username + "', 'password123')", Statement.RETURN_GENERATED_KEYS);
-        ResultSet generatedKeys = statement.getGeneratedKeys();
-        int insertedId = -1;
-        if (generatedKeys.next()) {
-            insertedId = generatedKeys.getInt(1);
-        }
-        statement.close();
-        return insertedId;
-    }
-
-    /**
-     * Deletes test data from the Users table.
-     * @param id the ID of the row to delete
-     * @throws SQLException if a database access error occurs
-     */
-    private void deleteTestDataFromUsers(int id) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("DELETE FROM Users WHERE ID = " + id);
-        statement.close();
     }
 
     /**
@@ -99,7 +71,7 @@ public class DBEuchreTableTests {
     @Test
     public void testSelectFromEuchre() throws SQLException {
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_euchre@example.com", "testuser_euchre");
+        int userId = Users.insertTestDataIntoUsers("test_euchre@example.com", "testuser_euchre");
         insertTestDataIntoEuchre(userId);
 
         // Perform SELECT operation
@@ -109,7 +81,7 @@ public class DBEuchreTableTests {
         statement.close();
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     }
 
     /**
@@ -119,7 +91,7 @@ public class DBEuchreTableTests {
     @Test
     public void testInsertIntoEuchre() throws SQLException {
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_insert_euchre@example.com", "testuser_insert_euchre");
+        int userId = Users.insertTestDataIntoUsers("test_insert_euchre@example.com", "testuser_insert_euchre");
 
         // Perform INSERT operation
         int rowsAffected = insertTestDataIntoEuchre(userId);
@@ -128,7 +100,7 @@ public class DBEuchreTableTests {
         Assertions.assertEquals(1, rowsAffected, "Failed to insert into Euchre table");
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     }
 
     /**
@@ -138,7 +110,7 @@ public class DBEuchreTableTests {
     @Test
     public void testUpdateEuchre() throws SQLException {
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_update_euchre@example.com", "testuser_update_euchre");
+        int userId = Users.insertTestDataIntoUsers("test_update_euchre@example.com", "testuser_update_euchre");
         insertTestDataIntoEuchre(userId);
 
         // Perform UPDATE operation
@@ -150,7 +122,7 @@ public class DBEuchreTableTests {
         Assertions.assertEquals(1, rowsAffected, "Failed to update Euchre table");
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     }
 
     /**
@@ -160,7 +132,7 @@ public class DBEuchreTableTests {
     @Test
     public void testDeleteFromEuchre() throws SQLException {
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_delete_euchre@example.com", "testuser_delete_euchre");
+        int userId = Users.insertTestDataIntoUsers("test_delete_euchre@example.com", "testuser_delete_euchre");
         insertTestDataIntoEuchre(userId);
 
         // Perform DELETE operation
@@ -177,6 +149,6 @@ public class DBEuchreTableTests {
         Assertions.assertFalse(resultSet.next(), "Failed to delete row from Euchre table");
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     }
 }
