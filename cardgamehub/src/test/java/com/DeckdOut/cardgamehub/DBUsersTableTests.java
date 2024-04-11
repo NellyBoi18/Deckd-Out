@@ -43,7 +43,7 @@ public class DBUsersTableTests {
      * @return the ID of the inserted row
      * @throws SQLException if a database access error occurs
      */
-    private int insertTestDataIntoUsers(String email, String username) throws SQLException {
+    public int insertTestDataIntoUsers(String email, String username) throws SQLException {
         Statement statement = connection.createStatement();
         statement.executeUpdate("INSERT INTO Users (email, username, verySecurePlainTextPassword) " +
                 "VALUES ('" + email + "', '" + username + "', 'password123')", Statement.RETURN_GENERATED_KEYS);
@@ -61,7 +61,7 @@ public class DBUsersTableTests {
      * @param id the ID of the row to delete
      * @throws SQLException if a database access error occurs
      */
-    private void deleteTestDataFromUsers(int id) throws SQLException {
+    public void deleteTestDataFromUsers(int id) throws SQLException {
         Statement statement = connection.createStatement();
         statement.executeUpdate("DELETE FROM Users WHERE ID = " + id);
         statement.close();
