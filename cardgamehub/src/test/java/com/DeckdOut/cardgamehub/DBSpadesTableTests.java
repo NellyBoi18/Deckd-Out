@@ -10,6 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class DBSpadesTableTests {
 
+    // Import the DBUsersTableTests class 
+    private DBUsersTableTests Users = new DBUsersTableTests();
+
     // Establish a connection to the MySQL database
     private static Connection connection;
 
@@ -34,37 +37,6 @@ public class DBSpadesTableTests {
         if (connection != null) {
             connection.close();
         }
-    }
-
-    /**
-     * Inserts test data into the Users table.
-     * @param email the email address to insert
-     * @param username the username to insert
-     * @return the ID of the inserted row
-     * @throws SQLException if a database access error occurs
-     */
-    private int insertTestDataIntoUsers(String email, String username) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("INSERT INTO Users (email, username, verySecurePlainTextPassword) " +
-                "VALUES ('" + email + "', '" + username + "', 'password123')", Statement.RETURN_GENERATED_KEYS);
-        ResultSet generatedKeys = statement.getGeneratedKeys();
-        int insertedId = -1;
-        if (generatedKeys.next()) {
-            insertedId = generatedKeys.getInt(1);
-        }
-        statement.close();
-        return insertedId;
-    }
-
-    /**
-     * Deletes test data from the Users table.
-     * @param id the ID of the row to delete
-     * @throws SQLException if a database access error occurs
-     */
-    private void deleteTestDataFromUsers(int id) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("DELETE FROM Users WHERE ID = " + id);
-        statement.close();
     }
 
     /**
@@ -99,7 +71,7 @@ public class DBSpadesTableTests {
     @Test
     public void testInsertIntoSpades() throws SQLException { // TODO Move before last test
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_insert_spades@example.com", "testuser_insert_spades");
+        int userId = Users.insertTestDataIntoUsers("test_insert_spades@example.com", "testuser_insert_spades");
 
         // Perform INSERT operation
         int rowsAffected = insertTestDataIntoSpades(userId);
@@ -108,7 +80,7 @@ public class DBSpadesTableTests {
         Assertions.assertEquals(1, rowsAffected, "Failed to insert into Spades table");
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     }
 
     /**
@@ -118,7 +90,7 @@ public class DBSpadesTableTests {
     @Test
     public void testSelectFromSpades() throws SQLException {
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_spades@example.com", "testuser_spades");
+        int userId = Users.insertTestDataIntoUsers("test_spades@example.com", "testuser_spades");
         insertTestDataIntoSpades(userId);
 
         // Perform SELECT operation
@@ -128,7 +100,7 @@ public class DBSpadesTableTests {
         statement.close();
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     } 
 
     /**
@@ -138,7 +110,7 @@ public class DBSpadesTableTests {
     @Test
     public void testUpdateSpades() throws SQLException {
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_update_spades@example.com", "testuser_update_spades");
+        int userId = Users.insertTestDataIntoUsers("test_update_spades@example.com", "testuser_update_spades");
         insertTestDataIntoSpades(userId);
 
         // Perform UPDATE operation
@@ -150,7 +122,7 @@ public class DBSpadesTableTests {
         Assertions.assertEquals(1, rowsAffected, "Failed to update Spades table");
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     }
 
     /**
@@ -160,7 +132,7 @@ public class DBSpadesTableTests {
     @Test
     public void testDeleteFromSpades() throws SQLException {
         // Insert test data
-        int userId = insertTestDataIntoUsers("test_delete_spades@example.com", "testuser_delete_spades");
+        int userId = Users.insertTestDataIntoUsers("test_delete_spades@example.com", "testuser_delete_spades");
         insertTestDataIntoSpades(userId);
 
         // Perform DELETE operation
@@ -177,6 +149,6 @@ public class DBSpadesTableTests {
         Assertions.assertFalse(resultSet.next(), "Failed to delete row from Spades table");
 
         // Delete inserted data
-        deleteTestDataFromUsers(userId);
+        Users.deleteTestDataFromUsers(userId);
     }
 }
