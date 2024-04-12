@@ -11,7 +11,7 @@ import java.util.List;
  * Controller class responsible for handling HTTP requests related to users in the card game hub application.
  */
 @RestController
-@RequestMapping("/Users")
+@RequestMapping("/user")
 @CrossOrigin
 public class UserController {
 
