@@ -9,6 +9,8 @@ CREATE TABLE `user` (
   'eucreGamesWon' integer DEFAULT 0
 );
 
+-- Depreciated code below. No longer within the scope of the project.
+
 -- CREATE TABLE `Spades` (
 --   `USER_ID` integer NOT NULL,
 --   `highScore` integer DEFAULT 0,
