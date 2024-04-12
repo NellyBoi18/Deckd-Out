@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Figure what card wins trick
  * Figure which team wins trick and gets point
  */
-public class Trick{
+public class Trick {
     private String leadingSuit; //the suit of the first card deal in a trick
     private String trumpSuit; //the trump suit
     private Card winningCard; //the card that wins a trick
@@ -25,13 +25,44 @@ public class Trick{
     }
 
     /**
-     * Determines the card that wins trick
+     * Determines the card that wins the spades trick
      * 
      * @return the card that wins the trick
      */
     public Card winnerOfTrick(){
         return cardCompareSpades(leadingSuit, trickCards);
     }
+
+    /**
+     * Determines the card that wins the euchre trick
+     * 
+     * @return the card that wins the trick
+     */
+    public Card winnerOfEuchreTrick(){
+        return cardCompareEuchre(leadingSuit, trickCards);
+    }
+
+
+    /**
+     * Compares the played cards in a trick based on the suit first, then the value of the card.
+     * For Spades game only
+     * 
+     * @param leadingSuit string variable of the leading suit played
+     * @param trickCards ArrayList variable of Card objects of the played cards in the trick
+     * @return the card the wins the trick
+     */
+    //Card card1, Card card2, Card card3, Card card4
+    public Card cardCompareEuchre(String leadingSuit, ArrayList<Card> trickCards){
+
+
+
+
+        return null;
+    }
+
+
+
+
 
 
     /**
