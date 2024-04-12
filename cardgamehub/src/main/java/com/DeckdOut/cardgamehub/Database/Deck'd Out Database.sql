@@ -3,10 +3,10 @@ CREATE TABLE `user` (
   `username` varchar(255) UNIQUE NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `spadesNumGames` integer DEFAULT 0,
-  `spadesGamesWon` integer DEFAULT 0,
-  `euchreNumGames` integer DEFAULT 0,
-  `euchreGamesWon` integer DEFAULT 0
+  `spades_num_games` integer DEFAULT 0,
+  `spades_games_won` integer DEFAULT 0,
+  `euchre_num_games` integer DEFAULT 0,
+  `euchre_games_won` integer DEFAULT 0
 );
 
 -- Depreciated code below. No longer within the scope of the project.
