@@ -3,7 +3,7 @@
  */
 public class Card{
     private String suit; //suit of the card 
-    private int cardValue; //value of the card, 11-J, 12-Q, 13-K
+    private int cardValue; //value of the card, 11-J, 12-Q, 13-K, 14-Ace
     private Player owner; //owner of the card ie who's hand the card came from
     private boolean dealt; //if the card has been dealt to a player
 
@@ -74,7 +74,7 @@ public class Card{
     /**
      * Getter method for card value
      * 
-     * @return integer of the card value 11-J, 12-Q, 13-K
+     * @return integer of the card value 11-J, 12-Q, 13-K, 14-Ace
      */
     public int getCardValue(){
         return cardValue;
@@ -90,10 +90,18 @@ public class Card{
     }
 
     /**
+     * Returns if the given card is spades
+     * 
+     * @return true if the card is a spade, and false if not
+     */
+    public boolean isSpade(){
+        return suit.equals("Spades");
+    }
+
+    /**
      * toString method for Card object
      * 
      * @return the Suit, Value, and Owner of the card
-     * TODO: add ace card
      */
     public String toString(){
         if(cardValue == 11){
@@ -104,6 +112,9 @@ public class Card{
         }
         if(cardValue == 13){
             return "Suit: " + suit + " | Value: King" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
+        }
+        if(cardValue == 14){
+            return "Suit: " + suit + " | Value: Ace" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
         else{
             return "Suit: " + suit + " | Value: " + cardValue + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
