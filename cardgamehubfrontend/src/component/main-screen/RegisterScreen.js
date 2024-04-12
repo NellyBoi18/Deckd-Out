@@ -77,7 +77,8 @@ export default function RegisterScreen() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [email, setEmail] = useState('');
 
-    const handleRegister = () => {
+    const handleRegister = (e) => {
+      const userData = {username, password, email};
         // if (!username || !password || !email) {
         //     alert('You must provide a username, email, and password!');
         // } else if (password !== confirmPassword) {

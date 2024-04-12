@@ -20,7 +20,7 @@ public class UserService implements UserServiceInterface{
     }
 
     @Override
-    public List<User> findAllUser() {
+    public List<User> findAllUsers() {
         return userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 }

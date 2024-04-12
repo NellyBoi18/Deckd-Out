@@ -2,22 +2,39 @@ package com.DeckdOut.cardgamehub.model;
 
 import jakarta.persistence.*;
 
+/**
+ * Represents a test user entity in the card game hub application.
+ */
+@Entity
 public class User {
     /**
      * The unique identifier of the user.
      */
     @Id
-    private int userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     /**
-     * The name of the user.
+     * The username of the user.
      */
-    private String userName;
+    private String username;
 
     /**
-     * The level of the user.
+     * The email of the user.
+     */
+    private String email;
+
+    /**
+     * The password of the user.
      */
     private String password;
+
+    /**
+     * 
+    /**
+     * The secret phrase of the user.
+     */
+    private String phrase;
 
     /**
      * Constructs a new User object with default values.
@@ -26,53 +43,93 @@ public class User {
     }
 
     /**
-     * Retrieves the unique identifier of the test user.
+     * Retrieves the unique identifier of the user.
      *
-     * @return The unique identifier of the test user.
+     * @return The unique identifier of the user.
      */
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Sets the unique identifier of the test user.
+     * Sets the unique identifier of the user.
      *
      * @param id The unique identifier to set.
      */
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
-     * Retrieves the name of the test user.
+     * Retrieves the username of the user.
      *
-     * @return The name of the test user.
+     * @return The username of the user.
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * Sets the name of the test user.
+     * Sets the username of the user.
      *
-     * @param name The name to set.
+     * @param username The username to set.
      */
-    public void setName(String username) {
-        this.userName = username;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
+    /**
+     * Retrieves the email of the user.
+     *
+     * @return The email of the user.
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Sets the email of the user.
+     *
+     * @param email The email to set.
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Retrieves the password of the user.
+     *
+     * @return The password of the user.
+     */
     public String getPassword() {
-        return userName;
+        return password;
     }
 
     /**
-     * Sets the password of the test user.
+     * Sets the password of the user.
      *
-     * @param name The name to set.
+     * @param password The password to set.
      */
-    public void setPassword(String username) {
-        this.userName = username;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 
+    /**
+     * Retrieves the phrase of the user.
+     *
+     * @return The phrase of the user.
+     */
+    public String getPhrase() {
+        return phrase;
+    }
+
+    /**
+     * Sets the phrase of the user.
+     *
+     * @param phrase The phrase to set.
+     */
+    public void setPhrase(String phrase) {
+        this.phrase = phrase;
+    }
 }
