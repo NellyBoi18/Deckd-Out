@@ -8,7 +8,7 @@ Deck’d Out
 
 <!--A one paragraph summary of what the software will do.-->
 
-This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: spades and euchre. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track user high scores and will be able to rank the users against each other. 
+This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: spades and euchre. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track of the number of respective games the user has won and will be able to rank the users against each other. 
 
 ### Customer
 
@@ -23,19 +23,19 @@ In terms of the population who might eventually our system, I would say that for
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
 | R11  | When the user first opens the application or when the user logs out, the frontend SHALL display the login page. | Med      | Open   |
-| R12  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | Med      | Open   |
-| R13  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | Med      | Open   |
+| R12  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | High      | Open   |
+| R13  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | High      | Open   |
 | R14  | When the user clicks on the profile button on any screen that is appears, the frontend SHALL display the profile page. | Med      | Open   |
-| R15  | When the user clicks on the settings button on any screen that is appears, the frontend SHALL display the settings page. | Med      | Open   |
-| R16  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | Med      | Open   |
+| R15  | When the user clicks on the settings button on any screen that is appears, the frontend SHALL display the settings page. | Low      | Open   |
+| R16  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | High      | Open   |
 | R17  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
 | R18  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
 | R19  | When the user selects a card to play, the card will be inserted into the trick, the card SHALL be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | Med      | Open   |
 | R20  | When the winner of a trick is determined, the application SHALL display who won the trick to the user. | Med      | Open   |
 | R21  | After a round of spades, the correct number of points SHALL be calculated and added to each teams total, and if one team has over 500 points then they SHALL be declared the winner of the game. | Med      | Open   |
-| R22  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | Med      | Open   |
+| R22  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | High      | Open   |
 | R23  | Users SHALL be able to sign into the application with an account and access their high scores. | Med      | Open   |
-| R24  | Users SHALL be able to play the specified card games against other players. | High     | Open   |
+| R24  | Users SHALL be able to play the specified card games against other players. | Low     | Open   |
 | R25  | There SHALL be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
 | R26  | The user SHALL be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
 | R27  | The logic of each card game SHALL work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
@@ -87,7 +87,7 @@ Images can be included with `![alt_text](image_path)`
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| R11  | Users should be able to safely input their username and password and know it is protected. | Med      | Open   |
+| R11  | Users should be able to safely input their username and password and know it is protected. | Low      | Open   |
 | R12  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High     | Open   |
 | R13  | Incorrect username / password pairs should be allowed to access accounts. | Med     | Open   |
 
@@ -139,7 +139,7 @@ User Authentication:
 - Purpose: To securely identify users and manage sessions, ensuring that users can securely log in and interact with the system.
 
 Database:
-- Technologies: SQL Database ( MySQL or NoSQL)
+- Technologies: MySQL Database
 - Purpose: To store user information, game states, scores, and potentially complex game-related data structures.
 
 Score Calculation (Specific to Each Game):
@@ -156,12 +156,23 @@ title: Deck'd Out Database ERD
 erDiagram
     Users {
         int ID PK, UK
+        varchar email "NOT NULL"
+        varchar username UK "NOT NULL"
+        varchar password "NOT NULL"
+        int spades_num_games "DEFAULT 0"
+        int spades_games_won "DEFAULT 0"
+        int euchre_num_games "DEFAULT 0"
+        int euchre_games_won "DEFAULT 0"
+    }
+
+```
+<!--Target database design-->
+<!--erDiagram
+    Users {
+        int ID PK, UK
         varchar email
         varchar username UK
-        varchar verySecurePlainTextPassword
-        varchar firstName
-        varchar lastName
-        date DOB
+        varchar password
     }
 
     Users ||--o{ Spades : played
@@ -210,10 +221,8 @@ erDiagram
         int GAME_ID FK
         time timestamp
         varchar move
-    }
+    }-->
 
-
-```
 
 #### Class Diagram
 
