@@ -283,7 +283,6 @@ classDiagram
         + void shuffle()
         + ArrayList<Card> spadesDeal(Player playerName)
         + ArrayList<Card> euchreDeal(Player playerName)
-        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
         + Card cardCompareEuchre()
         + String toString()
     }
