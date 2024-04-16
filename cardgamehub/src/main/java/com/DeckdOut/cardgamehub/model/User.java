@@ -30,11 +30,24 @@ public class User {
     private String password;
 
     /**
-     * 
-    /**
-     * The secret phrase of the user.
+     * The number of spades game the user has played
      */
-    private String phrase;
+    private int spadesNumGames;
+
+    /**
+     * The number of spades game the user has won
+     */
+    private int spadesGamesWon;
+
+    /**
+     * The number of euchre game the user has played
+     */
+    private int euchreNumGames;
+
+    /**
+     * The number of euchre game the user has won
+     */
+    private int euchreGamesWon;
 
     /**
      * Constructs a new User object with default values.
@@ -51,14 +64,14 @@ public class User {
         return id;
     }
 
-    /**
-     * Sets the unique identifier of the user.
-     *
-     * @param id The unique identifier to set.
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+    // /**
+    //  * Sets the unique identifier of the user.
+    //  *
+    //  * @param id The unique identifier to set.
+    //  */
+    // public void setId(int id) {
+    //     this.id = id;
+    // }
 
     /**
      * Retrieves the username of the user.
@@ -114,22 +127,77 @@ public class User {
         this.password = password;
     }
 
-
     /**
-     * Retrieves the phrase of the user.
+     * Retrieves the number of spades games the user has played.
      *
-     * @return The phrase of the user.
+     * @return The number of spades games the user has played.
      */
-    public String getPhrase() {
-        return phrase;
+    public int getSpadesNumGames() {
+        return spadesNumGames;
     }
 
     /**
-     * Sets the phrase of the user.
+     * Sets the number of spades games the user has played.
      *
-     * @param phrase The phrase to set.
+     * @param spadesNumGames The number of spades games to set.
      */
-    public void setPhrase(String phrase) {
-        this.phrase = phrase;
+    public void setSpadesNumGames(int spadesNumGames) {
+        this.spadesNumGames = spadesNumGames;
     }
+
+    /**
+     * Retrieves the number of spades games the user has won.
+     *
+     * @return The number of spades games the user has won.
+     */
+    public int getSpadesGamesWon() {
+        return spadesGamesWon;
+    }
+
+    /**
+     * Sets the number of spades games the user has won.
+     *
+     * @param spadesNumGames The number of spades game wins to set.
+     */
+    public void setSpadesGamesWon(int spadesGamesWon) {
+        this.spadesGamesWon = spadesGamesWon;
+    }
+
+    /**
+     * Retrieves the number of spades games the user has played.
+     *
+     * @return The number of spades games the user has played.
+     */
+    public int getEuchreNumGames() {
+        return euchreNumGames;
+    }
+
+    /**
+     * Sets the number of spades games the user has played.
+     *
+     * @param spadesNumGames The number of spades games to set.
+     */
+    public void setEuchreNumGames(int euchreNumGames) {
+        this.euchreNumGames = euchreNumGames;
+    }
+
+    /**
+     * Retrieves the number of spades games the user has won.
+     *
+     * @return The number of spades games the user has won.
+     */
+    public int getEuchreGamesWon() {
+        return euchreGamesWon;
+    }
+
+    /**
+     * Sets the number of spades games the user has won.
+     *
+     * @param spadesNumGames The number of spades game wins to set.
+     */
+    public void setEuchreGamesWon(int euchreGamesWon) {
+        this.euchreGamesWon = euchreGamesWon;
+    }
+
+
 }
