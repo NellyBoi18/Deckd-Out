@@ -1,5 +1,7 @@
 # Requirements and Specification Document
 
+[![pipeline status](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/badges/main/pipeline.svg)](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/commits/main)
+
 ## TeamName
 
 Deck’d Out
