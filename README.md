@@ -243,6 +243,21 @@ classDiagram
         + ArrayList<Card> getHand()
         + void removePlayedCard(Card playedCard)
         + String getuserName()
+        + boolean hasTrump(ArrayList<Card> hand)
+        + boolean hasLeadingSuit(ArrayList<Card> hand, String leadingSuit)
+        + Card getHighNorm(Player player)
+        + Card getLowNorm(Player player)
+        + int numtrump(Player player)
+        + boolean containsCard(Card card, Player player)
+        + boolean containsNormAce(Player player)
+        + Card getHighSuit(Player player, String suit)
+        + Card getLowSuit(Player player, String suit)
+        + boolean hasGivenSuit(Player player, String suit)
+        + boolean hasGivenCard(Player player, Stringsuit, int cardVal)
+        + int numNonTrumpVals(Player player, int cardVal)
+        + Card cpuChooseCardSpades(Player cpu, String leadingSuit, Player startPlayer)
+        + int cpuChooseBid(Player cpu)
+        + String[] cpuSuitDecision(Player cpu, String flippedTrump)
     }
 
     class Card {
