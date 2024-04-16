@@ -342,8 +342,18 @@ classDiagram
         + void setTeam1OvrspadesTrick(int num)
         + void setTeam2OvrspadesTrick(int num)
         + ArrayList<Card> getLegalCards(String spadesLeadingSuit)
-        
+    }
 
+    class SpadeGameLogic { 
+        String player1Name
+        String player2Name
+        String player3Name
+        String player4Name
+        Deck deck
+        int team1PT
+        int team2PT
+        int placeHldrBid
+        + void gameLogic()
     }
 
     class Trick {
