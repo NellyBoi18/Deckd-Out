@@ -364,7 +364,10 @@ classDiagram
         - Player winningPlayer
         + Trick(ArrayList<Card> trickCards)
         + Card winnerOfTrick()
+        + Card winnerOfEuchreTrick()
+        + Card cardCompareEuchre(String leadingSuit, ArrayList<Card> trickCards)
         + Player getWinningPlayer()
+        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
     }
 ```
 
