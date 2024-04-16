@@ -300,7 +300,10 @@ classDiagram
         - Trick[] euchreTrick
         - Player euchreStartPlayer
         - Deck deck
-        - Player p1Euchre, p2Euchre, p3Euchre, p4Euchre
+        - Player p1Euchre
+        - Player p2Euchre
+        - Player p3Euchre
+        - Player p4Euchre
         - String EuchreLeadingSuit
         - boolean goAlone
         - boolean nameSuit
@@ -309,26 +312,38 @@ classDiagram
         + trickLogicSpades(ArrayList<Card> p1EuchreHand, ArrayList<Card> p2EuchreHand, ArrayList<Card> p3EuchreHand, ArrayList<Card> p4EuchreHand, Player euchreStartPlayer)
         + int[] playRoundEuchre()
     }
-    
-    class Round {
-        - int p1Bid, p2Bid, p3Bid, p4Bid
-        - int p1Tricks = 0
-        - int p2Tricks = 0
-        - int p3Tricks = 0
-        - int p4Tricks = 0
-        - int team1Pred = p1Bid + p3Bid;
-        - int team2Pred = p2Bid + p4Bid;
-        - String player1, player2, player3, player4
-        - Trick[] tricks; 
-        - Player startPlayer;
-        - Deck deck = new Deck();
-        - Player p1, p2, p3, p4;
-        - int team1OverTricks;
-        - int team2OverTricks;
-        + Round(int team1Pred, int team2Pred, Player p1, Player p2, Player p3, Player p4)
-        + void trickLogicSpades(ArrayList<Card> p1Hand, ArrayList<Card> p2Hand, ArrayList<Card> p3Hand, ArrayList<Card> p4Hand)
+
+    class SpadesRound { 
+        - int p1SpadesBid
+        - int p2SpadesBid
+        - int p3SpadesBid
+        - int p4SpadesBid
+        - int p1SpadesTricks
+        - int p2SpadesTricks
+        - int p3SpadesTricks
+        - int p4SpadesTricks
+        - int team1SpadesPred
+        - int team2SpadesPred
+        - Trick[] spadesTrick
+        - Player spadesStartPlayer
+        - Deck deck
+        - Player p1Spades
+        - Player p2Spades
+        - Player p3Spades
+        - Player p4Spades
+        - int team1SpadesOvrTricks
+        - int team2SpadesOvrTricks
+        - String spadesLeadingSuit
+        + SpadesRound(int team1SpadesPred, int team2SpadesPred, Player p1Spades, Player p2Spades, Player p3Spades, Player p4Spades)
+        + boolean legalCardCheck(Card card)
+        + Player trickLogicSpades(ArrayList<Card> p1SpadesHand, ArrayList<Card> p2SpadesHand, ArrayList<Card> p3SpadesHand, ArrayList<Card> p4SpadesHand, Player spadesStartPlayer)
         + int[] playRoundSpades()
-        + int pointCalc(int player1Tricks, int player2Tricks, int prediction, int teamOverTricks)
+        + int pointCalc(int player1SpadesTrick, int player2spadesTrick, int prediction, int teamOverspadesTrick, String team)
+        + void setTeam1OvrspadesTrick(int num)
+        + void setTeam2OvrspadesTrick(int num)
+        + ArrayList<Card> getLegalCards(String spadesLeadingSuit)
+        
+
     }
 
     class Trick {
