@@ -273,6 +273,7 @@ classDiagram
         + String getSuit()
         + int getCardValue()
         + Player getOwner()
+        + boolean isSpade()
         + String toString()
     }
 
