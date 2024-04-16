@@ -286,6 +286,29 @@ classDiagram
         + Card cardCompareEuchre()
         + String toString()
     }
+
+    class EuchreRound {
+        - String declaredTrump
+        - String flippedTrump
+        - int p1EuchreTricks
+        - int p2EuchreTricks
+        - int p3EuchreTricks
+        - int p4EuchreTricks
+        - String teamPrediction
+        - int team1EuchreTricks
+        - int team2EuchreTricks
+        - Trick[] euchreTrick
+        - Player euchreStartPlayer
+        - Deck deck
+        - Player p1Euchre, p2Euchre, p3Euchre, p4Euchre
+        - String EuchreLeadingSuit
+        - boolean goAlone
+        - boolean nameSuit
+        - int dealerTracker
+        + EuchreRound(String teamPrediction, Player p1Euchre, Player p2Euchre, Player p3Euchre, Player p4Euchre)
+        + trickLogicSpades(ArrayList<Card> p1EuchreHand, ArrayList<Card> p2EuchreHand, ArrayList<Card> p3EuchreHand, ArrayList<Card> p4EuchreHand, Player euchreStartPlayer)
+        + int[] playRoundEuchre()
+    }
     
     class Round {
         - int p1Bid, p2Bid, p3Bid, p4Bid
