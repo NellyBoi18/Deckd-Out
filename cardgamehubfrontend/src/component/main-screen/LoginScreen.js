@@ -1,8 +1,17 @@
+/**
+ * LoginScreen component for user login functionality.
+ * @module LoginScreen
+ */
+
 import React, { useState } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 
+/**
+ * RootContainer styled component for the main container.
+ * @const {JSX.Element}
+ */
 const RootContainer = styled(Container)({
   display: 'flex',
   flexDirection: 'column',
@@ -12,6 +21,10 @@ const RootContainer = styled(Container)({
   backgroundColor: '#539987',
 });
 
+/**
+ * FormContainer styled component for the login form container.
+ * @const {JSX.Element}
+ */
 const FormContainer = styled('div')({
   backgroundColor: '#CC4124',
   padding: '60px',
@@ -22,6 +35,10 @@ const FormContainer = styled('div')({
   alignItems: 'center',
 });
 
+/**
+ * InputField styled component for the input fields.
+ * @const {JSX.Element}
+ */
 const InputField = styled('input')({
   width: '100%',
   padding: '10px',
@@ -36,6 +53,10 @@ const InputField = styled('input')({
   },
 });
 
+/**
+ * LoginButton styled component for the login button.
+ * @const {JSX.Element}
+ */
 const LoginButton = styled(Button)({
   backgroundColor: '#2D080A',
   color: '#fff',
@@ -49,6 +70,10 @@ const LoginButton = styled(Button)({
   },
 });
 
+/**
+ * SignUpLink styled component for the sign-up link.
+ * @const {JSX.Element}
+ */
 const SignUpLink = styled('a')({
   marginTop: '10px',
   color: '#F1E5C2',
@@ -57,6 +82,10 @@ const SignUpLink = styled('a')({
   fontSize: '26px',
 });
 
+/**
+ * LogoImage styled component for the logo image.
+ * @const {JSX.Element}
+ */
 const LogoImage = styled('img')({
     position: 'absolute', // Position the logo absolute to the container
     top: '20px', // Adjust top position as needed
@@ -64,10 +93,18 @@ const LogoImage = styled('img')({
     width: '10%', // Adjust the width of the logo as needed
   });
 
+/**
+ * LoginScreen functional component for user login.
+ * @returns {JSX.Element} JSX representation of the login screen.
+ */
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  /**
+   * Handle login form submission.
+   * @param {Event} event - The event object.
+   */
   const handleLogin = (event) => {
     // event.preventDefault(); 
     // if (!username || !password) {
