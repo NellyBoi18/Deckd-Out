@@ -3,9 +3,9 @@ package com.DeckdOut.cardgamehub.model;
 import jakarta.persistence.*;
 
 /**
- * Represents a test user entity in the card game hub application.
+ * Represents a user entity in the card game hub application.
  */
-@Entity
+@Entity(name="user")
 public class User {
     /**
      * The unique identifier of the user.
@@ -17,36 +17,43 @@ public class User {
     /**
      * The username of the user.
      */
+    @Column(nullable = false, length=50)
     private String username;
 
     /**
      * The email of the user.
      */
+    @Column(nullable = false, length=50)
     private String email;
 
     /**
      * The password of the user.
      */
+    @Column(nullable = false)
     private String password;
 
     /**
      * The number of spades game the user has played
      */
+    @Column(nullable = true)
     private int spadesNumGames;
 
     /**
      * The number of spades game the user has won
      */
+    @Column(nullable = true)
     private int spadesGamesWon;
 
     /**
      * The number of euchre game the user has played
      */
+    @Column(nullable = true)
     private int euchreNumGames;
 
     /**
      * The number of euchre game the user has won
      */
+    @Column(nullable = true)
     private int euchreGamesWon;
 
     /**

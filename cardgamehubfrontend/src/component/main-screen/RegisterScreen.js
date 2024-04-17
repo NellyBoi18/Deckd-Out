@@ -77,18 +77,52 @@ export default function RegisterScreen() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [email, setEmail] = useState('');
 
-    const handleRegister = (e) => {
-      const userData = {username, password, email};
-        // if (!username || !password || !email) {
-        //     alert('You must provide a username, email, and password!');
-        // } else if (password !== confirmPassword) {
-        //     alert('Your passwords do not match!');
-        // } else {
-        //     // Make a POST request to the registration API
-        //     window.location.href = '/home';
-        // }
+    
+
+    const handleRegister = async (e) => {
+      e.preventDefault(); // Prevent default form submission
+      try {
+
+        const response = await fetch('http://localhost:8080/user/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password,
+            "spadesNumGames": 0,
+            "spadesGamesWon": 0,
+            "euchreNumGames": 0,
+            "euchreGamesWon": 0
+          }),
+        });
+        const data = await response.text();
+        console.log(data)
+        if (data.status == '500') {
+          throw new Error('Network response was not ok');
+        }
+
+        if (data == "Username already exists"){
+          alert("User with username already exists.")
+          return;
+        }
+
+        if (data == "Email already exists"){
+          alert("User with email already exists.")
+          return;
+        }
+    
+        //const data = await response.json();
+        console.log('Registration successful:', data.msg);
+        // You can redirect the user to another page or show a success message here
         window.location.href = '/home';
-    };
+      } catch (error) {
+        console.error('Registration error:', error.message);
+        // You can display an error message to the user here
+      }
+    };    
 
     return (
         <RootContainer>
