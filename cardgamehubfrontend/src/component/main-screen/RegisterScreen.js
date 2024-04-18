@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 //import { Form, Button } from "react-bootstrap";
 import { styled } from '@mui/system';
-import { Container, Typography, Button, Grid, FormControl } from '@mui/material';
+import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 
 /**
@@ -48,8 +48,8 @@ const RootContainer = styled(Container)({
     backgroundColor: '#F1E5C2',
     type: 'password',
     '::placeholder': {
-      fontSize: '18px', // Adjust placeholder font size here
-      color: 'black', // Adjust placeholder color here
+      fontSize: '18px', 
+      color: 'black', 
     },
   });
   
@@ -87,10 +87,10 @@ const RootContainer = styled(Container)({
    * @const {JSX.Element}
    */
   const LogoImage = styled('img')({
-    position: 'absolute', // Position the logo absolute to the container
-    top: '20px', // Adjust top position as needed
-    left: '20px', // Adjust left position as needed
-    width: '10%', // Adjust the width of the logo as needed
+    position: 'absolute', 
+    top: '20px', 
+    left: '20px',
+    width: '10%', 
   });
 
 /**
@@ -99,9 +99,9 @@ const RootContainer = styled(Container)({
  */
 export default function RegisterScreen() {
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [email, setEmail] = useState('');
 
     /**
      * Handle registration form submission.
