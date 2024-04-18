@@ -139,24 +139,20 @@ export default function RegisterScreen() {
           });
           const data = await response.text();
           console.log(data)
-          if (data.status == '500') {
+          if (data.status === '500') {
             throw new Error('Network response was not ok');
-          }
-  
-          if (data == "Username already exists"){
+          } else if (data === "User with username already exists"){
             alert("User with username already exists.")
             return;
-          }
-  
-          if (data == "Email already exists"){
+          } else if (data === "User with email already exists"){
             alert("User with email already exists.")
             return;
+          } else {
+            //const data = await response.json();
+            console.log('Registration successful:', data.msg);
+            // Redirect user to home
+            //window.location.href = '/home';
           }
-      
-          //const data = await response.json();
-          console.log('Registration successful:', data.msg);
-          // Redirect user to home
-          window.location.href = '/home';
         } catch (error) {
           console.error('Registration error:', error.message);
         }
