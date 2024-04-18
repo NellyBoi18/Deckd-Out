@@ -49,7 +49,9 @@ In terms of the population who might eventually our system, I would say that for
 
 <!--Use cases and user stories that support the user requirements in the previous section. The use cases should be based off user stories. Every major scenario should be represented by a use case, and every use case should say something not already illustrated by the other use cases. Diagrams (such as sequence charts) are encouraged. Ask the customer what are the most important use cases to implement by the deadline. You can have a total ordering, or mark use cases with “must have,” “useful,” or “optional.” For each use case you may list one or more concrete acceptance tests (concrete scenarios that the customer will try to see if the use case is implemented).-->
 
-As a user, I want to log into the card app using a username and password so that I can access the features available to my account.
+As a user, I want to be able to register for an account so that I can access the features available to my account.
+
+As a user, I want to log into the card game hub using a username and password so that I can access the features available to my account.
 
 As a user, I want to be able to use the graphical user interface (GUI) to select the mode of operation.
 
@@ -63,6 +65,8 @@ As a user, I want to play a legal game of Spades against a computer player.
 
 As a user, I want the card application to prevent me from making an illegal move.
 
+As a user I want the Euchre backend logic to be correct.
+
 As a user, I want to play a legal game of Euchre against a human player over the internet.
 
 As a user, I want to play a legal game of Spades against a human player over the internet.
@@ -75,7 +79,17 @@ As a user, I want to be able to view a leaderboard to see how I rank against oth
 
 As a user, I want to be able to view my leaderboard rank update as I play more games against other players.
 
-As a user, I want to be able to navigate betwee screens.
+As a user, I want to be able to navigate between screens.
+
+As a user, I want to be able to access the game lobby from any screen.
+
+As a user, I want the card data from the UI to connect with the Backend functionality in both Spades and Euchre logic.
+
+As a developer, I want more insight on how to connect frontend to backend.
+
+As a user, I want a graphical representation of the cards that I am playing with.
+
+As a user, I want to be able to see the game of Spades that I am playing.
 
 ### User Interface Requirements
 
