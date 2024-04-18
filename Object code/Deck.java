@@ -6,6 +6,7 @@ import java.util.Collections;
  */
 public class Deck{
     private ArrayList<Card> deck; //the deck of cards
+    private Card flippedCard; //card that is flipped as trump for a round
 
     /**
      * Constructor
@@ -15,24 +16,20 @@ public class Deck{
     public Deck(){
         deck = new ArrayList<>();
         String suit;
-        for(int val = 1; val < 14; val++){
-                suit = "Spades";
-                Card card = new Card(suit, val);
+        for(int val = 2; val < 15; val++){
+                Card card = new Card("Spades", val); 
                 deck.add(card);
         }
-        for(int val = 1; val < 14; val++){
-                suit = "Diamonds";
-                Card card = new Card(suit, val);
+        for(int val = 2; val < 15; val++){
+                Card card = new Card("Diamonds", val);
                 deck.add(card); 
         }
-        for(int val = 1; val < 14; val++){
-                suit = "Hearts";
-                Card card = new Card(suit, val);
+        for(int val = 2; val < 15; val++){
+                Card card = new Card("Hearts", val);
                 deck.add(card);
         }
-        for(int val = 1; val < 14; val++){
-                suit = "Clubs";
-                Card card = new Card(suit, val);
+        for(int val = 2; val < 15; val++){
+                Card card = new Card("Clubs", val);
                 deck.add(card);
         }   
     }
@@ -42,6 +39,11 @@ public class Deck{
      */
     public void shuffle(){
         Collections.shuffle(deck);
+    }
+
+    //getter method for flipped trump card
+    public Card getFlippedCard() {
+        return this.flippedCard;
     }
 
     /**
@@ -81,29 +83,59 @@ public class Deck{
      * @param playerName player variable for the name of the player
      * @return an ArrayList of Card objects, this is the hand of cards the player is dealt
      */
-    public ArrayList<Card> euchreDeal(Player playerName){
+    public ArrayList<Card> euchreDeal(Player p1, Player p2, Player p3, Player p4){
         ArrayList<Card> hand = new ArrayList<>();
         int cardsDealt = 0;
         int i = 0;
-
-        //Deals 5 undealt cards to player hand
-        while(cardsDealt < 5){
-            if(!deck.get(i).getDealt() && deck.get(i).getOwner() == null && (deck.get(i).getCardValue() > 8 || deck.get(i).getCardValue() == 1)){
-                deck.get(i).setOwner(playerName);
-                deck.get(i).setDealt(true);
-                hand.add(deck.get(i));
+        
+        while(cardsDealt < 21){
+            if(!deck.get(i).getDealt() && deck.get(i).getOwner() == null && (deck.get(i).getCardValue() > 8)){
+                //p1 hand not full, give card to hand
+                if(p1.getHand().size() < 5) {
+                    deck.get(i).setOwner(p1);
+                    deck.get(i).setDealt(true);
+                    //p1.getHand().add(deck.get(i));  
+                    hand.add(deck.get(i));  
+                    cardsDealt++;  
+                }
+                //p2 hand not full, give card to hand
+                if(p2.getHand().size() < 5) {
+                    deck.get(i).setOwner(p2);
+                    deck.get(i).setDealt(true);
+                    //p2.getHand().add(deck.get(i));
+                    hand.add(deck.get(i)); 
+                    cardsDealt++;    
+                }
+                //p3 hand not full, give card to hand
+                if(p3.getHand().size() < 5) {
+                    deck.get(i).setOwner(p3);
+                    deck.get(i).setDealt(true);
+                    //p3.getHand().add(deck.get(i));
+                    hand.add(deck.get(i)); 
+                    cardsDealt++;    
+                }
+                //p4 hand not full, give card to hand
+                if(p4.getHand().size() < 5) {
+                    deck.get(i).setOwner(p4);
+                    deck.get(i).setDealt(true);
+                    //p4.getHand().add(deck.get(i));
+                    hand.add(deck.get(i)); 
+                    cardsDealt++;    
+                }
+                //all hands full, get last card
+                this.flippedCard = deck.get(i);
                 cardsDealt++;
             }
-            i++;
+            ++i; 
         }
+
+
+
+
+
         return hand;
     }
     
-
-    //TODO once spades is completed
-    public Card cardCompareEuchre(){
-        return null;
-    }
 
     /**
      * toString method for Deck object
@@ -116,4 +148,5 @@ public class Deck{
         }
         return "";
     }
+
 }
