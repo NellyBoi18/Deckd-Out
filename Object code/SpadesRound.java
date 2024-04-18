@@ -1,5 +1,3 @@
-//TODO REWORK TO COUCH PLAY WITH 4 PLAYERS LOCALLY
-
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -51,7 +49,7 @@ public class SpadesRound {
         ArrayList<Card> hand = p1Spades.getHand();
 
         //if user no trump and has leading suit, must play leading suit
-        if(!p1Spades.hasTrump(hand) && p1Spades.hasLeadingSuit(hand, spadesLeadingSuit)) {
+        if(!p1Spades.hasTrump(hand, "Spades") && p1Spades.hasLeadingSuit(hand, spadesLeadingSuit)) {
             if(card.getSuit().equals(spadesLeadingSuit)) {
                 return true; //given card is in leading suit, it is legal
             }
@@ -61,7 +59,7 @@ public class SpadesRound {
         }
 
         //if user has both trump and leading suit, can play trump or leading suit
-        else if(p1Spades.hasTrump(hand) && p1Spades.hasLeadingSuit(hand, spadesLeadingSuit)) {
+        else if(p1Spades.hasTrump(hand, "Spades") && p1Spades.hasLeadingSuit(hand, spadesLeadingSuit)) {
             if(!card.getSuit().equals(spadesLeadingSuit)) {
                 return false; //given card is not leading suit, it is not legal
             }
@@ -81,19 +79,11 @@ public class SpadesRound {
     /**
      * Method that contains the logic for a trick of Spades
      * 
-     * @param p1SpadesHand the hand of cards of the first player
-     * @param p2SpadesHand the hand of cards of the second player
-     * @param p3SpadesHand the hand of cards of the third player
-     * @param p4SpadesHand the hand of cards of the fourth player
+     * @param spadesStartPlayer the starting player of a spades trick
      * @return the winner of the trick
      */
-    public Player trickLogicSpades(ArrayList<Card> p1SpadesHand, ArrayList<Card> p2SpadesHand, ArrayList<Card> p3SpadesHand, ArrayList<Card> p4SpadesHand, Player spadesStartPlayer){
+    public Player trickLogicSpades(Player spadesStartPlayer){
         ArrayList<Card> trickCards = new ArrayList<>();
-        //TODO:
-        //Player method to play card in order.
-        //determine order of cards played
-        //Need a method to loop from 4th player to 1st player ie something like p2Spades -> p3Spades -> p4Spades -> p1Spades
-        
   
         //P1 starting player
         if(spadesStartPlayer.equals(p1Spades)) { 
@@ -149,7 +139,7 @@ public class SpadesRound {
 
 
         //P3 starting player
-        else if(spadesStartPlayer.equals(p2Spades)) { 
+        else if(spadesStartPlayer.equals(p3Spades)) { 
             spadesStartPlayer = p3Spades;
             Card p3SpadesCard = p3Spades.cpuChooseCardSpades(p3Spades, "None", spadesStartPlayer); 
             trickCards.add(p3SpadesCard);
@@ -175,7 +165,7 @@ public class SpadesRound {
         }
 
         //P4 starting player
-        else if(spadesStartPlayer.equals(p2Spades)) { 
+        else if(spadesStartPlayer.equals(p4Spades)) { 
             spadesStartPlayer = p4Spades;
             Card p4SpadesCard = p4Spades.cpuChooseCardSpades(p4Spades, "None", spadesStartPlayer); 
             trickCards.add(p4SpadesCard);
@@ -227,10 +217,10 @@ public class SpadesRound {
      * @return array of two ints, representing the scores of team1 and team2 respectively
      */
     public int[] playRoundSpades(){
-        Random rand = new Random();
-        int firstPlayer = rand.nextInt(4); //who plays first in the first round
+       
+        //shuffle deck
         deck.shuffle();
-        
+
         //deal hands to all players
         ArrayList<Card> p1SpadesHand = deck.spadesDeal(p1Spades);
         p1Spades.setHand(p1SpadesHand);
@@ -247,28 +237,34 @@ public class SpadesRound {
         team1SpadesPred = p1Pred + p2Pred; //set team 1 predictions
         team2SpadesPred = p2Spades.cpuChooseBid(p2Spades) + p4Spades.cpuChooseBid(p4Spades); //set team 2 predictions
         
-        //TODO RANDOM NUMBER GENERATOR
+        Random rand = new Random();
+        int firstPlayer = rand.nextInt(4); //who plays first in the first round
+
         //first trick of a round 
         if(firstPlayer == 0){
             spadesStartPlayer = p1Spades;
-            trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p1Spades);
+            //trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p1Spades);
+            trickLogicSpades(spadesStartPlayer);
         }
         else if(firstPlayer == 1){
             spadesStartPlayer = p2Spades;
-            trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p2Spades);
+            //trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p2Spades);
+            trickLogicSpades(spadesStartPlayer);
         }
         else if(firstPlayer == 2){
             spadesStartPlayer = p3Spades;
-            trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p3Spades);
+            //trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p3Spades);
+            trickLogicSpades(spadesStartPlayer);
         }
         else{
             spadesStartPlayer = p4Spades;
-            trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p4Spades);
+            //trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, p4Spades);
+            trickLogicSpades(spadesStartPlayer);
         }
 
         //the rest of the spadesTrick of a round
         for(int i = 0; i < 12; i++){
-            trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, spadesStartPlayer);
+            //trickLogicSpades(p1SpadesHand, p2SpadesHand, p3SpadesHand, p4SpadesHand, spadesStartPlayer);
         }
         
         //calculate scores after all rounds
