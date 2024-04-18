@@ -133,7 +133,7 @@ public class Player {
 
     //get low norm
     public Card getLowNorm(Player player, String trump) {
-        int min = 0;
+        int min = 14;
         Card finalCard = new Card("Diamonds", 1);
         for(Card card : player.getHand()) {
             if(card.getCardValue() <= min && !card.getSuit().equals(trump)) {
@@ -194,7 +194,7 @@ public class Player {
 
     //get low card of a suit (doesn't handle case of no suit)
     public Card getLowSuit(Player player, String suit) {
-        int min = 0;
+        int min = 14;
         Card finalCard = new Card(suit, 14);
         for(Card card1 : player.getHand()) {
             if(card1.getCardValue() <= min && card1.getSuit().equals(suit)) {
