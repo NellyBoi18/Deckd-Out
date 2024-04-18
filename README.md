@@ -115,7 +115,10 @@ Images can be included with `![alt_text](image_path)`
 | ---- | ------------------------------------------------------------ | -------- | ------ |
 | SR11  | Users should be able to safely input their username and password and know it is protected. | Low      | Open   |
 | SR12  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High     | Open   |
-| SR13  | Incorrect username / password pairs should be allowed to access accounts. | Med     | Open   |
+| SR13  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Open   |
+| SR14  | Users should not be able to access other user's accounts. | High     | Open   |
+| SR15  | Users should not be able to access the backend logic of the application. | Low     | Open   |
+| SR16  | Users should not be able to access the database of the application. | High     | Open   |
 
 
 ### System Requirements
@@ -126,11 +129,12 @@ Images can be included with `![alt_text](image_path)`
 | ---- | ------------------------------------------------------------ | -------- | ------ |
 | SYSR11  | We are targeting Windows users with our application. | Med      | Open   |
 | SYSR12  | We are targeting MacOS users with our application. | Med      | Open   |
-| SYSR13  | Web browsers that support JavaScript are required to run our application. | High      | Open   |
-| SYSR14  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Open   |
-| SYSR15  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Open   |
-| SYSR16  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Open   |
-| SYSR17  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Open   |
+| SYSR13  | We are targeting Linux users with our application. | Med      | Open   |
+| SYSR14  | Web browsers that support JavaScript are required to run our application. | High      | Open   |
+| SYSR15  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Open   |
+| SYSR16  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Open   |
+| SYSR17  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Open   |
+| SYSR18  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Open   |
 
 ### Specification
 
