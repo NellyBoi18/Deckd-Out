@@ -4,6 +4,9 @@
  */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomeScreen from "../main-screen/HomeScreen";
+import RegisterScreen from "../main-screen/RegisterScreen";
+import LoginScreen from "../main-screen/LoginScreen";
+import Leaderboard from "../main-screen/Leaderboard";
 
 export default function CGRouter() {
     /**
@@ -16,7 +19,12 @@ export default function CGRouter() {
                 {/* 
                 Renders a Route component for the root path, rendering the DisplayTestUser component.
                 */}
-                <Route path="/" element={<HomeScreen />} />
+                <Route path="/" element={<RegisterScreen />} />
+                <Route path="/home" element={<HomeScreen />} />
+                <Route path="/register" element={<RegisterScreen />} />
+                <Route path="/login" element={<LoginScreen />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
+                {/* <Route path="/TESTING" element={<TestTable />} /> */}
 
                 {/* (temporary reference for how to set up navigation)
                 <Route path="/" element={<BadgerBuds />}>
