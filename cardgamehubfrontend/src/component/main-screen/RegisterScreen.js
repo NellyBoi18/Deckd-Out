@@ -151,7 +151,7 @@ export default function RegisterScreen() {
             //const data = await response.json();
             console.log('Registration successful:', data.msg);
             // Redirect user to home
-            //window.location.href = '/home';
+            window.location.href = '/home';
           }
         } catch (error) {
           console.error('Registration error:', error.message);
