@@ -9,7 +9,8 @@ import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 
 /**
- * Define custom styles using styled
+ * RootContainer styled component for the main container.
+ * @const {JSX.Element}
  */
 const RootContainer = styled(Container)({
   display: 'flex',
