@@ -8,6 +8,7 @@ class CardgamehubApplicationTests {
 
 	@Test
 	void contextLoads() {
+		 assert(true); //dummy test
 	}
 
 }
