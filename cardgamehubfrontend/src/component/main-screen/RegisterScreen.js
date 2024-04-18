@@ -1,3 +1,8 @@
+/**
+ * RegisterScreen component for user registration functionality.
+ * @module RegisterScreen
+ */
+
 import React, { useState } from 'react';
 //import { Form, Button } from "react-bootstrap";
 import { styled } from '@mui/system';
@@ -16,6 +21,10 @@ const RootContainer = styled(Container)({
     backgroundColor: '#539987',
   });
   
+  /**
+   * FormContainer styled component for the registration form container.
+   * @const {JSX.Element}
+   */
   const FormContainer = styled('div')({
     backgroundColor: '#CC4124',
     padding: '60px',
@@ -26,6 +35,10 @@ const RootContainer = styled(Container)({
     alignItems: 'center',
   });
   
+  /**
+   * InputField styled component for the input fields.
+   * @const {JSX.Element}
+   */
   const InputField = styled('input')({
     width: '100%',
     padding: '10px',
@@ -35,13 +48,14 @@ const RootContainer = styled(Container)({
     backgroundColor: '#F1E5C2',
     type: 'password',
     '::placeholder': {
-      fontSize: '18px', // Adjust placeholder font size here
-      color: 'black', // Adjust placeholder color here
+      fontSize: '18px', 
+      color: 'black', 
     },
   });
   
   /**
-   * Styles for the button
+   * RegisterButton styled component for the registration button.
+   * @const {JSX.Element}
    */
   const RegisterButton = styled(Button)({
     backgroundColor: '#2D080A',
@@ -56,6 +70,10 @@ const RootContainer = styled(Container)({
     },
   });
 
+  /**
+   * SignInLink styled component for the sign-in link.
+   * @const {JSX.Element}
+   */
   const SignInLink = styled('a')({
     marginTop: '10px',
     color: '#F1E5C2',
@@ -64,19 +82,31 @@ const RootContainer = styled(Container)({
     fontSize: '26px'
   });
 
+  /**
+   * LogoImage styled component for the logo image.
+   * @const {JSX.Element}
+   */
   const LogoImage = styled('img')({
-    position: 'absolute', // Position the logo absolute to the container
-    top: '20px', // Adjust top position as needed
-    left: '20px', // Adjust left position as needed
-    width: '10%', // Adjust the width of the logo as needed
+    position: 'absolute', 
+    top: '20px', 
+    left: '20px',
+    width: '10%', 
   });
 
+/**
+ * RegisterScreen functional component for user registration.
+ * @returns {JSX.Element} JSX representation of the registration screen.
+ */
 export default function RegisterScreen() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    /**
+     * Handle registration form submission.
+     * @param {Event} e - The event object.
+     */
     const handleRegister = (e) => {
       e.preventDefault();
       const userData = { email, username, password};
