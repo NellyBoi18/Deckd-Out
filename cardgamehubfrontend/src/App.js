@@ -5,6 +5,7 @@
 // import Appbar from "./component/Appbar";
 // import DisplayTestUser from "./component/DisplayTestUser";
 // import Footer from "./component/Footer";
+import UserComponent from "./component/UserComponent";
 import CGRouter from "./component/nav/CGRouter";
 
 /**
@@ -18,7 +19,8 @@ function App() {
       <AddTestUser/>
       <DisplayTestUser/>
       <Footer/> */}
-      <CGRouter/>
+      {/* <CGRouter/> */}
+      <UserComponent/>
     </div>
   );
 }

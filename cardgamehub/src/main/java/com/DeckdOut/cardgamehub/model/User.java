@@ -20,6 +20,7 @@ public class User {
 
     @Column(name="last_name")
     private String lastName;
+
     private String email;
 
     public User() {
@@ -41,7 +42,7 @@ public class User {
         this.id = id;
     }
 
-    private String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
