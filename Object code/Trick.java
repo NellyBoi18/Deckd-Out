@@ -6,9 +6,9 @@ import java.util.ArrayList;
  * Figure what card wins trick
  * Figure which team wins trick and gets point
  */
-public class Trick{
+public class Trick {
     private String leadingSuit; //the suit of the first card deal in a trick
-    private String trumpSuit; //the trump suit
+    private String trump; //the trump suit
     private Card winningCard; //the card that wins a trick
     private ArrayList<Card> trickCards; //cards that are played in the trick, from first played to last played
     private Player winningPlayer; //the player who wins the trick 
@@ -25,13 +25,79 @@ public class Trick{
     }
 
     /**
-     * Determines the card that wins trick
+     * Determines the card that wins the spades trick
      * 
      * @return the card that wins the trick
      */
     public Card winnerOfTrick(){
         return cardCompareSpades(leadingSuit, trickCards);
     }
+
+    /**
+     * Determines the card that wins the euchre trick
+     * 
+     * @return the card that wins the trick
+     */
+    public Card winnerOfEuchreTrick(String trump1){
+        return cardCompareEuchre(leadingSuit, trickCards, trump1);
+    }
+
+
+    //card compare for euchre
+    public Card cardCompareEuchre(String leadingSuit, ArrayList<Card> euchreTrickCards, String trump){
+        Card winningCard = null;
+        Card highestTrump = new Card("Spades", 0);
+        Card highestLeadingSuit = new Card("Spades", 0);
+
+        for (Card card : euchreTrickCards) {
+            //right bower wins
+            if(card.equals(new Card(trump, 11))) {
+                winningCard = card;
+            }
+            //else left bower wins
+            else if (card.equals(new Card(leftBowerSuit(trump), 11))) {
+                winningCard = card;
+            }
+            //else highest trump wins
+            else if(card.getSuit().equals(trump)) {
+                for (Card card2 : euchreTrickCards) {
+                    if(card2.getCardValue() > highestTrump.getCardValue()) {
+                        highestLeadingSuit = card2;
+                    }
+                }
+                return highestTrump; 
+            }
+            //else highest leading suit wins
+            else {
+                for (Card card1 : euchreTrickCards) {
+                    if(card1.getCardValue() > highestLeadingSuit.getCardValue()) {
+                        highestLeadingSuit = card1;
+                    }
+                }
+                return highestLeadingSuit; 
+            }
+        }
+        return winningCard;
+    }
+
+
+    //returns the suit of the left bower
+    public String leftBowerSuit(String trump) {
+        if(trump.equals("Spades")) {
+            return "Clubs";
+        }
+        if(trump.equals("Clubs")) {
+            return "Spades";
+        }
+        if(trump.equals("Diamonds")) {
+            return "Hearts";
+        }
+        else {
+            return "Diamonds";    
+        }
+    }
+
+
 
 
     /**
@@ -84,7 +150,5 @@ public class Trick{
             }
             return highestCard;
         }
-
     }
-
 }
