@@ -109,46 +109,59 @@ export default function RegisterScreen() {
      */
     const handleRegister = async (e) => {
       e.preventDefault(); // Prevent default form submission
-      try {
+      if (!username) {
+        alert('You must provide a username!');
+      } else if(!password){
+        alert('You must provide a password!');
+      } else if(!confirmPassword){
+        alert('You must confirm your password!');
+      }else if(!email){
+        alert('You must provide an email!');
+      }else if (password !== confirmPassword) {
+          alert('Your passwords do not match!');
+      } else {
+        try {
 
-        const response = await fetch('http://localhost:8080/user/add', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: username,
-            email: email,
-            password: password,
-            "spadesNumGames": 0,
-            "spadesGamesWon": 0,
-            "euchreNumGames": 0,
-            "euchreGamesWon": 0
-          }),
-        });
-        const data = await response.text();
-        console.log(data)
-        if (data.status == '500') {
-          throw new Error('Network response was not ok');
+          const response = await fetch('http://localhost:8080/user/add', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: username,
+              email: email,
+              password: password,
+              "spadesNumGames": 0,
+              "spadesGamesWon": 0,
+              "euchreNumGames": 0,
+              "euchreGamesWon": 0
+            }),
+          });
+          const data = await response.text();
+          console.log(data)
+          if (data.status == '500') {
+            throw new Error('Network response was not ok');
+          }
+  
+          if (data == "Username already exists"){
+            alert("User with username already exists.")
+            return;
+          }
+  
+          if (data == "Email already exists"){
+            alert("User with email already exists.")
+            return;
+          }
+      
+          //const data = await response.json();
+          console.log('Registration successful:', data.msg);
+          // Redirect user to home
+          window.location.href = '/home';
+        } catch (error) {
+          console.error('Registration error:', error.message);
         }
-
-        if (data == "Username already exists"){
-          alert("User with username already exists.")
-          return;
-        }
-
-        if (data == "Email already exists"){
-          alert("User with email already exists.")
-          return;
-        }
-    
-        //const data = await response.json();
-        console.log('Registration successful:', data.msg);
-        // Redirect user to home
-        window.location.href = '/home';
-      } catch (error) {
-        console.error('Registration error:', error.message);
       }
+      
     };    
 
     return (
