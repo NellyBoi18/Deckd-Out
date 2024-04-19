@@ -102,5 +102,114 @@ public class playerTest {
         player.removePlayedCard(card1);
         Assertions.assertEquals(playedHand, player.getHand(), "cardRemovedFromHandTest fail");
     }
+
+    /*
+     * Unit test of handHasTrump method, detects if player hand has trump cards (Spades)
+     */
+    @Test
+    public void handHasTrumpTest(){
+        Assertions.assertEquals(true, player.hasTrump(hand), "handHasTrumpTest fail");
+    }
+
+    /*
+     * Unit test of getHighNorm method, finds last highest card in player hand that is not trump(Spades), in this case is Hearts 12
+     */
+    @Test
+    public void getHighNormTest(){
+        Assertions.assertEquals(card12, player.getHighNorm(player), "getHighNormTest fail");
+    }
+
+    /*
+     * Unit test of getLowNorm method, finds last and lowest card in player hand that is not trump(Spades), in this case is Diamonds 2
+     */
+    @Test
+    public void getLowNormTest(){
+        Assertions.assertEquals(card10, player.getLowNorm(player), "getLowNormTest fail");
+    }
+
+    /*
+     * Unit test of numTrump method, finds the number of trump(Spades) cards in player's hand.
+     */
+    @Test 
+    public void numTrumpTest(){
+        Assertions.assertEquals(4, player.numTrump(player), "numTrumpTest fail");
+    }
+
+    /*
+     * Unit test of containsCard method, finds if specific card is present in player's hand
+     */
+    @Test
+    public void containsCardTest(){
+        Assertions.assertEquals(true, player.containsCard(card1, player), "containsCardTest true fail");
+
+        Card card = new Card("Spades", 2, player);
+        Assertions.assertEquals(false, player.containsCard(card, player), "containsCardTest false fail");
+    }
+
+    /*
+     * Unit test of containsNormAce method, find if player's hand contains a non-trump Ace
+     * method should return false if there is no non-trump Ace or if the only Ace is trump(Spades)
+     */
+    @Test
+    public void containsNormAceTest(){
+        Assertions.assertEquals(false, player.containsNormAce(player), "containsNormActTest false fail");
+
+        Card card1New = new Card("Diamonds", 14, player);
+        Card card2New = new Card("Spades", 14, player);
+        hand.add(card2New);
+        player.setHand(hand);
+        Assertions.assertEquals(false, player.containsNormAce(player), "contiansNormAceTest false 2 fail");
+        hand.add(card1New);
+        player.setHand(hand);
+        Assertions.assertEquals(true, player.containsNormAce(player), "containsNormActTest true fail");
+        
+    }
     
+    /*
+     * Unit test of getHighSuit method
+     */
+    @Test
+    public void getHighSuitTest(){
+        System.out.println(player.getHighSuit(player, "Spades"));
+        Assertions.assertEquals(card4, player.getHighSuit(player, "Spades"), "getHighSuitTest fail");
+    }
+
+    @Test
+    public void getLowSuitTest(){
+        System.out.println(player.getHand().toString());
+        System.out.println(player.getHand().size());
+        Assertions.assertEquals(card1, player.getLowSuit(player, "Spades"), "getLowSuitTest fail");
+    }
+
+    @Test
+    public void hasGivenSuitTest(){
+        Assertions.assertEquals(true, player.hasGivenSuit(player, "Spades"), "hasGivenSuitTest Spades fail");
+        Assertions.assertEquals(true, player.hasGivenSuit(player, "Diamonds"), "hasGivenSuitTest Diamonds fail");
+        Assertions.assertEquals(true, player.hasGivenSuit(player, "Hearts"), "hasGivenSuitTest Hearts fail");
+        Assertions.assertEquals(true, player.hasGivenSuit(player, "Clubs"), "hasGivenSuitTest Clubs fail");        
+    }
+
+    @Test
+    public void hasGivenCardTest(){
+        Assertions.assertEquals(true, player.hasGivenCard(player, "Spades", 13), "hasGivenCardTest true fail");
+        Assertions.assertEquals(false, player.hasGivenCard(player, "Spades", 14), "hasGivenCardTest true fail");
+
+    }
+
+    @Test
+    public void numNonTrumpValsTest(){
+        Assertions.assertEquals(3, player.numNonTrumpVals(player, 3), "numNonTrumpvalsTest fail");
+    }
+
+    @Test
+    public void cpuChooseCardSpadesTest(){
+        Card card = player.cpuChooseCardSpades(player, "Spades", player);
+        System.out.println(card);
+        Assertions.assertEquals(card4, card, "cpuShooseCardSpadesTest fail");
+    }
+
+    @Test
+    public void cpuChooseBidTest(){
+        Assertions.assertEquals(3, player.cpuChooseBid(player), "cpuChooseBidTest fail");
+    }
 }

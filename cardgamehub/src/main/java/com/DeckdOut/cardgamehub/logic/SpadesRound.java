@@ -100,10 +100,22 @@ public class SpadesRound {
         if(spadesStartPlayer.equals(p1Spades)) { 
             spadesStartPlayer = p1Spades;
             //p1 (user) pickCard Loop
+
+            //--------
+            trickCards.add(p1SpadesHand.get(0));
+            //-------
+
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                //p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                
+                //------- Hardcoded (uncomment above line)
+                Card testCard = new Card("Spades", 3, p1Spades);
+                p1SpadesCard = testCard;
+                System.out.println("fourth card:" + p1SpadesCard);
+                //-------
+
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand
@@ -120,12 +132,15 @@ public class SpadesRound {
             Card p4SpadesCard = p4Spades.cpuChooseCardSpades(p4Spades, spadesLeadingSuit, spadesStartPlayer);  
             trickCards.add(p4SpadesCard);
             p4Spades.removePlayedCard(p4SpadesCard);  //remove played card from hand
+
+            System.out.println(trickCards);
         }
 
         //P2 starting player
         else if(spadesStartPlayer.equals(p2Spades)) { 
             spadesStartPlayer = p2Spades;
             Card p2SpadesCard = p2Spades.cpuChooseCardSpades(p2Spades, "None", spadesStartPlayer); 
+            System.out.println("first card:" + p2SpadesCard);
             trickCards.add(p2SpadesCard);
             p2Spades.removePlayedCard(p2SpadesCard);  //remove played card from hand
             spadesLeadingSuit = p2SpadesCard.getSuit(); //set new leading suit
@@ -133,16 +148,30 @@ public class SpadesRound {
             //other users
 
             Card p3SpadesCard = p3Spades.cpuChooseCardSpades(p3Spades, spadesLeadingSuit, spadesStartPlayer); 
+            System.out.println("second card:" + p3SpadesCard);
             trickCards.add(p3SpadesCard);
             p3Spades.removePlayedCard(p3SpadesCard);  //remove played card from hand
             Card p4SpadesCard = p4Spades.cpuChooseCardSpades(p4Spades, spadesLeadingSuit, spadesStartPlayer);
+            System.out.println("third card:" + p4SpadesCard);
             trickCards.add(p4SpadesCard);
             p4Spades.removePlayedCard(p4SpadesCard);  //remove played card from hand
             //p1 (user) pickCard Loop
+
+            //-------
+            trickCards.add(p1SpadesHand.get(0));
+            //------
+
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                System.out.println("loop");
+                //p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+
+                //-------Hardcoded (uncomment above line)
+                Card testCard = new Card(p2SpadesCard.getSuit(), 3, p1Spades);
+                p1SpadesCard = testCard;
+                System.out.println("fourth card:" + p1SpadesCard);
+                //-------
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand
@@ -150,7 +179,7 @@ public class SpadesRound {
 
 
         //P3 starting player
-        else if(spadesStartPlayer.equals(p2Spades)) { 
+        else if(spadesStartPlayer.equals(p3Spades)) { 
             spadesStartPlayer = p3Spades;
             Card p3SpadesCard = p3Spades.cpuChooseCardSpades(p3Spades, "None", spadesStartPlayer); 
             trickCards.add(p3SpadesCard);
@@ -163,10 +192,22 @@ public class SpadesRound {
             trickCards.add(p4SpadesCard);
             p4Spades.removePlayedCard(p4SpadesCard);  //remove played card from hand
             //p1 (user) pickCard Loop
+
+            //-------
+            trickCards.add(p1SpadesHand.get(0));
+            //------
+            
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                //p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+
+                //-------Hardcoded (uncomment above line)
+                Card testCard = new Card(p3SpadesCard.getSuit(), 3, p1Spades);
+                p1SpadesCard = testCard;
+                System.out.println("fourth card:" + p1SpadesCard);
+                //-------
+                
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand
@@ -176,7 +217,7 @@ public class SpadesRound {
         }
 
         //P4 starting player
-        else if(spadesStartPlayer.equals(p2Spades)) { 
+        else if(spadesStartPlayer.equals(p4Spades)) { 
             spadesStartPlayer = p4Spades;
             Card p4SpadesCard = p4Spades.cpuChooseCardSpades(p4Spades, "None", spadesStartPlayer); 
             trickCards.add(p4SpadesCard);
@@ -186,10 +227,22 @@ public class SpadesRound {
             //other users
 
             //p1 (user) pickCard Loop
+
+            //-------
+            trickCards.add(p1SpadesHand.get(0));
+            //------
+            
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                //p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+
+                //-------Hardcoded (uncomment above line)
+                Card testCard = new Card(p4SpadesCard.getSuit(), 3, p1Spades);
+                p1SpadesCard = testCard;
+                System.out.println("fourth card:" + p1SpadesCard);
+                //-------
+
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand

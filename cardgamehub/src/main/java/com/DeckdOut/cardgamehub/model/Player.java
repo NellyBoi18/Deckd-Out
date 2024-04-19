@@ -130,7 +130,7 @@ public class Player {
 
     //get low norm
     public Card getLowNorm(Player player) {
-        int min = 0;
+        int min = 14; //TODO: changed from 0 to 14 
         Card finalCard = new Card("Diamonds", 1);
         for(Card card : player.getHand()) {
             if(card.getCardValue() <= min && !card.isSpade()) {
@@ -191,7 +191,7 @@ public class Player {
 
     //get low card of a suit (doesn't handle case of no suit)
     public Card getLowSuit(Player player, String suit) {
-        int min = 0;
+        int min = 14; //TODO: Changed from 0 to 14
         Card finalCard = new Card(suit, 14);
         for(Card card1 : player.getHand()) {
             if(card1.getCardValue() <= min && card1.getSuit().equals(suit)) {
@@ -260,21 +260,25 @@ public class Player {
             //case1: play non-trump ace 
             for(Card aceCard : cpuHand) {
                 if(aceCard.getCardValue() == 14 && !aceCard.isSpade()) {
+                    System.out.println("1");
                     return aceCard;
                 }
             }
 
             //case2: play low spades if have 5+
             if(numTrump(cpu) >= 5) {
+                System.out.println("2");
                 return getLowSuit(cpu, "Spades");
             }
 
             //case4: play highest spade
             if(numTrump(cpu) >= 1) {
+                System.out.println("3");
                 return getHighSuit(cpu, "Spades");
             }
 
             //case5: play highest non-trump 
+            System.out.println("4");
             return getHighNorm(cpu);
         }
 
@@ -320,15 +324,18 @@ public class Player {
             }
             //add queen of spades as predicted tricks
             if(card.isSpade() && card.getCardValue() == 12) {
+
                 finalBid ++;
             }
             //add king of spades as predicted tricks
             if(card.isSpade() && card.getCardValue() == 13) {
+
                 finalBid ++;
             }
             //add ace of spades as predicted tricks
             if(card.isSpade() && card.getCardValue() == 14) {
                 finalBid ++;
+
             }
         }
 
