@@ -1,7 +1,7 @@
 package com.DeckdOut.cardgamehub.controller;
 
-import com.DeckdOut.cardgamehub.model.User;
-import com.DeckdOut.cardgamehub.service.UserService;
+import com.DeckdOut.cardgamehub.model.Card;
+import com.DeckdOut.cardgamehub.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,23 +19,23 @@ public class CardController {
     CardService cardService;
 
     /**
-     * Endpoint for adding a new user.
+     * Endpoint for adding a new card.
      *
-     * @param user The user object to be added.
+     * @param card The card object to be added.
      * @return A string indicating the success or failure of the operation.
      */
     @PostMapping("/add")
-    public String addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    public String addCard(@RequestBody Card card) {
+        return cardService.addCard(card);
     }
 
     /**
-     * Endpoint for retrieving all test users.
+     * Endpoint for retrieving all cards.
      *
-     * @return A list of all test users stored in the system.
+     * @return A list of all cards stored in the system.
      */
     @GetMapping
-    public List<User> findAllUsers() {
-        return userService.findAllUsers();
+    public List<Card> findAllCards() {
+        return cardService.findAllCards();
     }
 }
