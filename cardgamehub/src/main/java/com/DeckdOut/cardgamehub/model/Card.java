@@ -59,7 +59,7 @@ public class Card {
     /**
      * Sets the suit of the card.
      *
-     * @param suit The suit to suit.
+     * @param suit The suit of the card.
      */
     public void setSuit(String suit) {
         this.suit = suit;
@@ -77,7 +77,7 @@ public class Card {
     /**
      * Sets the value of the card.
      *
-     * @param value The value to card.
+     * @param value The value of the card.
      */
     public void setValue(int value) {
         this.value = value;
