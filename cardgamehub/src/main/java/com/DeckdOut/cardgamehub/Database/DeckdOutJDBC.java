@@ -1,3 +1,5 @@
+package com.DeckdOut.cardgamehub.Database;
+
 // THE FOLLOWING REQUIRES THE PLATFORM INDEPENDENT CONNECTOR/J 
 // LIBRARY TO BE INSTALLED IN THE WORKING DIRECTORY
 import java.sql.*;

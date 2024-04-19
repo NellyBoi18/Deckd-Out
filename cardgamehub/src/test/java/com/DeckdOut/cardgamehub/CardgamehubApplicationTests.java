@@ -6,8 +6,9 @@
 // @SpringBootTest
 // class CardgamehubApplicationTests {
 
-// 	@Test
-// 	void contextLoads() {
-// 	}
+	@Test
+	void contextLoads() {
+		 assert(true); //dummy test
+	}
 
 // }

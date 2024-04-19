@@ -107,9 +107,8 @@ export default function RegisterScreen() {
      * Handle registration form submission.
      * @param {Event} e - The event object.
      */
-    const handleRegister = (e) => {
-      e.preventDefault();
-      const userData = { email, username, password};
+    const handleRegister = async (e) => {
+      e.preventDefault(); // Prevent default form submission
       if (!username) {
         alert('You must provide a username!');
       } else if(!password){
@@ -121,19 +120,45 @@ export default function RegisterScreen() {
       }else if (password !== confirmPassword) {
           alert('Your passwords do not match!');
       } else {
-          // Make a POST request to the registration API
-          fetch("http://localhost:8080/Users/add", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData)
-        })
-        .then(res => console.log(res))
-        .catch(e => console.log(e))
-        console.log("user created");
-        window.location.href = '/home';
+        try {
+
+          const response = await fetch('http://localhost:8080/user/add', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: username,
+              email: email,
+              password: password,
+              "spadesNumGames": 0,
+              "spadesGamesWon": 0,
+              "euchreNumGames": 0,
+              "euchreGamesWon": 0
+            }),
+          });
+          const data = await response.text();
+          console.log(data)
+          if (data.status === '500') {
+            throw new Error('Network response was not ok');
+          } else if (data === "User with username already exists"){
+            alert("User with username already exists.")
+            return;
+          } else if (data === "User with email already exists"){
+            alert("User with email already exists.")
+            return;
+          } else {
+            //const data = await response.json();
+            console.log('Registration successful:', data.msg);
+            // Redirect user to home
+            window.location.href = '/home';
+          }
+        } catch (error) {
+          console.error('Registration error:', error.message);
+        }
       }
-      //window.location.href = '/home';
-    };
+      
+    };    
 
     return (
         <RootContainer>
