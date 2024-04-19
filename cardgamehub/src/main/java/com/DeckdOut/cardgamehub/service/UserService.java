@@ -14,7 +14,7 @@ public class UserService implements UserServiceInterface{
     @Autowired
     UserRepository userRepository;
     @Override
-    public String addUser(User user) {
+    public String registerUser(User user) {
 
         if(userRepository.findByUsername(user.getUsername()) != null) return "User with username already exists";
         if(userRepository.findByEmail(user.getEmail()) != null) return "User with email already exists";

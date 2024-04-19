@@ -122,7 +122,7 @@ export default function RegisterScreen() {
       } else {
         try {
 
-          const response = await fetch('http://localhost:8080/user/add', {
+          const response = await fetch('http://localhost:8080/user/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

@@ -19,14 +19,14 @@ public class UserController {
     UserService userService;
 
     /**
-     * Endpoint for adding a new user.
+     * Endpoint for registering a new user.
      *
-     * @param user The user object to be added.
+     * @param user The user object to be registered.
      * @return A string indicating the success or failure of the operation.
      */
-    @PostMapping("/add")
-    public String addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    @PostMapping("/register")
+    public String registerUser(@RequestBody User user) {
+        return userService.registerUser(user);
     }
 
     /**

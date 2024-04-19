@@ -5,6 +5,6 @@ import com.DeckdOut.cardgamehub.model.User;
 import java.util.List;
 
 public interface UserServiceInterface {
-    public String addUser(User user);
+    public String registerUser(User user);
     public List<User> findAllUsers();
 }
