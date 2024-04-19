@@ -469,20 +469,20 @@ stateDiagram
 sequenceDiagram
 
 participant ReactFrontend
-participant DjangoBackend
 participant MySQLDatabase
+participant SpringBootBackend
 
-ReactFrontend ->> DjangoBackend: HTTP Request (e.g., GET /api/data)
-activate DjangoBackend
-
-DjangoBackend ->> MySQLDatabase: Query (e.g., SELECT * FROM data_table)
+ReactFrontend ->> MySQLDatabase: HTTP Request (e.g., GET /api/User)
 activate MySQLDatabase
 
-MySQLDatabase -->> DjangoBackend: Result Set
-deactivate MySQLDatabase
+SpringBootBackend ->> MySQLDatabase: HTTP Request (e.g., GET /api/Card)
+MySQLDatabase -->> SpringBootBackend: JSON Response
+activate SpringBootBackend
 
-DjangoBackend -->> ReactFrontend: JSON Response
-deactivate DjangoBackend
+deactivate SpringBootBackend
+
+MySQLDatabase -->> ReactFrontend: JSON Response
+deactivate MySQLDatabase
 ```
 
 #### System Architecture Diagram
