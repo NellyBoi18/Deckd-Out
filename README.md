@@ -26,31 +26,31 @@ In terms of the population who might eventually our system, I would say that for
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| R11  | When the user first opens the application or when the user logs out, the frontend SHALL display the login page. | Med      | Open   |
-| R12  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | High      | Open   |
-| R13  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | High      | Open   |
-| R14  | When the user clicks on the profile button on any screen that it appears in, the frontend SHALL display the profile page. | Med      | Open   |
-| R15  | When the user clicks on the settings button on any screen that it appears in, the frontend SHALL display the settings page. | Low      | Open   |
-| R16  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | High      | Open   |
-| R17  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
-| R18  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
-| R19  | When the user selects a card to play, the card will be inserted into the trick, the card SHALL be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | High      | Open   |
-| R20  | When the winner of a trick is determined, the application SHALL display who won the trick to the user. | Med      | Open   |
-| R21  | After a round of spades, the correct number of points SHALL be calculated and added to each teams total, and if one team has over 500 points then they SHALL be declared the winner of the game. | Med      | Open   |
-| R22  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | High      | Open   |
-| R23  | Users SHALL be able to sign into the application with an account and access their high scores. | Med      | Open   |
-| R24  | Users SHALL be able to play the specified card games against other players. | Low     | Open   |
-| R25  | There SHALL be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
-| R26  | The user SHALL be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
-| R27  | The logic of each card game SHALL work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
-| R28  | Application UI SHALL be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
-| R29  | The application SHALL be able to connect to the backend logic and display the correct information to the user. | High     | Open   |
-| R30  | The application SHALL be able to handle an incorrect username / password pair and display an error message to the user. | High      | Open   |
-| R31  | The application SHALL be able to prevent users from making illegal moves in the card games. | High     | Open   |
-| R32  | The user SHALL be able to see the cards that they are playing with in a graphical representation. | High     | Open   |
-| R33  | The user SHALL be able to see the game of spades that they are playing. | High     | Open   |
-| R34  | The user SHALL be able to see the game of euchre that they are playing. | High     | Open   |
-| R35  | The user SHALL be able to view all the past card games they played while logged into their account. | Low     | Open   |
+| R1  | When the user first opens the application or when the user logs out, the frontend SHALL display the login page. | Med      | Open   |
+| R22  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | High      | Open   |
+| R3  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | High      | Open   |
+| R4  | When the user clicks on the profile button on any screen that it appears in, the frontend SHALL display the profile page. | Med      | Open   |
+| R5  | When the user clicks on the settings button on any screen that it appears in, the frontend SHALL display the settings page. | Low      | Open   |
+| R6  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | High      | Open   |
+| R7  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
+| R8  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
+| R9  | When the user selects a card to play, the card will be inserted into the trick, the card SHALL be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | High      | Open   |
+| R10  | When the winner of a trick is determined, the application SHALL display who won the trick to the user. | Med      | Open   |
+| R11  | After a round of spades, the correct number of points SHALL be calculated and added to each teams total, and if one team has over 500 points then they SHALL be declared the winner of the game. | Med      | Open   |
+| R12  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | High      | Open   |
+| R13  | Users SHALL be able to sign into the application with an account and access their high scores. | Med      | Open   |
+| R14  | Users SHALL be able to play the specified card games against other players. | Low     | Open   |
+| R15  | There SHALL be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
+| R16  | The user SHALL be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
+| R17  | The logic of each card game SHALL work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
+| R18  | Application UI SHALL be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
+| R19  | The application SHALL be able to connect to the backend logic and display the correct information to the user. | High     | Open   |
+| R20  | The application SHALL be able to handle an incorrect username / password pair and display an error message to the user. | High      | Open   |
+| R21  | The application SHALL be able to prevent users from making illegal moves in the card games. | High     | Open   |
+| R22  | The user SHALL be able to see the cards that they are playing with in a graphical representation. | High     | Open   |
+| R23  | The user SHALL be able to see the game of spades that they are playing. | High     | Open   |
+| R24  | The user SHALL be able to see the game of euchre that they are playing. | High     | Open   |
+| R25  | The user SHALL be able to view all the past card games they played while logged into their account. | Low     | Open   |
 
 
 ### Use Cases & User Stories
