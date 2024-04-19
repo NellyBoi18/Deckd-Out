@@ -4,7 +4,7 @@
 [![coverage report](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/badges/main/coverage.svg)](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/commits/main)
 [![Latest Release](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/badges/release.svg)](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/releases)
 
-## TeamName
+## Team Name
 
 Deck’d Out
 
@@ -105,7 +105,25 @@ As a user, I want to be able to see the game of Spades that I am playing.
 
 <!--NOTE: Please include illustrations or screenshots of what your user interface would look like -- even if they’re rough -- and interleave it with your description.-->
 
-Images can be included with `![alt_text](image_path)`
+The user interface for the application will have a login page, a register page, a home page, a game page, and a leaderboard page. 
+
+The login page will have a text field for the user to enter their username and a text field for the user to enter their password.
+![Login Page](Images/signIn.png)
+There will be a sign in button that the user can click to sign in and a join now button that the user can click to register. 
+The register page will have a text field for the user to enter their username, a text field for the user to enter their email, a text field for the user to enter their password, and a text field for the user to verify their password. 
+![Register Page](Images/register.png)
+
+The home page will allow the user to select a game to play. 
+![Home Page](Images/home.png)
+
+The game page will display the game that the user is playing.
+![Game Page](Images/gameDeal.png)
+For both Spades and Euchre
+![Spades Game](Images/spadesGame.png)
+![Euchre Game](Images/euchreTrump.png)
+
+The leaderboard page will display the user's rank compared to other users.
+![Leaderboard Page](Images/leaderboard.png)
 
 ### Security Requirements
 
