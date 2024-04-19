@@ -132,7 +132,7 @@ The leaderboard page will display the user's rank compared to other users.
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
 | SR11  | Users should be able to safely input their username and password and know it is protected. | Low      | Open   |
-| SR12  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High     | Open   |
+| SR12  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Open   |
 | SR13  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Open   |
 | SR14  | Users should not be able to access other user's accounts. | High     | Open   |
 | SR15  | Users should not be able to access the backend logic of the application. | Low     | Open   |
@@ -184,9 +184,12 @@ Game Logic:
 - Technologies: Java 
 - Purpose: Implements the specific rules and mechanics of each game (Euchre, Spades), including scoring calculations and decision-making.
 
-Networking:
+<!--Networking:
 - Technologies: Java sockets for network communication, and Java RMI (Remote Method Invocation) for distributed object applications.
-- Purpose: To handle multiplayer interactions, synchronization of game state across clients, and to facilitate communication with the backend for authentication and database interactions.
+- Purpose: To handle multiplayer interactions, synchronization of game state across clients, and to facilitate communication with the backend for authentication and database interactions.-->
+Networking:
+- Technologies: Java Database Connectivity (JDBC)
+- Purpose: To connect to the database, allowing for the storage and retrieval of user data, game states, and scores.
 
 User Authentication:
 - Technologies: JSON Web Tokens (JWT) 
@@ -196,7 +199,7 @@ Database:
 - Technologies: MySQL Database
 - Purpose: To store user information, game states, scores, and potentially complex game-related data structures.
 
-Score Calculation (Specific to Each Game):
+Score Calculation:
 - Technologies: Java 
 - Purpose: To calculate and maintain scores based on the rules of Euchre and Spades, respectively. 
 
