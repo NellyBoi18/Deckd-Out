@@ -3,15 +3,15 @@ package com.DeckdOut.cardgamehub;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.DeckdOut.cardgamehub.model.User;
+import com.DeckdOut.cardgamehub.repository.UserRepository;
+import com.DeckdOut.cardgamehub.service.UserService;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.DeckdOut.cardgamehub.model.User;
-import com.DeckdOut.cardgamehub.repository.UserRepository;
-import com.DeckdOut.cardgamehub.service.UserService;
 
 @SpringBootTest
 public class UserServiceTests {

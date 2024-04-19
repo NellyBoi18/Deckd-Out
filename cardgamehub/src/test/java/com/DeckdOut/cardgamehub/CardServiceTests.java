@@ -1,23 +1,17 @@
 package com.DeckdOut.cardgamehub;
 
-import java.sql.*;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.DeckdOut.cardgamehub.model.Card;
+import com.DeckdOut.cardgamehub.repository.CardRepository;
+import com.DeckdOut.cardgamehub.service.CardService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.mockito.Mockito.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import com.DeckdOut.cardgamehub.model.Card;
-import com.DeckdOut.cardgamehub.repository.CardRepository;
-import com.DeckdOut.cardgamehub.service.CardService;
 
 /**
  * JUnit test class for the CardService class.
@@ -119,14 +113,14 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
         List<Card> cards = new ArrayList<>();
         Card card1 = new Card();
         card1.setOwner("owner1");
-        card.setValue(2);
-        card.setSuit("Hearts");
+        card1.setValue(2);
+        card1.setSuit("Hearts");
         cards.add(card1);
 
         Card card2 = new Card();
         card2.setOwner("owner2");
-        card.setValue(3);
-        card.setSuit("Diamonds");
+        card2.setValue(3);
+        card2.setSuit("Diamonds");
         cards.add(card2);
 
         // Mock CardRepository behavior
