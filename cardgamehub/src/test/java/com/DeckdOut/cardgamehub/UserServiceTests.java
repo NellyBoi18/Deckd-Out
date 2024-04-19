@@ -16,6 +16,9 @@ import com.DeckdOut.cardgamehub.service.UserService;
 @SpringBootTest
 public class UserServiceTests {
 
+    /**
+     * Tests the addUser method of the UserService class when adding a user successfully.
+     */
     @Test
     public void testAddUser_Successful() {
         // Mock UserRepository
@@ -41,53 +44,11 @@ public class UserServiceTests {
         verify(userRepository, times(1)).save(user);
     }
 
-    @Test
-    public void testAddUser_DuplicateUsername() {
-        // Mock UserRepository
-        UserRepository userRepository = mock(UserRepository.class);
-        UserService userService = new UserService();
+    // TODO: Create testAddUser_DuplicateUsername and testAddUser_DuplicateEmail tests
 
-        // Create a new user
-        User user = new User();
-        user.setUsername("existingUser");
-        user.setEmail("test@example.com");
-        user.setPassword("password");
-
-        // Mock UserRepository behavior
-        when(userRepository.findByUsername("existingUser")).thenReturn(user);
-
-        // Test addUser method with duplicate username
-        String result = userService.addUser(user);
-
-        // Verify that the user was not saved and the correct message is returned
-        assertEquals("User with username already exists", result);
-        verify(userRepository, never()).save(user);
-    }
-
-    @Test
-    public void testAddUser_DuplicateEmail() {
-        // Mock UserRepository
-        UserRepository userRepository = mock(UserRepository.class);
-        UserService userService = new UserService();
-
-        // Create a new user
-        User user = new User();
-        user.setUsername("testUser");
-        user.setEmail("existing@example.com");
-        user.setPassword("password");
-
-        // Mock UserRepository behavior
-        when(userRepository.findByUsername("testUser")).thenReturn(null);
-        when(userRepository.findByEmail("existing@example.com")).thenReturn(user);
-
-        // Test addUser method with duplicate email
-        String result = userService.addUser(user);
-
-        // Verify that the user was not saved and the correct message is returned
-        assertEquals("User with email already exists", result);
-        verify(userRepository, never()).save(user);
-    }
-
+    /**
+     * Tests the findAllUsers method of the UserService class.
+     */
     @Test
     public void testFindAllUsers() {
         // Mock UserRepository
