@@ -8,38 +8,50 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class responsible for managing Card entities.
+ */
 @Service
-public class CardService implements CardServiceInterface{
+public class CardService implements CardServiceInterface {
 
     @Autowired
     CardRepository cardRepository;
+
+    /**
+     * Adds a new card to the repository.
+     *
+     * @param card The card to be added.
+     * @return A string indicating the result of the operation.
+     */
     @Override
     public String addCard(Card card) {
-
-        if(cardRepository.findByOwner(card.getOwner()) != null) return "Card with owner already exists";
+        if (cardRepository.findByOwner(card.getOwner()) != null)
+            return "Card with owner already exists";
         Card result = cardRepository.save(card);
-        return "Successfull";
-
-
-        // if(userRepository.findByUsername(user.getUsername()) != null) return "User with username already exists";
-        // if(userRepository.findByEmail(user.getEmail()) != null) return "User with email already exists";
-        // User result = userRepository.save(user);
-        // return "Successful";
+        return "Successful";
     }
 
+    /**
+     * Removes a card from the repository.
+     *
+     * @param card The card to be removed.
+     * @return A string indicating the result of the operation.
+     */
     @Override
     public String removeCard(Card card) {
-
-        if(cardRepository.findByOwner(card.getOwner()) == null) return "Card with owner does not exist";
+        if (cardRepository.findByOwner(card.getOwner()) == null)
+            return "Card with owner does not exist";
         cardRepository.delete(card);
-        return "Successfull";
-
+        return "Successful";
     }
 
+    /**
+     * Retrieves all cards from the repository.
+     *
+     * @return A list containing all cards, sorted by descending ID.
+     */
     @Override
     public List<Card> findAllCards() {
-        
         return cardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 }
-
