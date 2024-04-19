@@ -1,6 +1,5 @@
 package com.DeckdOut.cardgamehub;
 
-import java.sql.*;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,7 +14,7 @@ import com.DeckdOut.cardgamehub.repository.UserRepository;
 import com.DeckdOut.cardgamehub.service.UserService;
 
 @SpringBootTest
-public class UserServiceTest {
+public class UserServiceTests {
 
     @Test
     public void testAddUser_Successful() {
