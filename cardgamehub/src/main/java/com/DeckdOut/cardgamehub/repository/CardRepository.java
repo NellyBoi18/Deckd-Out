@@ -9,6 +9,5 @@ import java.util.List;
  * Repository interface for managing User entities in the database.
  */
 public interface CardRepository extends JpaRepository<Card, Integer> {
-    Card findByUsername(String username);
-    Card findByEmail(String email);
+    Card findByOwner(String owner);
 }
