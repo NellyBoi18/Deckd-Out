@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controller class responsible for handling HTTP requests related to users in the card game hub application.
+ * Controller class responsible for handling HTTP requests related to cards in the card game hub application.
  */
 @RestController
 @RequestMapping("/card")
