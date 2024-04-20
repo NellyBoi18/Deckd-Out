@@ -108,7 +108,7 @@ public class playerTest {
      */
     @Test
     public void handHasTrumpTest(){
-        Assertions.assertEquals(true, player.hasTrump(hand), "handHasTrumpTest fail");
+        Assertions.assertEquals(true, player.hasTrump(hand, "Spades"), "handHasTrumpTest fail");
     }
 
     /*
@@ -116,7 +116,7 @@ public class playerTest {
      */
     @Test
     public void getHighNormTest(){
-        Assertions.assertEquals(card12, player.getHighNorm(player), "getHighNormTest fail");
+        Assertions.assertEquals(card12, player.getHighNorm(player, "Spades"), "getHighNormTest fail");
     }
 
     /*
@@ -124,7 +124,7 @@ public class playerTest {
      */
     @Test
     public void getLowNormTest(){
-        Assertions.assertEquals(card10, player.getLowNorm(player), "getLowNormTest fail");
+        Assertions.assertEquals(card10, player.getLowNorm(player, "Spades"), "getLowNormTest fail");
     }
 
     /*
@@ -132,7 +132,7 @@ public class playerTest {
      */
     @Test 
     public void numTrumpTest(){
-        Assertions.assertEquals(4, player.numTrump(player), "numTrumpTest fail");
+        Assertions.assertEquals(4, player.numTrump(player, "Spades"), "numTrumpTest fail");
     }
 
     /*
@@ -152,16 +152,16 @@ public class playerTest {
      */
     @Test
     public void containsNormAceTest(){
-        Assertions.assertEquals(false, player.containsNormAce(player), "containsNormActTest false fail");
+        Assertions.assertEquals(false, player.containsNormAce(player, "Spades"), "containsNormActTest false fail");
 
         Card card1New = new Card("Diamonds", 14, player);
         Card card2New = new Card("Spades", 14, player);
         hand.add(card2New);
         player.setHand(hand);
-        Assertions.assertEquals(false, player.containsNormAce(player), "contiansNormAceTest false 2 fail");
+        Assertions.assertEquals(false, player.containsNormAce(player, "Spades"), "contiansNormAceTest false 2 fail");
         hand.add(card1New);
         player.setHand(hand);
-        Assertions.assertEquals(true, player.containsNormAce(player), "containsNormActTest true fail");
+        Assertions.assertEquals(true, player.containsNormAce(player, "Spades"), "containsNormActTest true fail");
         
     }
     
@@ -198,7 +198,7 @@ public class playerTest {
 
     @Test
     public void numNonTrumpValsTest(){
-        Assertions.assertEquals(3, player.numNonTrumpVals(player, 3), "numNonTrumpvalsTest fail");
+        Assertions.assertEquals(3, player.numNonTrumpVals(player, 3, "Spades"), "numNonTrumpvalsTest fail");
     }
 
     @Test

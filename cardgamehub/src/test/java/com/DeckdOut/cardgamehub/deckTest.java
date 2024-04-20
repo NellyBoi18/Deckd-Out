@@ -45,7 +45,7 @@ public class deckTest {
     @Test
     public void euchreDealTest(){
         deck2.shuffle();
-        ArrayList<Card> p2Hand = deck2.euchreDeal(p2);
+        ArrayList<Card> p2Hand = deck2.euchreDeal(p1, p2, p3, p4);
         Assertions.assertEquals(5, p2Hand.size(), "euchreDealTest fail");
     }
     
