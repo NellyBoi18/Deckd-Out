@@ -467,7 +467,6 @@ stateDiagram
     Euchre --> GameLobby : Select Another Game
     SpadesGame --> Spades : Spades Game Over
     EuchreGame --> Euchre : Euchre Game Over
-
 ```
 
 #### Sequence Diagram
@@ -495,6 +494,27 @@ deactivate SpringBootBackend
 #### System Architecture Diagram
 
 <!-- May need to actually draw this using something like mermaid for the README-->
+
+```mermaid
+---
+title: System Architecture Diagram
+---
+stateDiagram
+    User --> Frontend: User Interface
+    Frontend --> Backend: User Input
+    Backend --> Frontend: Game State
+    Backend --> GameEngine: Game Logic
+    GameEngine --> GameLogic: Game Rules
+    GameLogic --> Spades: Spades Rules
+    GameLogic --> Euchre: Euchre Rules
+    Spades --> ScoreCalculation: Score Calculation
+    Euchre --> ScoreCalculation: Score Calculation
+    ScoreCalculation --> Backend: Score Update
+    Backend --> Database: Data Storage
+    Database --> Backend: Data Retrieval
+    Frontend --> Database: User Data
+    
+```
 
 ![System Architecture Diagram](Images/SystemArchDiagram.jpg)
 
