@@ -33,6 +33,12 @@ public class Card {
     private String owner;
 
     /**
+     * The card is dealt to player
+     */
+    @Column(nullable = false)
+    private boolean dealt;
+
+    /**
      * Constructs a new Card object with default values.
      */
     public Card() {
@@ -99,5 +105,32 @@ public class Card {
      */
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    /**
+     * Retrieves the card dealt status
+     * 
+     * @return The boolean of card dealt status
+     */
+    public boolean getDealt(){
+        return dealt;
+    }
+
+    /**
+     * Sets the card dealt status
+     * 
+     * @param dealt The card dealt status
+     */
+    public void setDealt(boolean dealt){
+        this.dealt = dealt;
+    }
+
+    /**
+     * Determines if card is spades
+     * 
+     * @return true if the card is spades, false if not
+     */
+    public boolean isSpade(){
+        return suit.equals("Spades");
     }
 }
