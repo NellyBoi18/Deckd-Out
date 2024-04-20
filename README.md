@@ -496,9 +496,6 @@ deactivate SpringBootBackend
 <!-- May need to actually draw this using something like mermaid for the README-->
 
 ```mermaid
----
-title: System Architecture Diagram
----
 stateDiagram
     User --> Frontend: User Interface
     Frontend --> Backend: User Input
