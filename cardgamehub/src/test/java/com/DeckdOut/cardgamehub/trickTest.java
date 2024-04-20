@@ -3,7 +3,7 @@ package com.DeckdOut.cardgamehub;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import com.DeckdOut.cardgamehub.model.*;
-import com.DeckdOut.cardgamehub.logic.*;
+import com.DeckdOut.cardgamehub.Logic.*;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assertions;
