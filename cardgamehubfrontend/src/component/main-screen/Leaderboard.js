@@ -1,18 +1,24 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Avatar, Button, Box } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 import Logo from '../../assets/logo.svg'; // Ensure the logo path is correct
 import TrophyIcon from '../../assets/trophy.png'; // Ensure the trophy icon path is correct
 import BurstImage from '../../assets/burst.png'; // Ensure the burst image path is correct
 import BackArrowImage from '../../assets/backArrow.png'; // Adjust the path according to your file structure
 
-
-// Dummy data for leaderboard - replace with data fetching logic in a real application
-const users = [
-  { id: 1, username: 'USERNAME_1', score: 15000, avatar: 'path-to-avatar-1.png' },
-  // ... more users
+const columns = [
+  { field: 'username', headerName: 'NAME', width: 130 },
+  { field: 'spadesGamesWon', headerName: 'SPADES GAMES WON', width: 130 },
 ];
+
+// // Dummy data for leaderboard - replace with data fetching logic in a real application
+// const users = [
+//   { id: 1, username: 'USERNAME_1', score: 15000, avatar: 'path-to-avatar-1.png' },
+//   // ... more users
+// ];
 
 
 /**
@@ -127,6 +133,44 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
  * Functional component representing the Leaderboard
  */
 const Leaderboard = () => {
+  // const [users, setUsers] = useState([]);
+  // const [username, setUsername] = useState('');
+  // const [spadesGamesWon, setSpadesGamesWon] = useState(0);
+
+  // useEffect(() => {
+  //   const fetchLeaderboard = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:8080/user', {
+  //           method: 'GET',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //           },
+  //         });
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch leaderboard');
+  //       }
+  //       const data = await response.json();
+  //       setUsers(data.users);
+  //     } catch (error) {
+  //       console.error('Error fetching leaderboard:', error.message);
+  //     }
+  //   };
+
+  //   fetchLeaderboard();
+  // }, []); // Empty dependency array to fetch data only once when component mounts
+
+  const [users, setUser] = useState([]);
+
+    /**Here, we are fetching users from the api */
+    useEffect(()=>{
+        fetch("http://localhost:8080/user")
+        .then(res=>res.json())
+        .then(userObj=>{
+          userObj.sort((a, b) => b.spades_games_won - a.spades_games_won);
+          setUser(userObj);})
+        .catch(e=>console.log(e))
+    },[users]);
+  
   return (
     <LeaderboardContainer>
       <LogoContainer>
@@ -142,11 +186,16 @@ const Leaderboard = () => {
         </LeaderboardHeader>
         <LeaderboardList>
           {users.map((user, index) => (
+            // <LeaderboardItem key={user.id} isTopUser={index < 3}>
+            //   <Typography variant="h6" component="span">{index + 1}</Typography>
+            //   <Avatar src={user.avatar} alt={user.username} />
+            //   <Typography>{user.username}</Typography>
+            //   <Typography>{user.spadesGamesWon}</Typography>
+            // </LeaderboardItem>
             <LeaderboardItem key={user.id} isTopUser={index < 3}>
               <Typography variant="h6" component="span">{index + 1}</Typography>
-              <Avatar src={user.avatar} alt={user.username} />
               <Typography>{user.username}</Typography>
-              <Typography>{user.score}</Typography>
+              <Typography>{user.spades_games_won}</Typography>
             </LeaderboardItem>
           ))}
         </LeaderboardList>
