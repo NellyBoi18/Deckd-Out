@@ -516,7 +516,7 @@ stateDiagram
     
 ```
 
-![System Architecture Diagram](Images/SystemArchDiagram.jpg)
+<!--![System Architecture Diagram](Images/SystemArchDiagram.jpg)-->
 
 ### Standards & Conventions
 
