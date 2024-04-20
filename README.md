@@ -448,16 +448,26 @@ graph TD;
 
 ```mermaid
 ---
-title: Sample State Diagram For Coffee Application
+title: State Diagram For Deck'd Out Application
 ---
 stateDiagram
     [*] --> Ready
-    Ready --> Brewing : Start Brewing
-    Brewing --> Ready : Brew Complete
-    Brewing --> WaterLowError : Water Low
-    WaterLowError --> Ready : Refill Water
-    Brewing --> BeansLowError : Beans Low
-    BeansLowError --> Ready : Refill Beans
+    Ready --> Login : Login
+    Ready --> Register : Register
+    Login --> GameLobby : Login Success
+    Register --> GameLobby : Register Success
+    Login --> Login : Login Failure
+    Register --> Register : Register Failure
+    GameLobby --> Spades : Spades
+    GameLobby --> Euchre : Euchre
+    GameLobby --> Leaderboard : Leaderboard
+    Spades --> SpadesGame : Play Spades
+    Euchre --> EuchreGame : Play Euchre
+    Spades --> GameLobby : Select Another Game
+    Euchre --> GameLobby : Select Another Game
+    SpadesGame --> Spades : Spades Game Over
+    EuchreGame --> Euchre : Euchre Game Over
+
 ```
 
 #### Sequence Diagram
