@@ -162,10 +162,6 @@ The leaderboard page will display the user's rank compared to other users.
 
 <!--Included below are some sample diagrams, including some example tech stack diagrams.-->
 
-Database architecture found below!
-
-Technoloy Stack also found below!
-
 #### Technology Stack
 
 User Interface Frontend:
@@ -173,7 +169,7 @@ User Interface Frontend:
 - Purpose: This layer handles the presentation and interactivity with the user, delivering a responsive and accessible experience.
 
 Backend:
-- Technologies: Java
+- Technologies: Java, Spring Boot
 - Purpose: The backend serves as the bridge between the frontend and the game engine, handling requests, and processing the game logic.
 
 Game Engine:
@@ -432,7 +428,7 @@ classDiagram
 
 ```mermaid
 ---
-title: Sample Program Flowchart
+title: Deck'd Out Program Flowchart
 ---
 graph TD;
     Start([Start]) --> Input_Data[/Input Data/];
@@ -445,6 +441,21 @@ graph TD;
     Generate_Output --> Display_Output[/Display Output/];
     Display_Output --> End([End]);
     Error_Message --> End;
+```
+```mermaid
+---
+title: Deck'd Out Program Flowchart
+---
+graph TD;
+    Start([Start]) --> |Login| Login_Data[/Input Login Data/]
+    Start --> |Register| Register[/Register/]
+    Login_Data --> Process_Valid_Data[Process Valid Data]
+    Register --> Process_Valid_Data
+    Process_Valid_Data --> Select_Game{Select Game}
+    Select_Game --> |Spades| Spades_UI
+    Select_Game --> |Euchre| Euchre_UI
+
+    
 ```
 
 #### Behavior
