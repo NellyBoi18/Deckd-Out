@@ -1,125 +1,103 @@
 package com.DeckdOut.cardgamehub.model;
 
+import jakarta.persistence.*;
+
 /**
- * Stores the card suit, card value, card owner, and if the card is dealt
+ * Represents a card entity in the card game hub application.
  */
-public class Card{
-    private String suit; //suit of the card 
-    private int cardValue; //value of the card, 11-J, 12-Q, 13-K, 14-Ace
-    private Player owner; //owner of the card ie who's hand the card came from
-    private boolean dealt; //if the card has been dealt to a player
+@Entity(name="card")
+public class Card {
+    /**
+     * The unique identifier of the card.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     /**
-     * Class constructor
-     * Creates card with private values for suit, card value, and card owner
-     * 
-     * @param suit string variable for the card suit
-     * @param cardValue integer variable of the card value 11-J, 12-Q, 13-K
-     * @param owner player variable for the card owner
+     * The suit of the card.
      */
-    public Card(String suit, int cardValue, Player owner){
-        this.suit = suit;
-        this.cardValue = cardValue;
-        this.owner = owner;
+    @Column(nullable = false, length = 50)
+    private String suit;
+
+    /**
+     * The value of the card.
+     */
+    @Column(nullable = false)
+    private int value;
+
+    /**
+     * The player that owns the card
+     */
+    @Column(nullable = false, length = 50)
+    private String owner;
+
+    /**
+     * Constructs a new Card object with default values.
+     */
+    public Card() {
     }
 
     /**
-     * Class constructor
-     * Creates card with private values for suit and card value
-     * This is usually used to create a deack, but the cards are not dealt to players
-     * 
-     * @param suit string variable for the card suit
-     * @param value integer variable for the card value 11-J, 12-Q, 13-K
+     * Retrieves the unique identifier of the Card.
+     *
+     * @return The unique identifier of the Card.
      */
-    public Card(String suit, int value){
-        this.suit = suit;
-        this.cardValue = value;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Setter method for the card owner
-     * This is for when the card is dealt to a player
-     * 
-     * @param owner player variable for the player name
+     * Retrieves the suit of the card.
+     *
+     * @return The suit of the card.
      */
-    public void setOwner(Player owner){
-        this.owner = owner;
-    }
-
-    /**
-     * Setter method for the card dealt status
-     * Set true if the card is dealt to a player
-     * 
-     * @param dealt boolean variable for the card dealt status
-     */
-    public void setDealt(boolean dealt){
-        this.dealt = dealt;
-    }
-
-    /**
-     * Getter method for the card dealt status
-     * 
-     * @return true if card is dealt, false if not
-     */
-    public boolean getDealt(){
-        return dealt;
-    }
-    /**
-     * Getter method for suit
-     * 
-     * @return string of the card suit
-     */
-    public String getSuit(){
+    public String getSuit() {
         return suit;
     }
 
     /**
-     * Getter method for card value
-     * 
-     * @return integer of the card value 11-J, 12-Q, 13-K, 14-Ace
+     * Sets the suit of the card.
+     *
+     * @param suit The suit of the card.
      */
-    public int getCardValue(){
-        return cardValue;
+    public void setSuit(String suit) {
+        this.suit = suit;
     }
-    
+
     /**
-     * Getter method for owner
-     * 
-     * @return player of the owner of the card
+     * Retrieves the value of the card.
+     *
+     * @return The value of the card.
      */
-    public Player getOwner(){
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * Sets the value of the card.
+     *
+     * @param value The value of the card.
+     */
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    /**
+     * Retrieves the owner of the card.
+     *
+     * @return The owner of the card.
+     */
+    public String getOwner() {
         return owner;
     }
 
     /**
-     * Returns if the given card is spades
-     * 
-     * @return true if the card is a spade, and false if not
+     * Sets the owner of the card.
+     *
+     * @param owner The owner of the card.
      */
-    public boolean isSpade(){
-        return suit.equals("Spades");
-    }
-
-    /**
-     * toString method for Card object
-     * 
-     * @return the Suit, Value, and Owner of the card
-     */
-    public String toString(){
-        if(cardValue == 11){
-            return "Suit: " + suit + " | Value: Jack" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
-        }
-        if(cardValue == 12){
-            return "Suit: " + suit + " | Value: Queen" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
-        }
-        if(cardValue == 13){
-            return "Suit: " + suit + " | Value: King" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
-        }
-        if(cardValue == 14){
-            return "Suit: " + suit + " | Value: Ace" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
-        }
-        else{
-            return "Suit: " + suit + " | Value: " + cardValue + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
-        }
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }
