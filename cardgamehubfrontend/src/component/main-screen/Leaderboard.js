@@ -166,7 +166,7 @@ const Leaderboard = () => {
         fetch("http://localhost:8080/user")
         .then(res=>res.json())
         .then(userObj=>{
-          userObj.sort((a, b) => b.spades_games_won - a.spades_games_won);
+          userObj.sort((a, b) => b.spades_games_won - a.spades_games_won); // Doesn't work. Supposed to sort
           setUser(userObj);})
         .catch(e=>console.log(e))
     },[users]);
@@ -192,13 +192,20 @@ const Leaderboard = () => {
             //   <Typography>{user.username}</Typography>
             //   <Typography>{user.spadesGamesWon}</Typography>
             // </LeaderboardItem>
-            <LeaderboardItem key={user.id} isTopUser={index < 3}>
+            <LeaderboardItem key={index}>
               <Typography variant="h6" component="span">{index + 1}</Typography>
               <Typography>{user.username}</Typography>
               <Typography>{user.spades_games_won}</Typography>
             </LeaderboardItem>
           ))}
         </LeaderboardList>
+        {/* <DataGrid
+        rows={users}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        /> */}
         <LeaderboardButton href="/home" variant="contained">
           <Avatar src={BackArrowImage} alt="Back" sx={{ width: 48, height: 48 }} /> 
         </LeaderboardButton>
