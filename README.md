@@ -448,14 +448,16 @@ title: Deck'd Out Program Flowchart
 ---
 graph TD;
     Start([Start]) --> |Login| Login_Data[/Input Login Data/]
-    Start --> |Register| Register[/Register/]
+    Start --> |Register| Register[/Input Registration Info/]
     Login_Data --> Process_Valid_Data[Process Valid Data]
     Register --> Process_Valid_Data
     Process_Valid_Data --> Select_Game{Select Game}
     Select_Game --> |Spades| Spades_UI
     Select_Game --> |Euchre| Euchre_UI
-
-    
+    Spades_UI --> Play_Spades[Play Spades]
+    Euchre_UI --> Play_Euchre[Play Euchre]
+    Play_Spades --> End([End])
+    Play_Euchre --> End
 ```
 
 #### Behavior
