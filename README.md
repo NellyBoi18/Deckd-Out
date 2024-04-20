@@ -131,12 +131,12 @@ The leaderboard page will display the user's rank compared to other users.
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| SR11  | Users should be able to safely input their username and password and know it is protected. | Low      | Open   |
-| SR12  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Open   |
-| SR13  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Open   |
-| SR14  | Users should not be able to access other user's accounts. | High     | Open   |
-| SR15  | Users should not be able to access the backend logic of the application. | Low     | Open   |
-| SR16  | Users should not be able to access the database of the application. | High     | Open   |
+| [SR1](#129)  | Users should be able to safely input their username and password and know it is protected. | Low      | Open   |
+| [SR2](#130)  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Open   |
+| [SR3](#131)  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Open   |
+| [SR4](#132)  | Users should not be able to access other user's accounts. | High     | Open   |
+| [SR5](#133)  | Users should not be able to access the backend logic of the application. | Low     | Open   |
+| [SR6](#134)  | Users should not be able to access the database of the application. | High     | Open   |
 
 
 ### System Requirements
@@ -145,14 +145,14 @@ The leaderboard page will display the user's rank compared to other users.
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| SYSR11  | We are targeting Windows users with our application. | Med      | Open   |
-| SYSR12  | We are targeting MacOS users with our application. | Med      | Open   |
-| SYSR13  | We are targeting Linux users with our application. | Med      | Open   |
-| SYSR14  | Web browsers that support JavaScript are required to run our application. | High      | Open   |
-| SYSR15  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Open   |
-| SYSR16  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Open   |
-| SYSR17  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Open   |
-| SYSR18  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Open   |
+| [SYSR1](#135)  | We are targeting Windows users with our application. | Med      | Open   |
+| [SYSR2](#136)  | We are targeting MacOS users with our application. | Med      | Open   |
+| [SYSR3](#137)  | We are targeting Linux users with our application. | Med      | Open   |
+| [SYSR4](#138)  | Web browsers that support JavaScript are required to run our application. | High      | Open   |
+| [SYSR5](#139)  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Open   |
+| [SYSR6](#140)  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Open   |
+| [SYSR7](#141)  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Open   |
+| [SYSR8](#142)  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Open   |
 
 ### Specification
 
@@ -469,20 +469,20 @@ stateDiagram
 sequenceDiagram
 
 participant ReactFrontend
-participant MySQLDatabase
 participant SpringBootBackend
+participant MySQLDatabase
 
-ReactFrontend ->> MySQLDatabase: HTTP Request (e.g., GET /api/User)
-activate MySQLDatabase
-
-SpringBootBackend ->> MySQLDatabase: HTTP Request (e.g., GET /api/Card)
-MySQLDatabase -->> SpringBootBackend: JSON Response
+ReactFrontend ->> SpringBootBackend: HTTP Request (e.g., GET /api/card)
 activate SpringBootBackend
 
-deactivate SpringBootBackend
+SpringBootBackend ->> MySQLDatabase: Query (e.g., SELECT * FROM card)
+activate MySQLDatabase
 
-MySQLDatabase -->> ReactFrontend: JSON Response
+MySQLDatabase -->> SpringBootBackend: Result Set
 deactivate MySQLDatabase
+
+SpringBootBackend -->> ReactFrontend: JSON Response
+deactivate SpringBootBackend
 ```
 
 #### System Architecture Diagram
