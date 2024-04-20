@@ -431,22 +431,6 @@ classDiagram
 title: Deck'd Out Program Flowchart
 ---
 graph TD;
-    Start([Start]) --> Input_Data[/Input Data/];
-    Input_Data --> Process_Data[Process Data];
-    Process_Data --> Validate_Data{Validate Data};
-    Validate_Data -->|Valid| Process_Valid_Data[Process Valid Data];
-    Validate_Data -->|Invalid| Error_Message[/Error Message/];
-    Process_Valid_Data --> Analyze_Data[Analyze Data];
-    Analyze_Data --> Generate_Output[Generate Output];
-    Generate_Output --> Display_Output[/Display Output/];
-    Display_Output --> End([End]);
-    Error_Message --> End;
-```
-```mermaid
----
-title: Deck'd Out Program Flowchart
----
-graph TD;
     Start([Start]) --> |Login| Login_Data[/Input Login Data/]
     Start --> |Register| Register[/Input Registration Info/]
     Login_Data --> Process_Valid_Data[Process Valid Data]
