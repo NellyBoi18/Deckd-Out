@@ -24,13 +24,13 @@ public class Card {
      * The value of the card.
      */
     @Column(nullable = false)
-    private int value;
+    private int cardValue;
 
     /**
      * The player that owns the card
      */
     @Column(nullable = false, length = 50)
-    private String owner;
+    private Player owner;
 
     /**
      * The card is dealt to player
@@ -41,7 +41,18 @@ public class Card {
     /**
      * Constructs a new Card object with default values.
      */
-    public Card() {
+    public Card(String suit, int cardValue) {
+        this.suit = suit;
+        this.cardValue = cardValue;
+    }
+
+    /**
+     * Constructs a new Card object with default values.
+     */
+    public Card(String suit, int cardValue, Player owner){
+        this.suit = suit;
+        this.cardValue = cardValue;
+        this.owner = owner;
     }
 
     /**
@@ -76,8 +87,8 @@ public class Card {
      *
      * @return The value of the card.
      */
-    public int getValue() {
-        return value;
+    public int getCardValue() {
+        return cardValue;
     }
 
     /**
@@ -85,8 +96,8 @@ public class Card {
      *
      * @param value The value of the card.
      */
-    public void setValue(int value) {
-        this.value = value;
+    public void setCardValue(int value) {
+        this.cardValue = value;
     }
 
     /**
@@ -94,7 +105,7 @@ public class Card {
      *
      * @return The owner of the card.
      */
-    public String getOwner() {
+    public Player getOwner() {
         return owner;
     }
 
@@ -103,7 +114,7 @@ public class Card {
      *
      * @param owner The owner of the card.
      */
-    public void setOwner(String owner) {
+    public void setOwner(Player owner) {
         this.owner = owner;
     }
 
@@ -132,5 +143,28 @@ public class Card {
      */
     public boolean isSpade(){
         return suit.equals("Spades");
+    }
+
+    /**
+     * toString method for Card object
+     * 
+     * @return the Suit, Value, and Owner of the card;
+     */
+    public String toString(){
+        if(cardValue == 11){
+            return "Suit: " + suit + " | Value: Jack" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
+        }
+        if(cardValue == 12){
+            return "Suit: " + suit + " | Value: Queen" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
+        }
+        if(cardValue == 13){
+            return "Suit: " + suit + " | Value: King" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
+        }
+        if(cardValue == 14){
+            return "Suit: " + suit + " | Value: Ace" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
+        }
+        else{
+            return "Suit: " + suit + " | Value: " + cardValue + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
+        }
     }
 }
