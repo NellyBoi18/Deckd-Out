@@ -2,12 +2,30 @@ package com.DeckdOut.cardgamehub.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import jakarta.persistence.*;
 
 /**
  * Class relating to the deck of cards used in the games
  */
+@Entity(name="deck")
 public class Deck{
-    private ArrayList<Card> deck; //the deck of cards
+    /**
+     * The unique identifier of the deck
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    /**
+     * The deck of cards
+     */
+    @Column(nullable = false, length = 50)
+    private ArrayList<Card> deck; 
+
+    /**
+     * The card that is flipped as trump for a round
+     */
+    @Column(nullable = false, length = 50)
     private Card flippedCard; //card that is flipped as trump for a round
 
     /**
@@ -34,6 +52,15 @@ public class Deck{
                 Card card = new Card("Clubs", val);
                 deck.add(card);
         }   
+    }
+
+    /**
+     * Retrieves the unique identifier of the Deck.
+     *
+     * @return The unique identifier of the Deck.
+     */
+    public int getId() {
+        return id;
     }
 
     /**
