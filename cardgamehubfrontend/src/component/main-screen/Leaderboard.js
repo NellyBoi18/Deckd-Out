@@ -133,35 +133,10 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
  * Functional component representing the Leaderboard
  */
 const Leaderboard = () => {
-  // const [users, setUsers] = useState([]);
-  // const [username, setUsername] = useState('');
-  // const [spadesGamesWon, setSpadesGamesWon] = useState(0);
-
-  // useEffect(() => {
-  //   const fetchLeaderboard = async () => {
-  //     try {
-  //       const response = await fetch('http://localhost:8080/user', {
-  //           method: 'GET',
-  //           headers: {
-  //             'Content-Type': 'application/json',
-  //           },
-  //         });
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch leaderboard');
-  //       }
-  //       const data = await response.json();
-  //       setUsers(data.users);
-  //     } catch (error) {
-  //       console.error('Error fetching leaderboard:', error.message);
-  //     }
-  //   };
-
-  //   fetchLeaderboard();
-  // }, []); // Empty dependency array to fetch data only once when component mounts
 
   const [users, setUser] = useState([]);
 
-    /**Here, we are fetching users from the api */
+    // Fetch users from the api
     useEffect(()=>{
         fetch("http://localhost:8080/user")
         .then(res=>res.json())
@@ -204,7 +179,7 @@ const Leaderboard = () => {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
-        checkboxSelection
+        checkboxSelection 
         /> */}
         <LeaderboardButton href="/home" variant="contained">
           <Avatar src={BackArrowImage} alt="Back" sx={{ width: 48, height: 48 }} /> 
