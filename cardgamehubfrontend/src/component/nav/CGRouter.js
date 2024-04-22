@@ -25,7 +25,11 @@ export default function CGRouter() {
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/login" element={<LoginScreen />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
+<<<<<<< HEAD
                 <Route path="/carddeck" element={<CardDeck />} />
+=======
+                {/* <Route path="/TESTING" element={<TestTable />} /> */}
+>>>>>>> 7ce06e9859bd3ec1240ff869fc4d3553eea55311
 
                 {/* (temporary reference for how to set up navigation)
                 <Route path="/" element={<BadgerBuds />}>
