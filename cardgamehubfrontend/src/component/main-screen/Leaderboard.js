@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Avatar, Button, Box } from '@mui/material';
 
@@ -6,14 +7,6 @@ import Logo from '../../assets/logo.svg'; // Ensure the logo path is correct
 import TrophyIcon from '../../assets/trophy.png'; // Ensure the trophy icon path is correct
 import BurstImage from '../../assets/burst.png'; // Ensure the burst image path is correct
 import BackArrowImage from '../../assets/backArrow.png'; // Adjust the path according to your file structure
-
-
-// Dummy data for leaderboard - replace with data fetching logic in a real application
-const users = [
-  { id: 1, username: 'USERNAME_1', score: 15000, avatar: 'path-to-avatar-1.png' },
-  // ... more users
-];
-
 
 /**
  * Styled component for the logo with absolute positioning
@@ -23,7 +16,6 @@ const LogoContainer = styled(Box)(({ theme }) => ({
   top: theme.spacing(2),
   left: theme.spacing(2),
 }));
-
 
 /**
  * Container for the entire leaderboard, styled for full viewport height, width, and background
@@ -54,8 +46,6 @@ const LeaderboardContent = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between', // This will push the button to the bottom
   margin: 'auto', // This centers the box itself within its container
 }));
-
-
 
 const LeaderboardTitleContainer = styled(Box)({
   display: 'flex',
@@ -127,6 +117,19 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
  * Functional component representing the Leaderboard
  */
 const Leaderboard = () => {
+
+  // Fetch users from api
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+      fetch("http://localhost:8080/user")
+      .then(res => res.json())
+      .then(users => {
+        users.sort((a, b) => b.spadesGamesWon - a.spadesGamesWon); // Sort users by games won
+        setUsers(users);})
+      .catch(e => console.log(e))
+  }
+  , [users]);
+  
   return (
     <LeaderboardContainer>
       <LogoContainer>
@@ -141,12 +144,10 @@ const Leaderboard = () => {
           </LeaderboardTitleContainer>
         </LeaderboardHeader>
         <LeaderboardList>
-          {users.map((user, index) => (
-            <LeaderboardItem key={user.id} isTopUser={index < 3}>
-              <Typography variant="h6" component="span">{index + 1}</Typography>
-              <Avatar src={user.avatar} alt={user.username} />
+        {users.map((user, index) => (
+            <LeaderboardItem key={index}>
               <Typography>{user.username}</Typography>
-              <Typography>{user.score}</Typography>
+              <Typography>{user.spadesGamesWon}</Typography>
             </LeaderboardItem>
           ))}
         </LeaderboardList>
