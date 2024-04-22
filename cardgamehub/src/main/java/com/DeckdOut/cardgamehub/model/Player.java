@@ -12,7 +12,7 @@ public class Player {
     private String userName; //username of the player (NOTE: GET FROM FRONTEND --> HOW? TODO change to FROM daatbase
     private int bid; // how many tricks the player thinks they will win in a round 
     private ArrayList<Card> hand; // the player's hand of cards
-
+    private Card cardFromFrontend = new Card("Spades", 14);
     /**
      * Constructor, sets the name of the player
      * 

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.DeckdOut.cardgamehub.model.Card;
+import com.DeckdOut.cardgamehub.model.Player;
 import com.DeckdOut.cardgamehub.repository.CardRepository;
 import com.DeckdOut.cardgamehub.service.CardService;
 
@@ -29,13 +30,13 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
         CardService cardService = new CardService();
 
         // Create a new card
-        Card card = new Card();
-        card.setOwner("testOwner");
-        card.setValue(10);
-        card.setSuit("Hearts");
+        Card card = new Card("Hearts", 10);
 
+        Player testOwner = new Player("testowner");
+        card.setOwner(testOwner);
+        
         // Mock CardRepository behavior
-        when(cardRepository.findByOwner("testOwner")).thenReturn(null);
+        when(cardRepository.findByOwner(testOwner)).thenReturn(null);
         when(cardRepository.save(card)).thenReturn(card);
 
         // Test addCard method
@@ -58,13 +59,12 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
         CardService cardService = new CardService();
 
         // Create a new card
-        Card card = new Card();
-        card.setOwner("testOwner2");
-        card.setValue(6);
-        card.setSuit("Clubs");
-
+        Card card = new Card("Clubds", 6);
+        Player testOwner2 = new Player("testOwner2");
+        card.setOwner(testOwner2);
+        
         // Mock CardRepository behavior
-        when(cardRepository.findByOwner("testOwner2")).thenReturn(card);
+        when(cardRepository.findByOwner(testOwner2)).thenReturn(card);
 
         // Test removeCard method
         String result = cardService.removeCard(card);
@@ -84,13 +84,12 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
         CardService cardService = new CardService();
 
         // Create a new card
-        Card card = new Card();
-        card.setOwner("nonExistingOwner");
-        card.setValue(6);
-        card.setSuit("Spades");
+        Card card = new Card("Spades", 6);
+        Player nonExistingOwner = new Player("nonExistingOwner");
+        card.setOwner(nonExistingOwner);
 
         // Mock CardRepository behavior
-        when(cardRepository.findByOwner("nonExistingOwner")).thenReturn(null);
+        when(cardRepository.findByOwner(nonExistingOwner)).thenReturn(null);
 
         // Test removeCard method with non-existing card
         String result = cardService.removeCard(card);
@@ -111,16 +110,15 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
 
         // Create a list of cards
         List<Card> cards = new ArrayList<>();
-        Card card1 = new Card();
-        card1.setOwner("owner1");
-        card1.setValue(2);
-        card1.setSuit("Hearts");
+        Card card1 = new Card("Hearts", 2);
+        Player owner1 = new Player("owner1");
+        card1.setOwner(owner1);
+        
         cards.add(card1);
 
-        Card card2 = new Card();
-        card2.setOwner("owner2");
-        card2.setValue(3);
-        card2.setSuit("Diamonds");
+        Card card2 = new Card("Diamonds", 3);
+        Player owner2 = new Player("owner2");
+        card2.setOwner(owner2);
         cards.add(card2);
 
         // Mock CardRepository behavior

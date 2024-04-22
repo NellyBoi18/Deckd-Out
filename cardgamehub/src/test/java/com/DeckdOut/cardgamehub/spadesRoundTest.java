@@ -208,25 +208,25 @@ public class spadesRoundTest {
 
     @Test
     public void p1StartingTest(){
-        Player test = round.trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p1);
+        Player test = round.trickLogicSpades(p1);
         Assertions.assertEquals(p3, test, "p1StartingTest fail");
     }
 
     @Test
     public void p2StartingTest(){
-        Player test = round.trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p2);
+        Player test = round.trickLogicSpades(p2);
         Assertions.assertEquals(p3, test, "p2StartingTest fail");
     }
 
     @Test
     public void p3StartingTest(){
-        Player test = round.trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p3);
+        Player test = round.trickLogicSpades(p3);
         Assertions.assertEquals(p2, test, "p3StartingTest fail");
     }
 
     @Test
     public void p4StartingTest(){
-        Player test = round.trickLogicSpades(p1Hand, p2Hand, p3Hand, p4Hand, p4);
+        Player test = round.trickLogicSpades(p4);
         Assertions.assertEquals(p4, test, "p4StartingTest fail");
     }
 }
