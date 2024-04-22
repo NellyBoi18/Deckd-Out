@@ -2,11 +2,23 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Avatar, Button, Box } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 import Logo from '../../assets/logo.svg'; // Ensure the logo path is correct
 import TrophyIcon from '../../assets/trophy.png'; // Ensure the trophy icon path is correct
 import BurstImage from '../../assets/burst.png'; // Ensure the burst image path is correct
 import BackArrowImage from '../../assets/backArrow.png'; // Adjust the path according to your file structure
+
+const columns = [
+  { field: 'username', headerName: 'NAME', width: 130 },
+  { field: 'spadesGamesWon', headerName: 'SPADES GAMES WON', width: 130 },
+];
+
+// // Dummy data for leaderboard - replace with data fetching logic in a real application
+// const users = [
+//   { id: 1, username: 'USERNAME_1', score: 15000, avatar: 'path-to-avatar-1.png' },
+//   // ... more users
+// ];
 
 
 /**
@@ -122,20 +134,17 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
  */
 const Leaderboard = () => {
 
-  // Fetch users from api
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
+  const [users, setUser] = useState([]);
+
+    // Fetch users from the api
+    useEffect(()=>{
         fetch("http://localhost:8080/user")
-        .then(res => res.json())
-        .then(users => setUsers(users))
-        .catch(e => console.log(e))
-    }
-    , [users]);
-
-    // Sort users by games won
-    users.sort((a, b) => b.spadesGamesWon - a.spadesGamesWon);
-
-    
+        .then(res=>res.json())
+        .then(userObj=>{
+          userObj.sort((a, b) => b.spades_games_won - a.spades_games_won); // Doesn't work. Supposed to sort
+          setUser(userObj);})
+        .catch(e=>console.log(e))
+    },[users]);
   
   return (
     <LeaderboardContainer>
@@ -151,10 +160,17 @@ const Leaderboard = () => {
           </LeaderboardTitleContainer>
         </LeaderboardHeader>
         <LeaderboardList>
-        {users.map((user, index) => (
+          {users.map((user, index) => (
+            // <LeaderboardItem key={user.id} isTopUser={index < 3}>
+            //   <Typography variant="h6" component="span">{index + 1}</Typography>
+            //   <Avatar src={user.avatar} alt={user.username} />
+            //   <Typography>{user.username}</Typography>
+            //   <Typography>{user.spadesGamesWon}</Typography>
+            // </LeaderboardItem>
             <LeaderboardItem key={index}>
+              <Typography variant="h6" component="span">{index + 1}</Typography>
               <Typography>{user.username}</Typography>
-              <Typography>{user.spadesGamesWon}</Typography>
+              <Typography>{user.spades_games_won}</Typography>
             </LeaderboardItem>
           ))}
         </LeaderboardList>
