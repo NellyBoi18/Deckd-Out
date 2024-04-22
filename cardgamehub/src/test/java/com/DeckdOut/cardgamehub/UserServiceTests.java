@@ -13,7 +13,7 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
+// @SpringBootTest
 public class UserServiceTests {
 
     /**

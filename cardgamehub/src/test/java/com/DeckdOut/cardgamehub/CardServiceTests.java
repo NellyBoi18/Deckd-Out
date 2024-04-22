@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * JUnit test class for the CardService class.
  */
-@SpringBootTest
+// @SpringBootTest
 public class CardServiceTests {  // TODO SEE BELOW!!!
 
     /**
