@@ -8,7 +8,6 @@ import TrophyIcon from '../../assets/trophy.png'; // Ensure the trophy icon path
 import BurstImage from '../../assets/burst.png'; // Ensure the burst image path is correct
 import BackArrowImage from '../../assets/backArrow.png'; // Adjust the path according to your file structure
 
-
 /**
  * Styled component for the logo with absolute positioning
  */
@@ -17,7 +16,6 @@ const LogoContainer = styled(Box)(({ theme }) => ({
   top: theme.spacing(2),
   left: theme.spacing(2),
 }));
-
 
 /**
  * Container for the entire leaderboard, styled for full viewport height, width, and background
@@ -48,8 +46,6 @@ const LeaderboardContent = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between', // This will push the button to the bottom
   margin: 'auto', // This centers the box itself within its container
 }));
-
-
 
 const LeaderboardTitleContainer = styled(Box)({
   display: 'flex',
@@ -123,19 +119,16 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
 const Leaderboard = () => {
 
   // Fetch users from api
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-        fetch("http://localhost:8080/user")
-        .then(res => res.json())
-        .then(users => setUsers(users))
-        .catch(e => console.log(e))
-    }
-    , [users]);
-
-    // Sort users by games won
-    users.sort((a, b) => b.spadesGamesWon - a.spadesGamesWon);
-
-    
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+      fetch("http://localhost:8080/user")
+      .then(res => res.json())
+      .then(users => {
+        users.sort((a, b) => b.spadesGamesWon - a.spadesGamesWon); // Sort users by games won
+        setUsers(users);})
+      .catch(e => console.log(e))
+  }
+  , [users]);
   
   return (
     <LeaderboardContainer>
@@ -158,13 +151,6 @@ const Leaderboard = () => {
             </LeaderboardItem>
           ))}
         </LeaderboardList>
-        {/* <DataGrid
-        rows={users}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection 
-        /> */}
         <LeaderboardButton href="/home" variant="contained">
           <Avatar src={BackArrowImage} alt="Back" sx={{ width: 48, height: 48 }} /> 
         </LeaderboardButton>
