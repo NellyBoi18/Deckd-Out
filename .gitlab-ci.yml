@@ -33,9 +33,9 @@ build_spring_boot:
       junit:
         # THE CURRENT DATABASE TEST DOES NOT WORK because gitlab runner does not have access to the database
         # - "cardgamehub/src/test/**/*Tests.java"
-  # only:
-  #   variables:
-  #     - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    variables:
+      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job runs tests for the Spring Boot application
 test_spring_boot:
