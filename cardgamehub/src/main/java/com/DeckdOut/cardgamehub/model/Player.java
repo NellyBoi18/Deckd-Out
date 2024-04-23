@@ -2,17 +2,46 @@ package com.DeckdOut.cardgamehub.model;
 
 //TODO ADD LOGIC TO PREVENT ILLEGAL MOVE
 
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 
 /**
  * Class pertaining to the player including information such as username, bid, and hand.
  */
+@Entity(name="player")
 public class Player {
-    private String userName; //username of the player (NOTE: GET FROM FRONTEND --> HOW? TODO change to FROM daatbase
-    private int bid; // how many tricks the player thinks they will win in a round 
-    private ArrayList<Card> hand; // the player's hand of cards
+    /**
+     * The unique identifier of the player
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    /*
+     * The username of the player
+     */
+    @Column(nullable = false, length = 50)
+    private String userName; //(NOTE: GET FROM FRONTEND --> HOW? TODO change to FROM daatbase
+
+    /*
+     * The bid the player makes (trick player thinks they can win)
+     */
+    @Column(nullable = false)
+    private int bid; 
+
+    /*
+     * The hand of cards of the player
+     */
+    @Column(nullable = false, length = 50)
+    private ArrayList<Card> hand;
+
+    /*
+     * hardcoded card used for testing
+     */
+    @Column(nullable = false, length = 50)
     private Card cardFromFrontend = new Card("Spades", 14);
+    
     /**
      * Constructor, sets the name of the player
      * 
