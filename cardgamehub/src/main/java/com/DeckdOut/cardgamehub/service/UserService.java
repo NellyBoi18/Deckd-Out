@@ -22,6 +22,16 @@ public class UserService implements UserServiceInterface{
         return "Successful";
     }
 
+    public String loginUser(User user) {
+
+        User DBUser = userRepository.findByUsername(user.getUsername());
+        if(DBUser == null) return "User does not exist";
+        if(!user.getPassword().toString().equals(DBUser.getPassword().toString())) return "Password is incorrect" ;
+
+        User result = userRepository.save(user);
+        return "Successful";
+    }
+
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));

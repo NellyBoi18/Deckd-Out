@@ -30,6 +30,17 @@ public class UserController {
     }
 
     /**
+     * Endpoint for logging in a user.
+     *
+     * @param user The user object to be registered.
+     * @return A string indicating the success or failure of the operation.
+     */
+    @PostMapping("/login")
+    public String loginUser(@RequestBody User user) {
+        return userService.loginUser(user);
+    }
+
+    /**
      * Endpoint for retrieving all test users.
      *
      * @return A list of all test users stored in the system.
