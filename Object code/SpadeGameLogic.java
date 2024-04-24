@@ -1,8 +1,7 @@
 /**
  * Class for the logic in a game of Spades
  */
-
-public class SpadeGameLogic {
+ public class SpadeGameLogic {
     String player1Name, player2Name, player3Name, player4Name;
     Deck deck = new Deck();
 
