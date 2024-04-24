@@ -105,7 +105,7 @@ export default function LoginScreen() {
 
   const [loginStatus, setLoginStatus] = useContext(LoginStatusContext);
 
-  // Fetch users from api
+  // Fetch users from api. Don't worry. It's VERY SECURE.
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch("http://localhost:8080/user")
@@ -151,7 +151,6 @@ export default function LoginScreen() {
           alert('User does not exist');
           return;
         }
-        
       } catch (error){
         console.error('Login error:', error.message);
       }
