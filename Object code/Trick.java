@@ -43,7 +43,15 @@ public class Trick {
     }
 
 
-    //card compare for euchre
+    /**
+     * Compares the played cards in a trick based on the suit first, then the value of the card.
+     * For Euchre game only
+     * 
+     * @param leadingSuit string variable of the leading suit played
+     * @param euchreTrickCards ArrayList variable of Card objects of the played cards in the trick
+     * @param trump the suit that is trump
+     * @return the card the wins the trick
+     */
     public Card cardCompareEuchre(String leadingSuit, ArrayList<Card> euchreTrickCards, String trump){
         Card winningCard = null;
         Card highestTrump = new Card("Spades", 0);
@@ -81,7 +89,12 @@ public class Trick {
     }
 
 
-    //returns the suit of the left bower
+    /**
+     * Method that gets the suit of the left (worse) bower
+     * 
+     * @param trump the suit that is trump
+     * @return the string representation of the suit of the left bower
+     */ 
     public String leftBowerSuit(String trump) {
         if(trump.equals("Spades")) {
             return "Clubs";
@@ -96,9 +109,6 @@ public class Trick {
             return "Diamonds";    
         }
     }
-
-
-
 
     /**
      * Gets the winning player of the trick
@@ -117,7 +127,6 @@ public class Trick {
      * @param trickCards ArrayList variable of Card objects of the played cards in the trick
      * @return the card the wins the trick
      */
-    //Card card1, Card card2, Card card3, Card card4
     public Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards){
         boolean spadePresent = false;
         Card highestCard = null;
