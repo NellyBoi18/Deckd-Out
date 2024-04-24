@@ -15,19 +15,22 @@ public class Deck{
      */
     public Deck(){
         deck = new ArrayList<>();
-        String suit;
+        //deal spades cards
         for(int val = 2; val < 15; val++){
                 Card card = new Card("Spades", val); 
                 deck.add(card);
         }
+        //deal diamonds cards
         for(int val = 2; val < 15; val++){
                 Card card = new Card("Diamonds", val);
                 deck.add(card); 
         }
+        //deal hearts cards
         for(int val = 2; val < 15; val++){
                 Card card = new Card("Hearts", val);
                 deck.add(card);
         }
+        //deal clubs cards
         for(int val = 2; val < 15; val++){
                 Card card = new Card("Clubs", val);
                 deck.add(card);
@@ -35,13 +38,17 @@ public class Deck{
     }
 
     /**
-     * Shuffles the deck 
+     * Shuffles the deck randomly
      */
     public void shuffle(){
         Collections.shuffle(deck);
     }
 
-    //getter method for flipped trump card
+    /**
+    * Gets the card that is flipped at the end of a euchre deal
+    *
+    * @return the card that is flipped at the end of a euchre deal
+    */
     public Card getFlippedCard() {
         return this.flippedCard;
     }
@@ -73,15 +80,16 @@ public class Deck{
     }
 
     /**
-     * Deal cards for Euchre
-     */
-    /**
-     * Deal cards for Euchre to a single player
-     * Sets the owner of the card and marks the card as being dealt so it cannot be dealt again
-     * This should be used 5 times, 4 for players, 1 for the left over cards
+     * Deal cards for Euchre to all players
      * 
-     * @param playerName player variable for the name of the player
-     * @return an ArrayList of Card objects, this is the hand of cards the player is dealt
+     * @param p1 the first player in a game of euchre (also the user)
+     * @param p2 the second player in a game of euchre
+     * @param p3 the third player in a game of euchre
+     * @param p4 the fourth player in a game of euchre
+     * @return an ArrayList of Card objects, this is the hand of cards each player is dealt in 
+     * sequential order and the final card is the flipped card (i.e. indexes 0-4 is player1's hand, 
+     * indexes 5-9 is player2's hand, indexes 10-14 is player2's hand, indexes 15-19 is player2's 
+     * hand, and index 20 is the flipped card)
      */
     public ArrayList<Card> euchreDeal(Player p1, Player p2, Player p3, Player p4){
         ArrayList<Card> hand = new ArrayList<>();
@@ -89,12 +97,12 @@ public class Deck{
         int i = 0;
         
         while(cardsDealt < 21){
+            //only get cards that do not have owners AND are values of 9 or above
             if(!deck.get(i).getDealt() && deck.get(i).getOwner() == null && (deck.get(i).getCardValue() > 8)){
                 //p1 hand not full, give card to hand
                 if(p1.getHand().size() < 5) {
                     deck.get(i).setOwner(p1);
-                    deck.get(i).setDealt(true);
-                    //p1.getHand().add(deck.get(i));  
+                    deck.get(i).setDealt(true);  
                     hand.add(deck.get(i));  
                     cardsDealt++;  
                 }
@@ -102,7 +110,6 @@ public class Deck{
                 if(p2.getHand().size() < 5) {
                     deck.get(i).setOwner(p2);
                     deck.get(i).setDealt(true);
-                    //p2.getHand().add(deck.get(i));
                     hand.add(deck.get(i)); 
                     cardsDealt++;    
                 }
@@ -110,7 +117,6 @@ public class Deck{
                 if(p3.getHand().size() < 5) {
                     deck.get(i).setOwner(p3);
                     deck.get(i).setDealt(true);
-                    //p3.getHand().add(deck.get(i));
                     hand.add(deck.get(i)); 
                     cardsDealt++;    
                 }
@@ -118,25 +124,19 @@ public class Deck{
                 if(p4.getHand().size() < 5) {
                     deck.get(i).setOwner(p4);
                     deck.get(i).setDealt(true);
-                    //p4.getHand().add(deck.get(i));
                     hand.add(deck.get(i)); 
                     cardsDealt++;    
                 }
-                //all hands full, get last card
+                //all hands full, get last card to be flipped up 
                 this.flippedCard = deck.get(i);
                 cardsDealt++;
             }
             ++i; 
         }
-
-
-
-
-
+        //return final hand
         return hand;
     }
     
-
     /**
      * toString method for Deck object
      * 
@@ -148,5 +148,4 @@ public class Deck{
         }
         return "";
     }
-
 }
