@@ -3,7 +3,7 @@
  * @module LoginScreen
  */
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext , useEffect} from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
@@ -105,54 +105,53 @@ export default function LoginScreen() {
 
   const [loginStatus, setLoginStatus] = useContext(LoginStatusContext);
 
+  // Fetch users from api
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8080/user")
+      .then(res => res.json())
+      .then(users => setUsers(users))
+      .catch(error => console.error("Error fetching users: ", error))
+  }
+  , []); // Empty dependency array means this effect runs only once after initial render
+
   /**
    * Handle login form submission.
    * @param {Event} event - The event object.
    */
   const handleLogin = async (e) => {
     e.preventDefault(); 
+
     if (!username || !password) {
       alert('You must provide a username and password!');
     } else {
-      // Make a POST request to the registration API
       try{
-        const response = await fetch('http://localhost:8080/user/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            username: username,
-            password: password,
-          }),
-        });
-        const data = await response.text();
-        console.log("response: " + data);
-        if (response.status === '500') {
-          throw new Error('Network response was not ok');
-        } else if (data === "User does not exist"){
-          alert("User does not exist.")
+        // Check if user exists
+        const loggedInUser = users.find(user => user.username === username);
+
+        if (loggedInUser) { // User exists
+          if (loggedInUser.password === password) { // Password is correct
+            console.log('Login successful')
+
+            //sign user in
+            setLoginStatus({
+              isLoggedIn: true,
+              loggedInUsername: username,
+            });
+            sessionStorage.setItem("username", username);
+            console.log(loginStatus.loggedInUsername);
+            console.log(sessionStorage.getItem("username"));
+            // Redirect user to home
+            window.location.href = '/home';
+          } else { // Password is incorrect
+            alert('Password is incorrect');
+            return; 
+          }
+        } else { // User does not exist
+          alert('User does not exist');
           return;
-        } else if (data === "Password is incorrect"){
-          alert("Password is incorrect.")
-          return;
-        } else if (data === "Successful"){
-          //const data = await response.json();
-          console.log('Login successful:', data.msg);
-          //sign user in
-          setLoginStatus({
-            isLoggedIn: true,
-            loggedInUsername: username,
-          });
-          sessionStorage.setItem("username", username);
-          console.log(loginStatus.loggedInUsername);
-          console.log(sessionStorage.getItem("username"));
-          // Redirect user to home
-          window.location.href = '/home';
-        } else{
-          console.log("Something went wrong.");
-          console.log(data);
         }
+        
       } catch (error){
         console.error('Login error:', error.message);
       }
