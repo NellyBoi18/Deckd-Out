@@ -22,6 +22,7 @@ public class UserService implements UserServiceInterface{
         return "Successful";
     }
 
+    @Override
     public String loginUser(User user) {
 
         User DBUser = userRepository.findByUsername(user.getUsername());
