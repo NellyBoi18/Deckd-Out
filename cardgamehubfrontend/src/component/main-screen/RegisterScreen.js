@@ -3,12 +3,13 @@
  * @module RegisterScreen
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 //import { Form, Button } from "react-bootstrap";
 import { styled } from '@mui/system';
 import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 
+import LoginStatusContext from "../contexts/LoginStatusContext";
 /**
  * Define custom styles using styled
  */
@@ -103,6 +104,8 @@ export default function RegisterScreen() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [loginStatus, setLoginStatus] = useContext(LoginStatusContext);
+
     /**
      * Handle registration form submission.
      * @param {Event} e - The event object.
@@ -147,11 +150,22 @@ export default function RegisterScreen() {
           } else if (data === "User with email already exists"){
             alert("User with email already exists.")
             return;
-          } else {
+          } else if (data === "Successful"){
             //const data = await response.json();
             console.log('Registration successful:', data.msg);
             // Redirect user to home
-            window.location.href = '/home';
+            setLoginStatus({
+              isLoggedIn: true,
+              loggedInUsername: username,
+            });
+            sessionStorage.setItem("username", username);
+            console.log(loginStatus.loggedInUsername)
+            // Redirect user to home
+            console.log(sessionStorage.getItem("username"))
+            //window.location.href = '/home';
+          } else{
+            alert("Something went wrong.");
+            console.log(data);
           }
         } catch (error) {
           console.error('Registration error:', error.message);

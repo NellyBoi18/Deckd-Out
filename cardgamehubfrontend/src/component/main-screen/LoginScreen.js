@@ -3,10 +3,12 @@
  * @module LoginScreen
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
+
+import LoginStatusContext from "../contexts/LoginStatusContext";
 
 /**
  * RootContainer styled component for the main container.
@@ -101,23 +103,60 @@ export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const [loginStatus, setLoginStatus] = useContext(LoginStatusContext);
+
   /**
    * Handle login form submission.
    * @param {Event} event - The event object.
    */
-  const handleLogin = (event) => {
-    // event.preventDefault(); 
-    // if (!username || !password) {
-    //   alert('You must provide a username and password!');
-    // } else if (0) {
-    //   //verify user and pass here
-    //   alert('Your passwords do not match!');
-    // } else {
-    //   // Make a POST request to the registration API
-    //   // Upon successful login, redirect to the home page
-    //   window.location.href = '/home';
-    // }
-    window.location.href = '/home';
+  const handleLogin = async (e) => {
+    e.preventDefault(); 
+    if (!username || !password) {
+      alert('You must provide a username and password!');
+    } else {
+      // Make a POST request to the registration API
+      try{
+        const response = await fetch('http://localhost:8080/user/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          }),
+        });
+        const data = await response.text();
+        console.log("response: " + data);
+        if (response.status === '500') {
+          throw new Error('Network response was not ok');
+        } else if (data === "User does not exist"){
+          alert("User does not exist.")
+          return;
+        } else if (data === "Password is incorrect"){
+          alert("Password is incorrect.")
+          return;
+        } else if (data === "Successful"){
+          //const data = await response.json();
+          console.log('Login successful:', data.msg);
+          //sign user in
+          setLoginStatus({
+            isLoggedIn: true,
+            loggedInUsername: username,
+          });
+          sessionStorage.setItem("username", username);
+          console.log(loginStatus.loggedInUsername);
+          console.log(sessionStorage.getItem("username"));
+          // Redirect user to home
+          window.location.href = '/home';
+        } else{
+          console.log("Something went wrong.");
+          console.log(data);
+        }
+      } catch (error){
+        console.error('Login error:', error.message);
+      }
+    }
   };
 
   return (

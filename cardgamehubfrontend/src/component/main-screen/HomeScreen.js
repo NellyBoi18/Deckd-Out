@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from "react";
 import { styled } from '@mui/system';
 import { Container, Typography, Button, Grid, Avatar } from '@mui/material';
 import Logo from '../../assets/logo.svg';
@@ -6,6 +6,8 @@ import SpadesIcon from '../../assets/spades-icon.png';
 import EuchreIcon from '../../assets/euchre-icon.png';
 import DefaultProfileIcon from '../../assets/default-icon.webp';
 import SettingsIcon from '../../assets/settings-icon.png';
+
+import LoginStatusContext from "../contexts/LoginStatusContext";
 
 /**
  * Define custom styles using styled
@@ -88,7 +90,10 @@ const ButtonText = styled(Typography)({
 /**
  * Functional component representing the home screen
  */
-function HomeScreen() {
+export default function HomeScreen() {
+
+  const [loginStatus] = useContext(LoginStatusContext);
+
   return (
     <RootContainer>
       <LogoImage src={Logo} alt="Logo" />
@@ -134,11 +139,14 @@ function HomeScreen() {
               <Grid item sx={{ marginRight: '0.5rem' }}>
                     <Avatar alt="Default Profile Icon" src={DefaultProfileIcon} sx={{ width: 30, height: 30 }} />
               </Grid>
-            <ButtonText variant="button">username</ButtonText>
+              <ButtonText variant="button" onClick={() =>
+                console.log("Username:", sessionStorage.getItem("username"))}>
+                {sessionStorage.getItem("username")}
+              </ButtonText>
           </SecondaryRedButton>
         </Grid>
         <Grid item>
-            <SecondaryRedButton variant="contained" sx={{ position: 'fixed', bottom: 0, right: 0, marginRight: '1rem', marginBottom: '1rem' }}>
+            <SecondaryRedButton href = "/logout" variant="contained" sx={{ position: 'fixed', bottom: 0, right: 0, marginRight: '1rem', marginBottom: '1rem' }}>
               <Grid item>
                     <Avatar alt="Settings Icon" src={SettingsIcon} sx={{ width: 30, height: 50 }} />
               </Grid>
@@ -149,4 +157,4 @@ function HomeScreen() {
   );
 }
 
-export default HomeScreen;
+
