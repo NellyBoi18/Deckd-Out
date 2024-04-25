@@ -43,6 +43,8 @@ export default function CGRouter() {
                     <Route path="/login" element={<LoginScreen />} />
                     <Route path="/logout" element={<LogoutScreen />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/carddecktest" element ={<CardDeck/>}/>
+                    <Route path="/spades" element ={<SpadesDefault/>}/>
                 </Routes>
             </BrowserRouter>
         </LoginStatusContext.Provider>
