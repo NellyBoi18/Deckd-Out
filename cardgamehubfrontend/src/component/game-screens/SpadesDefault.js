@@ -54,9 +54,14 @@ function SpadesDefault() {
             height: '500px',
             margin: '50px auto',
             transition: 'box-shadow 0.3s',
-            boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)'
+            boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
         }}
-        />
+        >
+          <Button variant="contained" color="primary">Deal</Button>
+        </Box>
     </div>
   );
 }
