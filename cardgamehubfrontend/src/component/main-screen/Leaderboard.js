@@ -1,12 +1,17 @@
+/**
+ * Leaderboard component for user ranking functionality.
+ * @module Leaderboard
+ */
+
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Avatar, Button, Box } from '@mui/material';
 
-import Logo from '../../assets/logo.svg'; // Ensure the logo path is correct
-import TrophyIcon from '../../assets/trophy.png'; // Ensure the trophy icon path is correct
-import BurstImage from '../../assets/burst.png'; // Ensure the burst image path is correct
-import BackArrowImage from '../../assets/backArrow.png'; // Adjust the path according to your file structure
+import Logo from '../../assets/logo.svg';
+import TrophyIcon from '../../assets/trophy.png';
+import BurstImage from '../../assets/burst.png';
+import BackArrowImage from '../../assets/backArrow.png';
 
 /**
  * Styled component for the logo with absolute positioning
@@ -26,12 +31,13 @@ const LeaderboardContainer = styled(Container)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  height: '100%',
+  height: '100vh',
   background: `url(${BurstImage}) center/cover no-repeat, ${'#EC8F47'}`,
   overflow: 'hidden',
   position: 'absolute', // Make it cover the entire viewport
   top: 0,
-  left: 80,
+  left: 0,
+  right: 0,
 }));
 /**
  * Main content area for leaderboard, defining size, color, and layout
@@ -90,7 +96,7 @@ const LeaderboardItem = styled('li')(({ theme, isTopUser }) => ({
   padding: theme.spacing(1),
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-around',
+  justifyContent: 'space-between', // Aligns items evenly along the main axis
 }));
 
 /**
@@ -100,7 +106,13 @@ const LeaderboardList = styled('ul')({
   listStyle: 'none',
   padding: 0,
   width: '100%',
+  maxHeight: 'calc(100% - 160px)', // Adjust the maximum height as needed
+  overflowY: 'auto', // Add vertical scrollbar when content overflows
 });
+
+const ButtonContainer = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
 
 /**
  * Button for future functionality, styled for consistency with the theme
@@ -109,28 +121,52 @@ const LeaderboardList = styled('ul')({
  */
 const LeaderboardButton = styled(Button)(({ theme }) => ({
   fontSize: '4rem',
-  padding: '10px 20px',
+  padding: '5px 10px',
   minWidth: 'auto',
-  backgroundColor: 'transparent', // Ensures the button itself has a transparent background
-  boxShadow: 'none', // Removes any box shadow that might be applied
+  backgroundColor: '#CC4124',
+  color: '#FFFFFF',
+  boxShadow: 'none',
+  borderRadius: '10px', // Set border radius to make it a square box
   '&:hover': {
-    backgroundColor: 'transparent', // Ensures the hover state is also transparent
+    backgroundColor: '#AB331C',
     boxShadow: 'none',
   },
-  // If there's an ::after or ::before pseudo-element causing the issue, override it here
   '&::before': {
-    content: 'none',
-  },
-  '&::after': {
-    content: 'none',
+    content: '""',
+    backgroundImage: `url(${BackArrowImage})`, // Set arrow back icon as background image
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    width: '75px', // Set width and height of the arrow icon
+    height: '30px',
+    marginRight: '0px', // Adjust spacing between the arrow icon and text
   },
 }));
+
 
 /**
  * Style overrides for the MUI Avatar component to ensure it has a transparent background
  */
-const TransparentAvatar = styled(Avatar)({
-  backgroundColor: 'transparent !important', // Override any other background styles
+// const TransparentAvatar = styled(Avatar)({
+//   backgroundColor: 'transparent !important', // Override any other background styles
+// });
+
+/**
+ * Header bar container to display column headers
+ */
+const HeaderBar = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '98%',
+  marginBottom: theme.spacing(1),
+  borderBottom: '2px solid #CC4124',
+  paddingBottom: theme.spacing(1),
+}));
+
+/**
+ * Styled component for column headers
+ */
+const ColumnHeader = styled(Typography)({
+  fontWeight: 'bold',
 });
 
 
@@ -165,6 +201,10 @@ const Leaderboard = () => {
             <Avatar src={TrophyIcon} alt="Trophy" sx={{ width: 50, height: 50, marginLeft: 2 }} />
           </LeaderboardTitleContainer>
         </LeaderboardHeader>
+        <HeaderBar>
+          <ColumnHeader>Username</ColumnHeader>
+          <ColumnHeader>Games Won</ColumnHeader>
+        </HeaderBar>
         <LeaderboardList>
         {users.map((user, index) => (
             <LeaderboardItem key={index}>
@@ -173,9 +213,12 @@ const Leaderboard = () => {
             </LeaderboardItem>
           ))}
         </LeaderboardList>
-        <LeaderboardButton href="/home" variant="contained">
-        <TransparentAvatar src={BackArrowImage} alt="Back" />
-      </LeaderboardButton>
+        <ButtonContainer>
+          <LeaderboardButton href="/home" variant="contained">
+            {/* Back */}
+            {/* <TransparentAvatar src={BackArrowImage} alt="Back" /> */}
+          </LeaderboardButton>
+      </ButtonContainer>
 
       </LeaderboardContent>
     </LeaderboardContainer>
