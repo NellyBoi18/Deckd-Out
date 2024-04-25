@@ -120,30 +120,35 @@ const ButtonContainer = styled(Box)(({ theme }) => ({
  * with transparency are also handled.
  */
 const LeaderboardButton = styled(Button)(({ theme }) => ({
-  fontSize: '1.6rem',
-  padding: '1px 8px',
+  fontSize: '4rem',
+  padding: '5px 10px',
   minWidth: 'auto',
-  backgroundColor: '#EC8F47', // Ensures the button itself has a transparent background
-  boxShadow: 'none', // Removes any box shadow that might be applied
+  backgroundColor: '#CC4124',
+  color: '#FFFFFF',
+  boxShadow: 'none',
+  borderRadius: '10px', // Set border radius to make it a square box
   '&:hover': {
-    backgroundColor: 'transparent', // Ensures the hover state is also transparent
+    backgroundColor: '#AB331C',
     boxShadow: 'none',
   },
-  // If there's an ::after or ::before pseudo-element causing the issue, override it here
   '&::before': {
-    content: 'none',
-  },
-  '&::after': {
-    content: 'none',
+    content: '""',
+    backgroundImage: `url(${BackArrowImage})`, // Set arrow back icon as background image
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    width: '75px', // Set width and height of the arrow icon
+    height: '30px',
+    marginRight: '0px', // Adjust spacing between the arrow icon and text
   },
 }));
+
 
 /**
  * Style overrides for the MUI Avatar component to ensure it has a transparent background
  */
-const TransparentAvatar = styled(Avatar)({
-  backgroundColor: 'transparent !important', // Override any other background styles
-});
+// const TransparentAvatar = styled(Avatar)({
+//   backgroundColor: 'transparent !important', // Override any other background styles
+// });
 
 /**
  * Header bar container to display column headers
@@ -211,7 +216,7 @@ const Leaderboard = () => {
         <ButtonContainer>
           <LeaderboardButton href="/home" variant="contained">
             {/* Back */}
-            <TransparentAvatar src={BackArrowImage} alt="Back" />
+            {/* <TransparentAvatar src={BackArrowImage} alt="Back" /> */}
           </LeaderboardButton>
       </ButtonContainer>
 
