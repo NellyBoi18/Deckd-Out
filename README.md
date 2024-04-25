@@ -12,13 +12,13 @@ Deck’d Out
 
 <!--A one paragraph summary of what the software will do.-->
 
-This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: spades and euchre. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track of the number of respective games the user has won and will be able to rank the users against each other. 
+This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: Spades and Euchre. Our application will allow the user to play different card games while keeping track of the score. There will also be user profiles, which will track the number of respective games the user has won and will be able to rank the users against each other.
 
 ### Customer
 
 <!--A brief description of the customer for this software, both in general (the population who might eventually use such a system) and specifically for this document (the customer(s) who informed this document). Every project will have a customer from the CS506 instructional staff. Requirements should not be derived simply from discussion among team members. Ideally your customer should not only talk to you about requirements but also be excited later in the semester to use the system.-->
 
-In terms of the population who might eventually our system, it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. Much older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
+In terms of the population who might eventually our system, it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. Many older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
 
 ### User Requirements
 
@@ -26,28 +26,28 @@ In terms of the population who might eventually our system, it would be used by 
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| [R1](#76)  | When the user first opens the application or when the user logs out, the frontend SHALL display the login page. | Med      | Open   |
-| [R2](#77)  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | High      | Open   |
-| [R3](78)  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | High      | Open   |
+| [R1](#76)  | When the user first opens the application the frontend SHALL display the register page. | Med      | Closed   |
+| [R2](#77)  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | High      | Closed   |
+| [R3](78)  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | High      | Closed   |
 | [R4](#79)  | When the user clicks on the profile button on any screen that it appears in, the frontend SHALL display the profile page. | Med      | Open   |
 | [R5](#80)  | When the user clicks on the settings button on any screen that it appears in, the frontend SHALL display the settings page. | Low      | Open   |
 | [R6](#81)  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | High      | Open   |
-| [R7](#82)  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
+| [R7](#82)  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the ranking of all registered users. | Med      | Closed   |
 | [R8](#83)  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
 | [R9](#84)  | When the user selects a card to play, the card will be inserted into the trick, the card SHALL be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | High      | Open   |
 | [R10](#85)  | When the winner of a trick is determined, the application SHALL display who won the trick to the user. | Med      | Open   |
 | [R11](#86)  | After a round of spades, the correct number of points SHALL be calculated and added to each teams total, and if one team has over 500 points then they SHALL be declared the winner of the game. | Med      | Open   |
 | [R12](#87)  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | High      | Open   |
-| [R13](#88)  | Users SHALL be able to sign into the application with an account and access their high scores. | Med      | Open   |
+| [R13](#88)  | Users SHALL be able to sign into the application with an account and access their high scores. | Med      | Closed   |
 | [R14](#89)  | Users SHALL be able to play the specified card games against other players. | Low     | Open   |
-| [R15](#90)  | There SHALL be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
-| [R16](#91)  | The user SHALL be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
-| [R17](#92)  | The logic of each card game SHALL work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
-| [R18](#93)  | Application UI SHALL be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
+| [R15](#90)  | There SHALL be a ranking system that compares the user's scores to other player's scores. | Med     | Closed   |
+| [R16](#91)  | The user SHALL be able to access a hub that will allow them to pick the card game that they want to play. | High      | Closed   |
+| [R17](#92)  | The logic of each card game SHALL work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Closed   |
+| [R18](#93)  | Application UI SHALL be as accessible and clear, with no confusing buttons or settings. | High     | Closed   |
 | [R19](#122)  | The application SHALL be able to connect to the backend logic and display the correct information to the user. | High     | Open   |
-| [R20](#123)  | The application SHALL be able to handle an incorrect username / password pair and display an error message to the user. | High      | Open   |
+| [R20](#123)  | The application SHALL be able to handle an incorrect username / password pair and display an error message to the user. | High      | Closed   |
 | [R21](#124)  | The application SHALL be able to prevent users from making illegal moves in the card games. | High     | Open   |
-| [R22](#125)  | The user SHALL be able to see the cards that they are playing with in a graphical representation. | High     | Open   |
+| [R22](#125)  | The user SHALL be able to see the cards that they are playing with in a graphical representation. | High     | Closed   |
 | [R23](#126)  | The user SHALL be able to see the game of spades that they are playing. | High     | Open   |
 | [R24](#127)  | The user SHALL be able to see the game of euchre that they are playing. | High     | Open   |
 | [R25](#128)  | The user SHALL be able to view all the past card games they played while logged into their account. | Low     | Open   |
@@ -132,8 +132,8 @@ The leaderboard page will display the user's rank compared to other users.
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
 | [SR1](#129)  | Users should be able to safely input their username and password and know it is protected. | Low      | Open   |
-| [SR2](#130)  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Open   |
-| [SR3](#131)  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Open   |
+| [SR2](#130)  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Closed   |
+| [SR3](#131)  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Closed   |
 | [SR4](#132)  | Users should not be able to access other user's accounts. | High     | Open   |
 | [SR5](#133)  | Users should not be able to access the backend logic of the application. | Low     | Open   |
 | [SR6](#134)  | Users should not be able to access the database of the application. | High     | Open   |
@@ -519,64 +519,47 @@ stateDiagram
 
 <!--Here you can document your coding standards and conventions. This includes decisions about naming, style guides, etc.-->
 
-Coding Standards Document
+#### Coding Standards Document
+
 This document serves as the complete definition of L3-33’s coding standards for source code in the Java programming language.
-External Resource: Oracle’s Javadoc 
+
+External Resource: Oracle’s Javadoc
+
 Heavily references: Java Coding Standard
+
 —
-Identifier Naming and Capitalization
-Use descriptive names for all variables, function names, constants, and other identifiers.
-Use single letter identifiers only for the counter in loops.
-Class names use PascalCase.
-Variable names use camelCase.
-Variables include parameters, local variables, and data fields.
-EXCEPTION: use UPPER_CASE for constants/final variables.
-Method names use camelCase.
-The source file name consists of the case-sensitive name of the top-level class it contains, plus the .java extension
 
+##### Identifier Naming and Capitalization
 
-Comments: Classes
-Every class should be preceded with a descriptive comment using the Javadoc notational convention.
-The comment should describe the purpose of the class.
-Class names start with an uppercase letter (as mentioned above).
+- Use descriptive names for all variables, function names, constants, and other identifiers.
+- Use single letter identifiers only for the counter in loops.
+- Class names use PascalCase.
+- Variable names use camelCase.
+- Variables include parameters, local variables, and data fields
+  * EXCEPTION: use UPPER_CASE for constants/final variables.
+- Method names use camelCase.
+- The source file name consists of the case-sensitive name of the top-level class it contains, plus the .java extension
 
+##### Comments: Classes 
+Every class should be preceded with a descriptive comment using the Javadoc notational convention. The comment should describe the purpose of the class. Class names start with an uppercase letter (as mentioned above).
 
+##### Comments: Methods 
+Every method definition should be preceded with a descriptive comment using the Javadoc notational convention. The comment should include a description of the method, the name and description of each parameter, a description of the return value, and the name and description of any exceptions thrown within the method using Javadoc keyboards and formatting.
 
-Comments: Methods
-Every method definition should be preceded with a descriptive comment using the Javadoc notational convention.
-The comment should include a description of the method, the name and description of each parameter, a description of the return value, and the name and description of any exceptions thrown within the method using Javadoc keyboards and formatting.
+##### Comments: Public variables 
+Each public variable should be preceded with a descriptive comment using the Javadoc notational convention. The comment should describe the purpose for the public variable.
 
+##### Comments: In-line 
+In-line comments should be used to explain complicated sections of code, such as loops. Use the // comment delimiter for in-line comments. Do not comment on generally known features of the Java language.
 
+##### Spacing: Between lines 
+Use two blank lines to separate each method within a class definition. Use one blank line to separate logical sections of code within a method
 
+##### Spacing: Within lines 
+Put a single space before each ‘{‘. Separate all binary operators, such as ‘+’, ‘-’, ‘\*’, ‘/’, ‘%’, etc., with a single space. EXCEPTION: unary operators such as ‘++’, ‘--’, etc.
 
-Comments: Public variables
-Each public variable should be preceded with a descriptive comment using the Javadoc notational convention.
-The comment should describe the purpose for the public variable.
+##### Indentation 
+Open braces do not start a new line. Close braces do start a new line, and are indented with the code they close. Comments line up with the block they comment.
 
-
-Comments: In-line
-In-line comments should be used to explain complicated sections of code, such as loops.
-Use the // comment delimiter for in-line comments.
-Do not comment on generally known features of the Java language.
-
-Spacing: Between lines
-Use two blank lines to separate each method within a class definition.
-Use one blank line to separate logical sections of code within a method
-
-
-Spacing: Within lines
-Put a single space before each ‘{‘.
-Separate all binary operators, such as ‘+’, ‘-’, ‘*’, ‘/’, ‘%’, etc., with a single space.
-EXCEPTION: unary operators such as ‘++’, ‘--’, etc.
-
-Indentation
-Open braces do not start a new line.
-Close braces do start a new line, and are indented with the code they close.
-Comments line up with the block they comment.
-
-
-
-Program Modules
-Lines of code should be kept short, generally less than 80 or 100 characters wide.
-Each public class is contained in a separate file.
-Each file has the name of the public class contained within it.
+##### Program Modules 
+Lines of code should be kept short, generally less than 80 or 100 characters wide. Each public class is contained in a separate file. Each file has the name of the public class contained within it.
