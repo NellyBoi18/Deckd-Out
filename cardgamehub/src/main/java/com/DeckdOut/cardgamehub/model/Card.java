@@ -41,23 +41,18 @@ public class Card {
     /**
      * Constructs a new Card object with default values.
      */
-//    public Card(String suit, int cardValue) {
-//        this.suit = suit;
-//        this.cardValue = cardValue;
-//    }
+    public Card(String suit, int cardValue) {
+        this.suit = suit;
+        this.cardValue = cardValue;
+    }
 
     /**
      * Constructs a new Card object with default values.
      */
-//    public Card(String suit, int cardValue, Player owner){
-//        this.suit = suit;
-//        this.cardValue = cardValue;
-//        this.owner = owner;
-//
-//    }
-
-    public Card(){
-        
+    public Card(String suit, int cardValue, Player owner){
+        this.suit = suit;
+        this.cardValue = cardValue;
+        this.owner = owner;
     }
 
     /**

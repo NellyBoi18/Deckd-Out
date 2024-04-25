@@ -40,7 +40,7 @@ public class Player {
      * hardcoded card used for testing
      */
     @Column(nullable = false, length = 50)
-    private Card cardFromFrontend = new Card(); //new Card("Spades", 14);
+    private Card cardFromFrontend = new Card("Spades", 14);
     
     /**
      * Constructor, sets the name of the player
