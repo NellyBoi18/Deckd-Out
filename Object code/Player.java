@@ -1,13 +1,10 @@
-//TODO ADD LOGIC TO PREVENT ILLEGAL MOVE
-
-
 import java.util.ArrayList;
 
 /**
  * Class pertaining to the player including information such as username, bid, and hand.
  */
 public class Player {
-    private String userName; //username of the player (NOTE: GET FROM FRONTEND --> HOW? TODO change to FROM daatbase
+    private String userName; //username of the player TODO: GET FROM FRONTEND 
     private int bid; // how many tricks the player thinks they will win in a round 
     private ArrayList<Card> hand; // the player's hand of cards
 
@@ -85,6 +82,7 @@ public class Player {
      * 
      * @return the username (in string format) of the player
      */  
+    //NOTE: GET FROM DATABASE
     public String getuserName(){
         return userName;
     }
@@ -95,7 +93,7 @@ public class Player {
      * 
      * @param hand the player's hand of cards
      * @param trump the string of the suit that is trump in the round
-     * @return true is the user has at least 1 trump card in their hand, false otherwise
+     * @return true is the user has at least 1 trump card in their hand, and false otherwise
      */  
     public boolean hasTrump(ArrayList<Card> hand, String trump) {
         for(Card card : hand) {
@@ -106,8 +104,14 @@ public class Player {
         return false;
     }
 
-
-    //HEAD LEADING SUIT METHOD -- NOT USED RN
+    /**
+     * Method that checks if a player has at least 1 card of the leading suit in their hand
+     * 
+     * @param hand the player's hand of cards
+     * @param leadingSuit the string of the suit that the leading suit in a round
+     * @return true is the user has at least 1 card of the leading suit in their hand, and
+     * false otherwise
+     */  
     public boolean hasLeadingSuit(ArrayList<Card> hand, String leadingSuit) {
         for(Card card : hand) {
             if(card.getSuit().equals(leadingSuit)) {
@@ -118,7 +122,13 @@ public class Player {
     }
 
 
-    //Gets the highest value card in a player's hand that isn't trump
+    /**
+     * Method that gets the highest value card in a player's hand that isn't trump
+     * 
+     * @param player the player in question
+     * @param trump the string of the suit that is trump
+     * @return the card that has the highest value that is also not in the trump suit
+     */ 
     public Card getHighNorm(Player player, String trump) {
         int max = 0;
         Card finalCard = new Card("Diamonds", 14);
@@ -131,7 +141,13 @@ public class Player {
         return finalCard;
     }
 
-    //get low norm
+    /**
+     * Method that gets the lowest value card in a player's hand that isn't trump
+     * 
+     * @param player the player in question
+     * @param trump the string of the suit that is trump
+     * @return the card that has the lowest value that is also not in the trump suit
+     */ 
     public Card getLowNorm(Player player, String trump) {
         int min = 14;
         Card finalCard = new Card("Diamonds", 1);
@@ -144,7 +160,13 @@ public class Player {
         return finalCard;
     }
  
-    //number of trump cards in hand (in this case it is spades)
+    /**
+     * Method that returns the number of trump cards in a pleyer's hand
+     * 
+     * @param player the player in question
+     * @param trump the string of the suit that is trump
+     * @return the number of cards in the player's hand that are in the trump suit
+     */ 
     public int numTrump(Player player, String trump) {
         int counter = 0;
         for(Card card: player.getHand()) {
@@ -155,8 +177,13 @@ public class Player {
         return counter;
     }
 
-
-    //does this card exist in hand?
+    /**
+     * Method that searches through a players hand and checks if a given card is in it
+     * 
+     * @param card the card that will be looked for in the player's hand
+     * @param player the player in question
+     * @return true if the player's hand contains the given card, and false otherwise
+     */ 
     public boolean containsCard(Card card, Player player) {
         for(Card card1 : player.getHand()) {
             if(card1.equals(card)) {
@@ -166,7 +193,14 @@ public class Player {
         return false;
     }
 
-    //does an ace card exist in hand?
+    /**
+     * Method that checks if a player's hand contains an ace card of a non-trump suit
+     * 
+     * @param player the player in question
+     * @param trump the string of the suit that is trump
+     * @return true if the player's hand contains an ace card of a non-trump suit, 
+     * and false otherwise
+     */
     public boolean containsNormAce(Player player, String trump) {
         for(Card card1 : player.getHand()) {
             if(card1.getCardValue() == 14 && !card1.getSuit().equals(trump)) {
@@ -176,10 +210,13 @@ public class Player {
         return false;
     }
 
-
-
-
-    //get high card of a suit (doesn't handle case of no suit)
+    /**
+     * Method that gets the highest card in a player's hand of a given suit
+     * 
+     * @param player the player in question
+     * @param suit the string of the given suit 
+     * @return the card of the highest value in a given suit in a player's hand
+     */
     public Card getHighSuit(Player player, String suit) {
         int max = 0;
         Card finalCard = new Card(suit, 14);
@@ -192,7 +229,13 @@ public class Player {
         return finalCard;
     }
 
-    //get low card of a suit (doesn't handle case of no suit)
+    /**
+     * Method that gets the lowest card in a player's hand of a given suit
+     * 
+     * @param player the player in question
+     * @param suit the string of the given suit 
+     * @return the card of the lowest value in a given suit in a player's hand
+     */
     public Card getLowSuit(Player player, String suit) {
         int min = 14;
         Card finalCard = new Card(suit, 14);
@@ -205,8 +248,13 @@ public class Player {
         return finalCard;
     }
     
-
-    //returns true if player has 1 or more of the suit given, and false otherwise
+    /**
+     * Method checks if a player has 1 or more of a given suit 
+     * 
+     * @param player the player in question
+     * @param suit the string of the given suit 
+     * @return true if the player has 1 or more of the suit given, and false otherwise
+     */
     public boolean hasGivenSuit(Player player, String suit) {
         for(Card card : player.getHand()) {
             if(card.getSuit().equals(suit)) {
@@ -216,8 +264,14 @@ public class Player {
         return false;
     }
 
-
-    //returns true if player has the specificed card
+    /**
+     * Method that searches through a players hand and checks if a given card is in it
+     * 
+     * @param player the player in question
+     * @param suit the suit of the card that will be looked for in the player's hand
+     * @param cardVal the value of the card in question
+     * @return true if the player's hand contains the given card, and false otherwise
+     */ 
     public boolean hasGivenCard(Player player, String suit, int cardVal) {
         for(Card card : player.getHand()) {
             if(card.getSuit().equals(suit) && card.getCardValue() == cardVal) {
@@ -227,8 +281,16 @@ public class Player {
         return false;
     }
 
-
-    //returns the number of cards that a player has of the specified value of any suit that is not spades
+    /**
+     * Method that gets the number of cards that a player has of the specified value
+     * of any suit that is not in the trump suit
+     * 
+     * @param player the player in question
+     * @param cardVal the value of the card in question
+     * @param trump the suit that is trump
+     * @return the number of cards that a player has of the specified value of any suit that
+     * is not in the trump suit
+     */ 
     public int numNonTrumpVals(Player player, int cardVal, String trump) {
         int counter = 0;
         for(Card card : player.getHand()) {
@@ -239,8 +301,14 @@ public class Player {
         return counter;
     }
 
-
-    //returns the number of cards that a player has of the specified value of any suit that is not spades
+    /**
+     * Method that gets the number of cards that a player has of the specified value
+     * of any suit that is not in the trump suit
+     * 
+     * @param player the player in question
+     * @param cardVal the value of the card in question
+     * @return the number of cards that a player has of the specified value
+     */ 
     public int numVals(Player player, int cardVal) {
         int counter = 0;
         for(Card card : player.getHand()) {
@@ -251,7 +319,13 @@ public class Player {
         return counter;
     }
 
-    //check for better bower (right bower)
+    /**
+     * Method that checks if a player has the right (better) bower in their hand
+     * 
+     * @param player the player in question
+     * @param trump the suit that is trump
+     * @return true if a player has the right (better) bower in their hand, and false otherwise
+     */ 
     public boolean hasRightBower(Player player, String trump) {
         for(Card card : player.getHand()) {
             if(card.getSuit().equals(trump) && card.getCardValue() == 11) {
@@ -261,7 +335,13 @@ public class Player {
         return false;
     }
 
-    //check for worse bower (left bower)
+    /**
+     * Method that checks if a player has the left (worse) bower in their hand
+     * 
+     * @param player the player in question
+     * @param trump the suit that is trump
+     * @return true if a player has the left (worse) bower in their hand, and false otherwise
+     */ 
     public boolean hasLeftBower(Player player, String trump) {
         //get left bower suit
         String complimentSuit = getLeftBowerSuit(trump);
@@ -273,7 +353,12 @@ public class Player {
         return false;
     }
 
-    //get left bower suit
+    /**
+     * Method that gets the suit of the left (better) bower
+     * 
+     * @param trump the suit that is trump
+     * @return string representing the suit of the left bower given the trump suit
+     */ 
     public String getLeftBowerSuit(String trump) {
         String complimentSuit = "";
         if(trump.equals("Spades")) {
@@ -291,7 +376,12 @@ public class Player {
         return complimentSuit;
     }
 
-    //get the suits that are not trump
+    /**
+     * Method that gets all of the suits that are not trump
+     * 
+     * @param trump the suit that is trump
+     * @return array of strings containing all of them suits that are not trump given trump
+     */ 
     public String[] getNonTrumpSuits(String trump) {
         String[] finalArr = new String[3];
         if(trump.equals("Spades")) {
@@ -320,15 +410,14 @@ public class Player {
         }     
     }
 
-
-    
-
-
-
-  
-  
-
-    //logic for CPU picking a card to play in a trick
+    /**
+     * Method that picks the correct card to play for the CPU (card picking logic)
+     * 
+     * @param cpu the player 
+     * @param leadingSuit the leading suit in a trick
+     * @param startPlayer the starting player of a trick
+     * @return the card that the CPU will choose to play 
+     */ 
     public Card cpuChooseCardSpades(Player cpu, String leadingSuit, Player startPlayer) {
         ArrayList<Card> cpuHand = cpu.getHand();
 
@@ -384,7 +473,12 @@ public class Player {
 
 
 
-    //logic for CPU choosing a reasonable bid
+    /**
+     * Method chooses the most reasonable bid to place (FOR CPUs)
+     * 
+     * @param cpu the player 
+     * @return the number of tricks that the player will predict they will win given their hand
+     */ 
     public int cpuChooseBid(Player cpu) {
         int finalBid = 1;
         ArrayList<Card> cpuHand = cpu.getHand();
@@ -422,11 +516,16 @@ public class Player {
         return finalBid;
     }
 
-
-
-    //returns an array of 2 strings
-    //indes 0: "Yes" or "No" based on if they want to play the flippedTrump
-    //index 1: string of suit that player wants to pick, "Pass" if no good suit to pick
+    /**
+     * Method chooses the most reasonable suit to pick as trump given the player's hand
+     * 
+     * @param cpu the player 
+     * @param flippedTrump the suit that is flipped up as trump after a euchre deal
+     * @return an array of two strings, where the first one is either "Yes" if the player
+     * wants to play the flippedTrump, and "No" otherwise. The second string in the array 
+     * is either the string of the suit the player will pick to play as trump, or "Pass" if 
+     * there is not a good enough suit to pick and they hope to pass the round instead
+     */ 
     public String[] cpuSuitDecision(Player cpu, String flippedTrump) {
         String[] returnVals = new String[2];
         returnVals[0] = ""; //to avoid null exceptions
@@ -457,8 +556,13 @@ public class Player {
         }
     }
 
-
-    //choose whether or not to play
+    /**
+     * Method that checks if the user wants to play the given trump given their hand
+     * 
+     * @param cpu the player 
+     * @param trump the suit that is trump
+     * @return true if the player wants to play the given trump, and false otherwise
+     */ 
     public boolean playDecision(Player cpu, String trump) {
         ArrayList <Card> cpuHand = cpu.getHand();
         
@@ -503,6 +607,4 @@ public class Player {
             return false;
         }
     }
-
-
 }

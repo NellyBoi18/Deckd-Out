@@ -44,7 +44,12 @@ public class SpadesRound {
 
 
 
-    //p1SpadesCheckLegalCards
+    /**
+     * Method that checks if the card given is legal to play or not
+     * 
+     * @param card the given card
+     * @return true if the given card is legal to play, and false otherwise
+     */
     public boolean legalCardCheck(Card card) {
         ArrayList<Card> hand = p1Spades.getHand();
 
@@ -72,9 +77,7 @@ public class SpadesRound {
         else {
             return true;
         }
-    } 
-
-
+    }
 
     /**
      * Method that contains the logic for a trick of Spades
@@ -329,8 +332,13 @@ public class SpadesRound {
         this.team2SpadesOvrTricks = num;
     }
 
-
-
+    /**
+     * Method that gets the all possible legal cards given the leading suit
+     * 
+     * @param spadesLeadingSuit the leading suit of the trick
+     * @return an arraylist of all of the cards that are possible to play in this trick
+     * given the leading suit
+     */
     public ArrayList<Card> getLegalCards(String spadesLeadingSuit) {
         ArrayList<Card> legalCards = new ArrayList<Card>();
         for(Card card1 : p1Spades.getHand())
@@ -339,7 +347,4 @@ public class SpadesRound {
             }
         return legalCards;
     }
-
-
-
 }

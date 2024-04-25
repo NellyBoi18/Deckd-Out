@@ -104,18 +104,23 @@ public class Card{
      * @return the Suit, Value, and Owner of the card
      */
     public String toString(){
+        //Jack
         if(cardValue == 11){
             return "Suit: " + suit + " | Value: Jack" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
+        //Queen
         if(cardValue == 12){
             return "Suit: " + suit + " | Value: Queen" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
+        //King
         if(cardValue == 13){
             return "Suit: " + suit + " | Value: King" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
+        //Ace
         if(cardValue == 14){
             return "Suit: " + suit + " | Value: Ace" + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
+        //Number Cards
         else{
             return "Suit: " + suit + " | Value: " + cardValue + " | Owner: " + owner.getuserName() + " | Dealt: " + dealt;
         }
