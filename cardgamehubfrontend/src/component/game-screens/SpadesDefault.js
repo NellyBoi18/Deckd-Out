@@ -1,29 +1,30 @@
 import React from 'react';
-import { styled } from '@mui/system';
-import { Container, Typography, Button, Grid, Avatar, Box, AppBar, Toolbar } from '@mui/material';
+// import { styled } from '@mui/system';
+// import { Container, Typography, Button, Grid, Avatar, Box, AppBar, Toolbar } from '@mui/material';
+import { Typography, Button, Box, AppBar, Toolbar } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 
-/**
- * Define custom styles using styled
- */
-const RootContainer = styled(Container)({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '100vh',
-  backgroundColor: '#539987',
-});
+// /**
+//  * Define custom styles using styled
+//  */
+// const RootContainer = styled(Container)({
+//   display: 'flex',
+//   flexDirection: 'column',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   height: '100vh',
+//   backgroundColor: '#539987',
+// });
 
-/**
- * Styles for the logo image
- */
-const LogoImage = styled('img')({
-  maxWidth: '100%',
-  width: '350px',
-  height: 'auto',
-  marginBottom: '2rem',
-});
+// /**
+//  * Styles for the logo image
+//  */
+// const LogoImage = styled('img')({
+//   maxWidth: '100%',
+//   width: '350px',
+//   height: 'auto',
+//   marginBottom: '2rem',
+// });
 
 /**
  * Functional component representing the home screen
