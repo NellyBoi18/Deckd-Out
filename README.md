@@ -12,13 +12,13 @@ Deck’d Out
 
 <!--A one paragraph summary of what the software will do.-->
 
-This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: spades and euchre. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track of the number of respective games the user has won and will be able to rank the users against each other. 
+This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: Spades and Euchre. Our application will allow the user to play different card games while keeping track of the score. There will also be user profiles, which will track the number of respective games the user has won and will be able to rank the users against each other.
 
 ### Customer
 
 <!--A brief description of the customer for this software, both in general (the population who might eventually use such a system) and specifically for this document (the customer(s) who informed this document). Every project will have a customer from the CS506 instructional staff. Requirements should not be derived simply from discussion among team members. Ideally your customer should not only talk to you about requirements but also be excited later in the semester to use the system.-->
 
-In terms of the population who might eventually our system, it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. Much older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
+In terms of the population who might eventually our system, it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. Many older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
 
 ### User Requirements
 
