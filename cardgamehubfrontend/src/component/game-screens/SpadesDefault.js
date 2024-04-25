@@ -62,6 +62,7 @@ function SpadesDefault() {
         }}
         >
           <Button variant="contained" color="primary">Deal</Button>
+          <Button variant="contained" href="/home" color="primary" style={{ position: 'absolute', bottom: '20px', right: '20px' }}>Back</Button>
         </Box>
     </div>
   );
