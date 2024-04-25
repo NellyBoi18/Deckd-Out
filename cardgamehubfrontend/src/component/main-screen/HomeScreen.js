@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { styled } from '@mui/system';
 import { Container, Typography, Button, Grid, Avatar } from '@mui/material';
 import Logo from '../../assets/logo.svg';
@@ -6,8 +6,6 @@ import SpadesIcon from '../../assets/spades-icon.png';
 import EuchreIcon from '../../assets/euchre-icon.png';
 import DefaultProfileIcon from '../../assets/default-icon.webp';
 import SettingsIcon from '../../assets/settings-icon.png';
-
-import LoginStatusContext from "../contexts/LoginStatusContext";
 
 /**
  * Define custom styles using styled
@@ -91,8 +89,6 @@ const ButtonText = styled(Typography)({
  * Functional component representing the home screen
  */
 export default function HomeScreen() {
-
-  const [loginStatus] = useContext(LoginStatusContext);
 
   return (
     <RootContainer>
