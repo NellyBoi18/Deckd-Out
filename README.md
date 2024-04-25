@@ -519,64 +519,47 @@ stateDiagram
 
 <!--Here you can document your coding standards and conventions. This includes decisions about naming, style guides, etc.-->
 
-Coding Standards Document
+#### Coding Standards Document
+
 This document serves as the complete definition of L3-33’s coding standards for source code in the Java programming language.
-External Resource: Oracle’s Javadoc 
+
+External Resource: Oracle’s Javadoc
+
 Heavily references: Java Coding Standard
+
 —
-Identifier Naming and Capitalization
-Use descriptive names for all variables, function names, constants, and other identifiers.
-Use single letter identifiers only for the counter in loops.
-Class names use PascalCase.
-Variable names use camelCase.
-Variables include parameters, local variables, and data fields.
-EXCEPTION: use UPPER_CASE for constants/final variables.
-Method names use camelCase.
-The source file name consists of the case-sensitive name of the top-level class it contains, plus the .java extension
 
+##### Identifier Naming and Capitalization
 
-Comments: Classes
-Every class should be preceded with a descriptive comment using the Javadoc notational convention.
-The comment should describe the purpose of the class.
-Class names start with an uppercase letter (as mentioned above).
+- Use descriptive names for all variables, function names, constants, and other identifiers.
+- Use single letter identifiers only for the counter in loops.
+- Class names use PascalCase.
+- Variable names use camelCase.
+- Variables include parameters, local variables, and data fields
+  * EXCEPTION: use UPPER_CASE for constants/final variables.
+- Method names use camelCase.
+- The source file name consists of the case-sensitive name of the top-level class it contains, plus the .java extension
 
+##### Comments: Classes 
+Every class should be preceded with a descriptive comment using the Javadoc notational convention. The comment should describe the purpose of the class. Class names start with an uppercase letter (as mentioned above).
 
+##### Comments: Methods 
+Every method definition should be preceded with a descriptive comment using the Javadoc notational convention. The comment should include a description of the method, the name and description of each parameter, a description of the return value, and the name and description of any exceptions thrown within the method using Javadoc keyboards and formatting.
 
-Comments: Methods
-Every method definition should be preceded with a descriptive comment using the Javadoc notational convention.
-The comment should include a description of the method, the name and description of each parameter, a description of the return value, and the name and description of any exceptions thrown within the method using Javadoc keyboards and formatting.
+##### Comments: Public variables 
+Each public variable should be preceded with a descriptive comment using the Javadoc notational convention. The comment should describe the purpose for the public variable.
 
+##### Comments: In-line 
+In-line comments should be used to explain complicated sections of code, such as loops. Use the // comment delimiter for in-line comments. Do not comment on generally known features of the Java language.
 
+##### Spacing: Between lines 
+Use two blank lines to separate each method within a class definition. Use one blank line to separate logical sections of code within a method
 
+##### Spacing: Within lines 
+Put a single space before each ‘{‘. Separate all binary operators, such as ‘+’, ‘-’, ‘\*’, ‘/’, ‘%’, etc., with a single space. EXCEPTION: unary operators such as ‘++’, ‘--’, etc.
 
-Comments: Public variables
-Each public variable should be preceded with a descriptive comment using the Javadoc notational convention.
-The comment should describe the purpose for the public variable.
+##### Indentation 
+Open braces do not start a new line. Close braces do start a new line, and are indented with the code they close. Comments line up with the block they comment.
 
-
-Comments: In-line
-In-line comments should be used to explain complicated sections of code, such as loops.
-Use the // comment delimiter for in-line comments.
-Do not comment on generally known features of the Java language.
-
-Spacing: Between lines
-Use two blank lines to separate each method within a class definition.
-Use one blank line to separate logical sections of code within a method
-
-
-Spacing: Within lines
-Put a single space before each ‘{‘.
-Separate all binary operators, such as ‘+’, ‘-’, ‘*’, ‘/’, ‘%’, etc., with a single space.
-EXCEPTION: unary operators such as ‘++’, ‘--’, etc.
-
-Indentation
-Open braces do not start a new line.
-Close braces do start a new line, and are indented with the code they close.
-Comments line up with the block they comment.
-
-
-
-Program Modules
-Lines of code should be kept short, generally less than 80 or 100 characters wide.
-Each public class is contained in a separate file.
-Each file has the name of the public class contained within it.
+##### Program Modules 
+Lines of code should be kept short, generally less than 80 or 100 characters wide. Each public class is contained in a separate file. Each file has the name of the public class contained within it.
