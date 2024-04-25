@@ -8,10 +8,10 @@ import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Avatar, Button, Box } from '@mui/material';
 
-import Logo from '../../assets/logo.svg'; // Ensure the logo path is correct
-import TrophyIcon from '../../assets/trophy.png'; // Ensure the trophy icon path is correct
-import BurstImage from '../../assets/burst.png'; // Ensure the burst image path is correct
-import BackArrowImage from '../../assets/backArrow.png'; // Adjust the path according to your file structure
+import Logo from '../../assets/logo.svg';
+import TrophyIcon from '../../assets/trophy.png';
+import BurstImage from '../../assets/burst.png';
+import BackArrowImage from '../../assets/backArrow.png';
 
 /**
  * Styled component for the logo with absolute positioning
@@ -109,16 +109,20 @@ const LeaderboardList = styled('ul')({
   overflowY: 'auto', // Add vertical scrollbar when content overflows
 });
 
+const ButtonContainer = styled(Box)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+}));
+
 /**
  * Button for future functionality, styled for consistency with the theme
  * Ensure that any potential pseudo-elements or additional styling that might interfere
  * with transparency are also handled.
  */
 const LeaderboardButton = styled(Button)(({ theme }) => ({
-  fontSize: '4rem',
-  padding: '10px 20px',
+  fontSize: '1.6rem',
+  padding: '1px 8px',
   minWidth: 'auto',
-  backgroundColor: 'transparent', // Ensures the button itself has a transparent background
+  backgroundColor: '#EC8F47', // Ensures the button itself has a transparent background
   boxShadow: 'none', // Removes any box shadow that might be applied
   '&:hover': {
     backgroundColor: 'transparent', // Ensures the hover state is also transparent
@@ -203,9 +207,12 @@ const Leaderboard = () => {
             </LeaderboardItem>
           ))}
         </LeaderboardList>
-        <LeaderboardButton href="/home" variant="contained">
-        <TransparentAvatar src={BackArrowImage} alt="Back" />
-      </LeaderboardButton>
+        <ButtonContainer>
+          <LeaderboardButton href="/home" variant="contained">
+            Back
+            {/* <TransparentAvatar src={BackArrowImage} alt="Back" /> */}
+          </LeaderboardButton>
+      </ButtonContainer>
 
       </LeaderboardContent>
     </LeaderboardContainer>
