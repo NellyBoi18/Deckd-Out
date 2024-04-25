@@ -9,6 +9,8 @@ import RegisterScreen from "../main-screen/RegisterScreen";
 import LoginScreen from "../main-screen/LoginScreen";
 import LogoutScreen from "../main-screen/LogoutScreen";
 import Leaderboard from "../main-screen/Leaderboard";
+import SpadesDefault from "../game-screens/SpadesDefault";
+import CardDeck from '../main-screen/CardDeck';
 
 import LoginStatusContext from "../contexts/LoginStatusContext";
 

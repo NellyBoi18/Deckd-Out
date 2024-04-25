@@ -8,11 +8,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service class responsible for managing User entities.
+ */
 @Service
-public class UserService implements UserServiceInterface{
+public class UserService implements UserServiceInterface {
 
     @Autowired
     UserRepository userRepository;
+
+    /**
+     * Adds a new user.
+     *
+     * @param user The user to be added.
+     * @return A string indicating the result of the operation.
+     */
     @Override
     public String registerUser(User user) {
 
@@ -22,6 +32,11 @@ public class UserService implements UserServiceInterface{
         return "Successful";
     }
 
+    /**
+     * Retrieves all users.
+     *
+     * @return A list containing all users, sorted by descending ID.
+     */
     @Override
     public String loginUser(User user) {
 
@@ -38,4 +53,3 @@ public class UserService implements UserServiceInterface{
         return userRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 }
-

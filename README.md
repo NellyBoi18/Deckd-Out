@@ -1,6 +1,10 @@
 # Requirements and Specification Document
 
-## TeamName
+[![pipeline status](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/badges/main/pipeline.svg)](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/commits/main) 
+[![coverage report](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/badges/main/coverage.svg)](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/commits/main)
+[![Latest Release](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/badges/release.svg)](https://git.doit.wisc.edu/cdis/cs/courses/cs506/sp2024/team/tuesdaythursdaylecture/T_33/main-project/-/releases)
+
+## Team Name
 
 Deck’d Out
 
@@ -8,13 +12,13 @@ Deck’d Out
 
 <!--A one paragraph summary of what the software will do.-->
 
-This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: spades and euchre. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track user high scores and will be able to rank the users against each other. 
+This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: spades and euchre. Our application will allow the user to play the different card games while keeping track of the score. There will also be user profiles, which will track of the number of respective games the user has won and will be able to rank the users against each other. 
 
 ### Customer
 
 <!--A brief description of the customer for this software, both in general (the population who might eventually use such a system) and specifically for this document (the customer(s) who informed this document). Every project will have a customer from the CS506 instructional staff. Requirements should not be derived simply from discussion among team members. Ideally your customer should not only talk to you about requirements but also be excited later in the semester to use the system.-->
 
-In terms of the population who might eventually our system, I would say that for the most part it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. I feel that much older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
+In terms of the population who might eventually our system, it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. Much older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
 
 ### User Requirements
 
@@ -22,30 +26,40 @@ In terms of the population who might eventually our system, I would say that for
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| R11  | When the user first opens the application or when the user logs out, the frontend SHALL display the login page. | Med      | Open   |
-| R12  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | Med      | Open   |
-| R13  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | Med      | Open   |
-| R14  | When the user clicks on the profile button on any screen that is appears, the frontend SHALL display the profile page. | Med      | Open   |
-| R15  | When the user clicks on the settings button on any screen that is appears, the frontend SHALL display the settings page. | Med      | Open   |
-| R16  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | Med      | Open   |
-| R17  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
-| R18  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
-| R19  | When the user selects a card to play, the card will be inserted into the trick, the card SHALL be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | Med      | Open   |
-| R20  | When the winner of a trick is determined, the application SHALL display who won the trick to the user. | Med      | Open   |
-| R21  | After a round of spades, the correct number of points SHALL be calculated and added to each teams total, and if one team has over 500 points then they SHALL be declared the winner of the game. | Med      | Open   |
-| R22  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | Med      | Open   |
-| R23  | Users SHALL be able to sign into the application with an account and access their high scores. | Med      | Open   |
-| R24  | Users SHALL be able to play the specified card games against other players. | High     | Open   |
-| R25  | There SHALL be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
-| R26  | The user SHALL be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
-| R27  | The logic of each card game SHALL work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
-| R28  | Application UI SHALL be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
+| [R1](#76)  | When the user first opens the application or when the user logs out, the frontend SHALL display the login page. | Med      | Open   |
+| [R2](#77)  | When the user clicks on the sign in button after entering their valid username and password on the login page, the frontend SHALL display the game lobby page. | High      | Open   |
+| [R3](78)  | When the user clicks on the "Join Now" button on the login page, the frontend SHALL display the register page. | High      | Open   |
+| [R4](#79)  | When the user clicks on the profile button on any screen that it appears in, the frontend SHALL display the profile page. | Med      | Open   |
+| [R5](#80)  | When the user clicks on the settings button on any screen that it appears in, the frontend SHALL display the settings page. | Low      | Open   |
+| [R6](#81)  | On the game lobby page, when the user selects a game to play, the frontend SHALL display the game in question, and the backend SHALL begin the repsective game() method. | High      | Open   |
+| [R7](#82)  | When the user clicks on the leaderboard button, the frontend SHALL display a leaderboard containing the user's score compared to the scores of other registered users. | Med      | Open   |
+| [R8](#83)  | When the user clicks on the home button (top left, in the form of the logo), the frontend SHALL display the game lobby home screen. | Med      | Open   |
+| [R9](#84)  | When the user selects a card to play, the card will be inserted into the trick, the card SHALL be removed from the user's hand of cards, and the correct winner of the trick will be determined by the backend logic. | High      | Open   |
+| [R10](#85)  | When the winner of a trick is determined, the application SHALL display who won the trick to the user. | Med      | Open   |
+| [R11](#86)  | After a round of spades, the correct number of points SHALL be calculated and added to each teams total, and if one team has over 500 points then they SHALL be declared the winner of the game. | Med      | Open   |
+| [R12](#87)  | [GENERAL REQ] When the user begins a game of spades, the game logic defined in the backend SHALL be correctly implemented and allow for a legal game of spades to be played. | High      | Open   |
+| [R13](#88)  | Users SHALL be able to sign into the application with an account and access their high scores. | Med      | Open   |
+| [R14](#89)  | Users SHALL be able to play the specified card games against other players. | Low     | Open   |
+| [R15](#90)  | There SHALL be a ranking system that compares the user's scores to other player's scores. | Med     | Open   |
+| [R16](#91)  | The user SHALL be able to access a hub that will allow them to pick the card game that they want to play. | High      | Open   |
+| [R17](#92)  | The logic of each card game SHALL work properly, and allow for a winner and a loser, as well as correct scoring. | Med     | Open   |
+| [R18](#93)  | Application UI SHALL be as accessible and clear, with no confusing buttons or settings. | High     | Open   |
+| [R19](#122)  | The application SHALL be able to connect to the backend logic and display the correct information to the user. | High     | Open   |
+| [R20](#123)  | The application SHALL be able to handle an incorrect username / password pair and display an error message to the user. | High      | Open   |
+| [R21](#124)  | The application SHALL be able to prevent users from making illegal moves in the card games. | High     | Open   |
+| [R22](#125)  | The user SHALL be able to see the cards that they are playing with in a graphical representation. | High     | Open   |
+| [R23](#126)  | The user SHALL be able to see the game of spades that they are playing. | High     | Open   |
+| [R24](#127)  | The user SHALL be able to see the game of euchre that they are playing. | High     | Open   |
+| [R25](#128)  | The user SHALL be able to view all the past card games they played while logged into their account. | Low     | Open   |
+
 
 ### Use Cases & User Stories
 
 <!--Use cases and user stories that support the user requirements in the previous section. The use cases should be based off user stories. Every major scenario should be represented by a use case, and every use case should say something not already illustrated by the other use cases. Diagrams (such as sequence charts) are encouraged. Ask the customer what are the most important use cases to implement by the deadline. You can have a total ordering, or mark use cases with “must have,” “useful,” or “optional.” For each use case you may list one or more concrete acceptance tests (concrete scenarios that the customer will try to see if the use case is implemented).-->
 
-As a user, I want to log into the card app using a username and password so that I can access the features available to my account.
+As a user, I want to be able to register for an account so that I can access the features available to my account.
+
+As a user, I want to log into the card game hub using a username and password so that I can access the features available to my account.
 
 As a user, I want to be able to use the graphical user interface (GUI) to select the mode of operation.
 
@@ -59,6 +73,8 @@ As a user, I want to play a legal game of Spades against a computer player.
 
 As a user, I want the card application to prevent me from making an illegal move.
 
+As a user I want the Euchre backend logic to be correct.
+
 As a user, I want to play a legal game of Euchre against a human player over the internet.
 
 As a user, I want to play a legal game of Spades against a human player over the internet.
@@ -71,7 +87,17 @@ As a user, I want to be able to view a leaderboard to see how I rank against oth
 
 As a user, I want to be able to view my leaderboard rank update as I play more games against other players.
 
-As a user, I want to be able to navigate betwee screens.
+As a user, I want to be able to navigate between screens.
+
+As a user, I want to be able to access the game lobby from any screen.
+
+As a user, I want the card data from the UI to connect with the Backend functionality in both Spades and Euchre logic.
+
+As a developer, I want more insight on how to connect frontend to backend.
+
+As a user, I want a graphical representation of the cards that I am playing with.
+
+As a user, I want to be able to see the game of Spades that I am playing.
 
 ### User Interface Requirements
 
@@ -79,7 +105,25 @@ As a user, I want to be able to navigate betwee screens.
 
 <!--NOTE: Please include illustrations or screenshots of what your user interface would look like -- even if they’re rough -- and interleave it with your description.-->
 
-Images can be included with `![alt_text](image_path)`
+The user interface for the application will have a login page, a register page, a home page, a game page, and a leaderboard page. 
+
+The login page will have a text field for the user to enter their username and a text field for the user to enter their password.
+![Login Page](Images/signIn.png)
+There will be a sign in button that the user can click to sign in and a join now button that the user can click to register. 
+The register page will have a text field for the user to enter their username, a text field for the user to enter their email, a text field for the user to enter their password, and a text field for the user to verify their password. 
+![Register Page](Images/register.png)
+
+The home page will allow the user to select a game to play. 
+![Home Page](Images/home.png)
+
+The game page will display the game that the user is playing.
+![Game Page](Images/gameDeal.png)
+For both Spades and Euchre
+![Spades Game](Images/spadesGame.png)
+![Euchre Game](Images/euchreTrump.png)
+
+The leaderboard page will display the user's rank compared to other users.
+![Leaderboard Page](Images/leaderboard.png)
 
 ### Security Requirements
 
@@ -87,9 +131,12 @@ Images can be included with `![alt_text](image_path)`
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| R11  | Users should be able to safely input their username and password and know it is protected. | Med      | Open   |
-| R12  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High     | Open   |
-| R13  | Incorrect username / password pairs should be allowed to access accounts. | Med     | Open   |
+| [SR1](#129)  | Users should be able to safely input their username and password and know it is protected. | Low      | Open   |
+| [SR2](#130)  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Open   |
+| [SR3](#131)  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Open   |
+| [SR4](#132)  | Users should not be able to access other user's accounts. | High     | Open   |
+| [SR5](#133)  | Users should not be able to access the backend logic of the application. | Low     | Open   |
+| [SR6](#134)  | Users should not be able to access the database of the application. | High     | Open   |
 
 
 ### System Requirements
@@ -98,7 +145,14 @@ Images can be included with `![alt_text](image_path)`
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| R11  | We are targeting Windows users with our application. | Med      | Open   |
+| [SYSR1](#135)  | We are targeting Windows users with our application. | Med      | Open   |
+| [SYSR2](#136)  | We are targeting MacOS users with our application. | Med      | Open   |
+| [SYSR3](#137)  | We are targeting Linux users with our application. | Med      | Open   |
+| [SYSR4](#138)  | Web browsers that support JavaScript are required to run our application. | High      | Open   |
+| [SYSR5](#139)  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Open   |
+| [SYSR6](#140)  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Open   |
+| [SYSR7](#141)  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Open   |
+| [SYSR8](#142)  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Open   |
 
 ### Specification
 
@@ -108,10 +162,6 @@ Images can be included with `![alt_text](image_path)`
 
 <!--Included below are some sample diagrams, including some example tech stack diagrams.-->
 
-Database architecture found below!
-
-Technoloy Stack also found below!
-
 #### Technology Stack
 
 User Interface Frontend:
@@ -119,7 +169,7 @@ User Interface Frontend:
 - Purpose: This layer handles the presentation and interactivity with the user, delivering a responsive and accessible experience.
 
 Backend:
-- Technologies: Java
+- Technologies: Java, Spring Boot
 - Purpose: The backend serves as the bridge between the frontend and the game engine, handling requests, and processing the game logic.
 
 Game Engine:
@@ -130,19 +180,22 @@ Game Logic:
 - Technologies: Java 
 - Purpose: Implements the specific rules and mechanics of each game (Euchre, Spades), including scoring calculations and decision-making.
 
-Networking:
+<!--Networking:
 - Technologies: Java sockets for network communication, and Java RMI (Remote Method Invocation) for distributed object applications.
-- Purpose: To handle multiplayer interactions, synchronization of game state across clients, and to facilitate communication with the backend for authentication and database interactions.
+- Purpose: To handle multiplayer interactions, synchronization of game state across clients, and to facilitate communication with the backend for authentication and database interactions.-->
+Networking:
+- Technologies: Java Database Connectivity (JDBC)
+- Purpose: To connect to the database, allowing for the storage and retrieval of user data, game states, and scores.
 
 User Authentication:
 - Technologies: JSON Web Tokens (JWT) 
 - Purpose: To securely identify users and manage sessions, ensuring that users can securely log in and interact with the system.
 
 Database:
-- Technologies: SQL Database ( MySQL or NoSQL)
+- Technologies: MySQL Database
 - Purpose: To store user information, game states, scores, and potentially complex game-related data structures.
 
-Score Calculation (Specific to Each Game):
+Score Calculation:
 - Technologies: Java 
 - Purpose: To calculate and maintain scores based on the rules of Euchre and Spades, respectively. 
 
@@ -156,12 +209,23 @@ title: Deck'd Out Database ERD
 erDiagram
     Users {
         int ID PK, UK
+        varchar email "NOT NULL"
+        varchar username UK "NOT NULL"
+        varchar password "NOT NULL"
+        int spades_num_games "DEFAULT 0"
+        int spades_games_won "DEFAULT 0"
+        int euchre_num_games "DEFAULT 0"
+        int euchre_games_won "DEFAULT 0"
+    }
+
+```
+<!--Target database design-->
+<!--erDiagram
+    Users {
+        int ID PK, UK
         varchar email
         varchar username UK
-        varchar verySecurePlainTextPassword
-        varchar firstName
-        varchar lastName
-        date DOB
+        varchar password
     }
 
     Users ||--o{ Spades : played
@@ -210,10 +274,8 @@ erDiagram
         int GAME_ID FK
         time timestamp
         varchar move
-    }
+    }-->
 
-
-```
 
 #### Class Diagram
 
@@ -234,6 +296,21 @@ classDiagram
         + ArrayList<Card> getHand()
         + void removePlayedCard(Card playedCard)
         + String getuserName()
+        + boolean hasTrump(ArrayList<Card> hand)
+        + boolean hasLeadingSuit(ArrayList<Card> hand, String leadingSuit)
+        + Card getHighNorm(Player player)
+        + Card getLowNorm(Player player)
+        + int numtrump(Player player)
+        + boolean containsCard(Card card, Player player)
+        + boolean containsNormAce(Player player)
+        + Card getHighSuit(Player player, String suit)
+        + Card getLowSuit(Player player, String suit)
+        + boolean hasGivenSuit(Player player, String suit)
+        + boolean hasGivenCard(Player player, Stringsuit, int cardVal)
+        + int numNonTrumpVals(Player player, int cardVal)
+        + Card cpuChooseCardSpades(Player cpu, String leadingSuit, Player startPlayer)
+        + int cpuChooseBid(Player cpu)
+        + String[] cpuSuitDecision(Player cpu, String flippedTrump)
     }
 
     class Card {
@@ -249,6 +326,7 @@ classDiagram
         + String getSuit()
         + int getCardValue()
         + Player getOwner()
+        + boolean isSpade()
         + String toString()
     }
 
@@ -258,30 +336,77 @@ classDiagram
         + void shuffle()
         + ArrayList<Card> spadesDeal(Player playerName)
         + ArrayList<Card> euchreDeal(Player playerName)
-        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
         + Card cardCompareEuchre()
         + String toString()
     }
-    
-    class Round {
-        - int p1Bid, p2Bid, p3Bid, p4Bid
-        - int p1Tricks = 0
-        - int p2Tricks = 0
-        - int p3Tricks = 0
-        - int p4Tricks = 0
-        - int team1Pred = p1Bid + p3Bid;
-        - int team2Pred = p2Bid + p4Bid;
-        - String player1, player2, player3, player4
-        - Trick[] tricks; 
-        - Player startPlayer;
-        - Deck deck = new Deck();
-        - Player p1, p2, p3, p4;
-        - int team1OverTricks;
-        - int team2OverTricks;
-        + Round(int team1Pred, int team2Pred, Player p1, Player p2, Player p3, Player p4)
-        + void trickLogicSpades(ArrayList<Card> p1Hand, ArrayList<Card> p2Hand, ArrayList<Card> p3Hand, ArrayList<Card> p4Hand)
+
+    class EuchreRound {
+        - String declaredTrump
+        - String flippedTrump
+        - int p1EuchreTricks
+        - int p2EuchreTricks
+        - int p3EuchreTricks
+        - int p4EuchreTricks
+        - String teamPrediction
+        - int team1EuchreTricks
+        - int team2EuchreTricks
+        - Trick[] euchreTrick
+        - Player euchreStartPlayer
+        - Deck deck
+        - Player p1Euchre
+        - Player p2Euchre
+        - Player p3Euchre
+        - Player p4Euchre
+        - String EuchreLeadingSuit
+        - boolean goAlone
+        - boolean nameSuit
+        - int dealerTracker
+        + EuchreRound(String teamPrediction, Player p1Euchre, Player p2Euchre, Player p3Euchre, Player p4Euchre)
+        + trickLogicSpades(ArrayList<Card> p1EuchreHand, ArrayList<Card> p2EuchreHand, ArrayList<Card> p3EuchreHand, ArrayList<Card> p4EuchreHand, Player euchreStartPlayer)
+        + int[] playRoundEuchre()
+    }
+
+    class SpadesRound { 
+        - int p1SpadesBid
+        - int p2SpadesBid
+        - int p3SpadesBid
+        - int p4SpadesBid
+        - int p1SpadesTricks
+        - int p2SpadesTricks
+        - int p3SpadesTricks
+        - int p4SpadesTricks
+        - int team1SpadesPred
+        - int team2SpadesPred
+        - Trick[] spadesTrick
+        - Player spadesStartPlayer
+        - Deck deck
+        - Player p1Spades
+        - Player p2Spades
+        - Player p3Spades
+        - Player p4Spades
+        - int team1SpadesOvrTricks
+        - int team2SpadesOvrTricks
+        - String spadesLeadingSuit
+        + SpadesRound(int team1SpadesPred, int team2SpadesPred, Player p1Spades, Player p2Spades, Player p3Spades, Player p4Spades)
+        + boolean legalCardCheck(Card card)
+        + Player trickLogicSpades(ArrayList<Card> p1SpadesHand, ArrayList<Card> p2SpadesHand, ArrayList<Card> p3SpadesHand, ArrayList<Card> p4SpadesHand, Player spadesStartPlayer)
         + int[] playRoundSpades()
-        + int pointCalc(int player1Tricks, int player2Tricks, int prediction, int teamOverTricks)
+        + int pointCalc(int player1SpadesTrick, int player2spadesTrick, int prediction, int teamOverspadesTrick, String team)
+        + void setTeam1OvrspadesTrick(int num)
+        + void setTeam2OvrspadesTrick(int num)
+        + ArrayList<Card> getLegalCards(String spadesLeadingSuit)
+    }
+
+    class SpadeGameLogic { 
+        String player1Name
+        String player2Name
+        String player3Name
+        String player4Name
+        Deck deck
+        int team1PT
+        int team2PT
+        int placeHldrBid
+        + void gameLogic()
     }
 
     class Trick {
@@ -292,7 +417,10 @@ classDiagram
         - Player winningPlayer
         + Trick(ArrayList<Card> trickCards)
         + Card winnerOfTrick()
+        + Card winnerOfEuchreTrick()
+        + Card cardCompareEuchre(String leadingSuit, ArrayList<Card> trickCards)
         + Player getWinningPlayer()
+        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
     }
 ```
 
@@ -300,35 +428,45 @@ classDiagram
 
 ```mermaid
 ---
-title: Sample Program Flowchart
+title: Deck'd Out Program Flowchart
 ---
 graph TD;
-    Start([Start]) --> Input_Data[/Input Data/];
-    Input_Data --> Process_Data[Process Data];
-    Process_Data --> Validate_Data{Validate Data};
-    Validate_Data -->|Valid| Process_Valid_Data[Process Valid Data];
-    Validate_Data -->|Invalid| Error_Message[/Error Message/];
-    Process_Valid_Data --> Analyze_Data[Analyze Data];
-    Analyze_Data --> Generate_Output[Generate Output];
-    Generate_Output --> Display_Output[/Display Output/];
-    Display_Output --> End([End]);
-    Error_Message --> End;
+    Start([Start]) --> |Login| Login_Data[/Input Login Data/]
+    Start --> |Register| Register[/Input Registration Info/]
+    Login_Data --> Process_Valid_Data[Process Valid Data]
+    Register --> Process_Valid_Data
+    Process_Valid_Data --> Select_Game{Select Game}
+    Select_Game --> |Spades| Spades_UI
+    Select_Game --> |Euchre| Euchre_UI
+    Spades_UI --> Play_Spades[Play Spades]
+    Euchre_UI --> Play_Euchre[Play Euchre]
+    Play_Spades --> End([End])
+    Play_Euchre --> End
 ```
 
 #### Behavior
 
 ```mermaid
 ---
-title: Sample State Diagram For Coffee Application
+title: State Diagram For Deck'd Out Application
 ---
 stateDiagram
     [*] --> Ready
-    Ready --> Brewing : Start Brewing
-    Brewing --> Ready : Brew Complete
-    Brewing --> WaterLowError : Water Low
-    WaterLowError --> Ready : Refill Water
-    Brewing --> BeansLowError : Beans Low
-    BeansLowError --> Ready : Refill Beans
+    Ready --> Login : Login
+    Ready --> Register : Register
+    Login --> GameLobby : Login Success
+    Register --> GameLobby : Register Success
+    Login --> Login : Login Failure
+    Register --> Register : Register Failure
+    GameLobby --> Spades : Spades
+    GameLobby --> Euchre : Euchre
+    GameLobby --> Leaderboard : Leaderboard
+    Spades --> SpadesGame : Play Spades
+    Euchre --> EuchreGame : Play Euchre
+    Spades --> GameLobby : Select Another Game
+    Euchre --> GameLobby : Select Another Game
+    SpadesGame --> Spades : Spades Game Over
+    EuchreGame --> Euchre : Euchre Game Over
 ```
 
 #### Sequence Diagram
@@ -337,27 +475,45 @@ stateDiagram
 sequenceDiagram
 
 participant ReactFrontend
-participant DjangoBackend
+participant SpringBootBackend
 participant MySQLDatabase
 
-ReactFrontend ->> DjangoBackend: HTTP Request (e.g., GET /api/data)
-activate DjangoBackend
+ReactFrontend ->> SpringBootBackend: HTTP Request (e.g., GET /api/card)
+activate SpringBootBackend
 
-DjangoBackend ->> MySQLDatabase: Query (e.g., SELECT * FROM data_table)
+SpringBootBackend ->> MySQLDatabase: Query (e.g., SELECT * FROM card)
 activate MySQLDatabase
 
-MySQLDatabase -->> DjangoBackend: Result Set
+MySQLDatabase -->> SpringBootBackend: Result Set
 deactivate MySQLDatabase
 
-DjangoBackend -->> ReactFrontend: JSON Response
-deactivate DjangoBackend
+SpringBootBackend -->> ReactFrontend: JSON Response
+deactivate SpringBootBackend
 ```
 
 #### System Architecture Diagram
 
 <!-- May need to actually draw this using something like mermaid for the README-->
 
-![System Architecture Diagram](Images/SystemArchDiagram.jpg)
+```mermaid
+stateDiagram
+    User --> Frontend: User Interface
+    Frontend --> Backend: User Input
+    Backend --> Frontend: Game State
+    Backend --> GameEngine: Game Logic
+    GameEngine --> GameLogic: Game Rules
+    GameLogic --> Spades: Spades Rules
+    GameLogic --> Euchre: Euchre Rules
+    Spades --> ScoreCalculation: Score Calculation
+    Euchre --> ScoreCalculation: Score Calculation
+    ScoreCalculation --> Backend: Score Update
+    Backend --> Database: Data Storage
+    Database --> Backend: Data Retrieval
+    Frontend --> Database: User Data
+    
+```
+
+<!--![System Architecture Diagram](Images/SystemArchDiagram.jpg)-->
 
 ### Standards & Conventions
 

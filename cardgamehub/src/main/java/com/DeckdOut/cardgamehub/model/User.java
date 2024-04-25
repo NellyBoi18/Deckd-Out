@@ -33,25 +33,25 @@ public class User {
     private String password;
 
     /**
-     * The number of spades game the user has played
+     * The number of spades games the user has played.
      */
     @Column(nullable = true)
     private int spadesNumGames;
 
     /**
-     * The number of spades game the user has won
+     * The number of spades games the user has won.
      */
     @Column(nullable = true)
     private int spadesGamesWon;
 
     /**
-     * The number of euchre game the user has played
+     * The number of euchre games the user has played.
      */
     @Column(nullable = true)
     private int euchreNumGames;
 
     /**
-     * The number of euchre game the user has won
+     * The number of euchre games the user has won.
      */
     @Column(nullable = true)
     private int euchreGamesWon;
@@ -70,15 +70,6 @@ public class User {
     public int getId() {
         return id;
     }
-
-    // /**
-    //  * Sets the unique identifier of the user.
-    //  *
-    //  * @param id The unique identifier to set.
-    //  */
-    // public void setId(int id) {
-    //     this.id = id;
-    // }
 
     /**
      * Retrieves the username of the user.
@@ -171,40 +162,38 @@ public class User {
     }
 
     /**
-     * Retrieves the number of spades games the user has played.
+     * Retrieves the number of euchre games the user has played.
      *
-     * @return The number of spades games the user has played.
+     * @return The number of euchre games the user has played.
      */
     public int getEuchreNumGames() {
         return euchreNumGames;
     }
 
     /**
-     * Sets the number of spades games the user has played.
+     * Sets the number of euchre games the user has played.
      *
-     * @param spadesNumGames The number of spades games to set.
+     * @param euchreNumGames The number of euchre games to set.
      */
     public void setEuchreNumGames(int euchreNumGames) {
         this.euchreNumGames = euchreNumGames;
     }
 
     /**
-     * Retrieves the number of spades games the user has won.
+     * Retrieves the number of euchre games the user has won.
      *
-     * @return The number of spades games the user has won.
+     * @return The number of euchre games the user has won.
      */
     public int getEuchreGamesWon() {
         return euchreGamesWon;
     }
 
     /**
-     * Sets the number of spades games the user has won.
+     * Sets the number of euchre games the user has won.
      *
-     * @param spadesNumGames The number of spades game wins to set.
+     * @param euchreNumGames The number of euchre game wins to set.
      */
     public void setEuchreGamesWon(int euchreGamesWon) {
         this.euchreGamesWon = euchreGamesWon;
     }
-
-
 }

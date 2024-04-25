@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Avatar, Button, Box } from '@mui/material';
 
@@ -7,38 +8,31 @@ import TrophyIcon from '../../assets/trophy.png'; // Ensure the trophy icon path
 import BurstImage from '../../assets/burst.png'; // Ensure the burst image path is correct
 import BackArrowImage from '../../assets/backArrow.png'; // Adjust the path according to your file structure
 
-
-// Dummy data for leaderboard - replace with data fetching logic in a real application
-const users = [
-  { id: 1, username: 'USERNAME_1', score: 15000, avatar: 'path-to-avatar-1.png' },
-  // ... more users
-];
-
-
 /**
  * Styled component for the logo with absolute positioning
  */
 const LogoContainer = styled(Box)(({ theme }) => ({ 
   position: 'absolute',
-  top: theme.spacing(2),
-  left: theme.spacing(2),
+  top: theme.spacing(0),
+  left: theme.spacing(0),
 }));
-
 
 /**
  * Container for the entire leaderboard, styled for full viewport height, width, and background
  */
 const LeaderboardContainer = styled(Container)(({ theme }) => ({
-  backgroundColor: '#EC8F47',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '100vw',//todo make 100% for both 
-  height: '100vh',
+  width: '100%',
+  height: '100%',
   background: `url(${BurstImage}) center/cover no-repeat, ${'#EC8F47'}`,
+  overflow: 'hidden',
+  position: 'absolute', // Make it cover the entire viewport
+  top: 0,
+  left: 80,
 }));
-
 /**
  * Main content area for leaderboard, defining size, color, and layout
  */
@@ -47,15 +41,12 @@ const LeaderboardContent = styled(Box)(({ theme }) => ({
   borderRadius: '50px',
   padding: theme.spacing(3),
   width: '700px',
-  height: '600px',
+  height: '500px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center', // This should center the children
   justifyContent: 'space-between', // This will push the button to the bottom
-  margin: 'auto', // This centers the box itself within its container
 }));
-
-
 
 const LeaderboardTitleContainer = styled(Box)({
   display: 'flex',
@@ -71,6 +62,7 @@ const LeaderboardTitleContainer = styled(Box)({
 const LeaderboardHeader = styled('header')({
   display: 'flex',
   alignItems: 'center',
+  flexDirection: 'column', 
   justifyContent: 'center', // Changed to center the title and trophies
   width: '100%',
   marginBottom: '20px',
@@ -112,25 +104,58 @@ const LeaderboardList = styled('ul')({
 
 /**
  * Button for future functionality, styled for consistency with the theme
+ * Ensure that any potential pseudo-elements or additional styling that might interfere
+ * with transparency are also handled.
  */
 const LeaderboardButton = styled(Button)(({ theme }) => ({
-  fontSize: '4rem', // Increases the font size, which also increases the icon size inside the button
-  padding: '10px 20px', // Adjusts the padding to make the button larger
+  fontSize: '4rem',
+  padding: '10px 20px',
   minWidth: 'auto',
-  backgroundColor: 'transparent', // Remove the blue background color
+  backgroundColor: 'transparent', // Ensures the button itself has a transparent background
+  boxShadow: 'none', // Removes any box shadow that might be applied
   '&:hover': {
-    backgroundColor: 'transparent', // Remove the blue background color on hover
+    backgroundColor: 'transparent', // Ensures the hover state is also transparent
+    boxShadow: 'none',
+  },
+  // If there's an ::after or ::before pseudo-element causing the issue, override it here
+  '&::before': {
+    content: 'none',
+  },
+  '&::after': {
+    content: 'none',
   },
 }));
+
+/**
+ * Style overrides for the MUI Avatar component to ensure it has a transparent background
+ */
+const TransparentAvatar = styled(Avatar)({
+  backgroundColor: 'transparent !important', // Override any other background styles
+});
+
 
 /**
  * Functional component representing the Leaderboard
  */
 const Leaderboard = () => {
+
+  // Fetch users from api
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+      fetch("http://localhost:8080/user")
+      .then(res => res.json())
+      .then(users => {
+        users.sort((a, b) => b.spadesGamesWon - a.spadesGamesWon); // Sort users by games won
+        setUsers(users);})
+      .catch(e => console.log(e))
+  }
+  , [users]);
+  
   return (
+
     <LeaderboardContainer>
       <LogoContainer>
-        <Avatar src={Logo} alt="Deck'd Out Logo" sx={{ width: 150, height: 150 }} />
+        <Avatar src={Logo} alt="Deck'd Out Logo" sx={{ width: 110, height: 110 }} />
       </LogoContainer>
       <LeaderboardContent>
       <LeaderboardHeader>
@@ -141,20 +166,20 @@ const Leaderboard = () => {
           </LeaderboardTitleContainer>
         </LeaderboardHeader>
         <LeaderboardList>
-          {users.map((user, index) => (
-            <LeaderboardItem key={user.id} isTopUser={index < 3}>
-              <Typography variant="h6" component="span">{index + 1}</Typography>
-              <Avatar src={user.avatar} alt={user.username} />
+        {users.map((user, index) => (
+            <LeaderboardItem key={index}>
               <Typography>{user.username}</Typography>
-              <Typography>{user.score}</Typography>
+              <Typography>{user.spadesGamesWon}</Typography>
             </LeaderboardItem>
           ))}
         </LeaderboardList>
         <LeaderboardButton href="/home" variant="contained">
-          <Avatar src={BackArrowImage} alt="Back" sx={{ width: 48, height: 48 }} /> 
-        </LeaderboardButton>
+        <TransparentAvatar src={BackArrowImage} alt="Back" />
+      </LeaderboardButton>
+
       </LeaderboardContent>
     </LeaderboardContainer>
+    
   );
 };
 
