@@ -1,3 +1,8 @@
+/**
+ * Leaderboard component for user ranking functionality.
+ * @module Leaderboard
+ */
+
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
@@ -90,7 +95,7 @@ const LeaderboardItem = styled('li')(({ theme, isTopUser }) => ({
   padding: theme.spacing(1),
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-around',
+  justifyContent: 'space-between', // Aligns items evenly along the main axis
 }));
 
 /**
@@ -100,6 +105,8 @@ const LeaderboardList = styled('ul')({
   listStyle: 'none',
   padding: 0,
   width: '100%',
+  maxHeight: 'calc(100% - 160px)', // Adjust the maximum height as needed
+  overflowY: 'auto', // Add vertical scrollbar when content overflows
 });
 
 /**
@@ -131,6 +138,25 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
  */
 const TransparentAvatar = styled(Avatar)({
   backgroundColor: 'transparent !important', // Override any other background styles
+});
+
+/**
+ * Header bar container to display column headers
+ */
+const HeaderBar = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '98%',
+  marginBottom: theme.spacing(1),
+  borderBottom: '2px solid #CC4124',
+  paddingBottom: theme.spacing(1),
+}));
+
+/**
+ * Styled component for column headers
+ */
+const ColumnHeader = styled(Typography)({
+  fontWeight: 'bold',
 });
 
 
@@ -165,6 +191,10 @@ const Leaderboard = () => {
             <Avatar src={TrophyIcon} alt="Trophy" sx={{ width: 50, height: 50, marginLeft: 2 }} />
           </LeaderboardTitleContainer>
         </LeaderboardHeader>
+        <HeaderBar>
+          <ColumnHeader>Username</ColumnHeader>
+          <ColumnHeader>Games Won</ColumnHeader>
+        </HeaderBar>
         <LeaderboardList>
         {users.map((user, index) => (
             <LeaderboardItem key={index}>
