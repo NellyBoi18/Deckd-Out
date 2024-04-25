@@ -8,6 +8,7 @@ import RegisterScreen from "../main-screen/RegisterScreen";
 import LoginScreen from "../main-screen/LoginScreen";
 import Leaderboard from "../main-screen/Leaderboard";
 import SpadesDefault from "../game-screens/SpadesDefault";
+import CardDeck from '../main-screen/CardDeck';
 
 export default function CGRouter() {
     /**
@@ -27,6 +28,7 @@ export default function CGRouter() {
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/spades" element={<SpadesDefault />} />
                 {/* <Route path="/TESTING" element={<TestTable />} /> */}
+                <Route path="/carddeck" element={<CardDeck />} />
 
                 {/* (temporary reference for how to set up navigation)
                 <Route path="/" element={<BadgerBuds />}>
