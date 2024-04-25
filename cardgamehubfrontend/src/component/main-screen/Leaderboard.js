@@ -11,7 +11,7 @@ import { Container, Typography, Avatar, Button, Box } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 import TrophyIcon from '../../assets/trophy.png';
 import BurstImage from '../../assets/burst.png';
-import BackArrowImage from '../../assets/backArrow.png';
+// import BackArrowImage from '../../assets/backArrow.png';
 
 /**
  * Styled component for the logo with absolute positioning
@@ -140,9 +140,9 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
 /**
  * Style overrides for the MUI Avatar component to ensure it has a transparent background
  */
-const TransparentAvatar = styled(Avatar)({
-  backgroundColor: 'transparent !important', // Override any other background styles
-});
+// const TransparentAvatar = styled(Avatar)({
+//   backgroundColor: 'transparent !important', // Override any other background styles
+// });
 
 /**
  * Header bar container to display column headers
