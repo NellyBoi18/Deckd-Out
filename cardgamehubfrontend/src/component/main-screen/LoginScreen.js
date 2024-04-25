@@ -3,10 +3,12 @@
  * @module LoginScreen
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext , useEffect} from 'react';
 import { styled } from '@mui/system';
 import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
+
+import LoginStatusContext from "../contexts/LoginStatusContext";
 
 /**
  * RootContainer styled component for the main container.
@@ -100,24 +102,58 @@ const LogoImage = styled('img')({
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [users, setUsers] = useState([]);
+  const [loginStatus, setLoginStatus] = useContext(LoginStatusContext);
+
+  // Fetch users from api. Don't worry. It's VERY SECURE.
+  useEffect(() => {
+    fetch("http://localhost:8080/user")
+      .then(res => res.json())
+      .then(users => setUsers(users))
+      .catch(error => console.error("Error fetching users: ", error))
+  }
+  , []); // Empty dependency array means this effect runs only once after initial render
 
   /**
    * Handle login form submission.
    * @param {Event} event - The event object.
    */
-  const handleLogin = (event) => {
-    // event.preventDefault(); 
-    // if (!username || !password) {
-    //   alert('You must provide a username and password!');
-    // } else if (0) {
-    //   //verify user and pass here
-    //   alert('Your passwords do not match!');
-    // } else {
-    //   // Make a POST request to the registration API
-    //   // Upon successful login, redirect to the home page
-    //   window.location.href = '/home';
-    // }
-    window.location.href = '/home';
+  const handleLogin = async (e) => {
+    e.preventDefault(); 
+
+    if (!username || !password) {
+      alert('You must provide a username and password!');
+    } else {
+      try{
+        // Check if user exists
+        const loggedInUser = users.find(user => user.username === username);
+
+        if (loggedInUser) { // User exists
+          if (loggedInUser.password === password) { // Password is correct
+            console.log('Login successful')
+
+            //sign user in
+            setLoginStatus({
+              isLoggedIn: true,
+              loggedInUsername: username,
+            });
+            sessionStorage.setItem("username", username);
+            console.log(loginStatus.loggedInUsername);
+            console.log(sessionStorage.getItem("username"));
+            // Redirect user to home
+            window.location.href = '/home';
+          } else { // Password is incorrect
+            alert('Password is incorrect');
+            return; 
+          }
+        } else { // User does not exist
+          alert('User does not exist');
+          return;
+        }
+      } catch (error){
+        console.error('Login error:', error.message);
+      }
+    }
   };
 
   return (
