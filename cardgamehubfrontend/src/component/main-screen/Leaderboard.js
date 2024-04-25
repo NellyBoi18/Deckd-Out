@@ -11,7 +11,7 @@ import { Container, Typography, Avatar, Button, Box } from '@mui/material';
 import Logo from '../../assets/logo.svg';
 import TrophyIcon from '../../assets/trophy.png';
 import BurstImage from '../../assets/burst.png';
-// import BackArrowImage from '../../assets/backArrow.png';
+import BackArrowImage from '../../assets/backArrow.png';
 
 /**
  * Styled component for the logo with absolute positioning
@@ -31,12 +31,13 @@ const LeaderboardContainer = styled(Container)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   width: '100%',
-  height: '100%',
+  height: '100vh',
   background: `url(${BurstImage}) center/cover no-repeat, ${'#EC8F47'}`,
   overflow: 'hidden',
   position: 'absolute', // Make it cover the entire viewport
   top: 0,
-  left: 80,
+  left: 0,
+  right: 0,
 }));
 /**
  * Main content area for leaderboard, defining size, color, and layout
@@ -140,9 +141,9 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
 /**
  * Style overrides for the MUI Avatar component to ensure it has a transparent background
  */
-// const TransparentAvatar = styled(Avatar)({
-//   backgroundColor: 'transparent !important', // Override any other background styles
-// });
+const TransparentAvatar = styled(Avatar)({
+  backgroundColor: 'transparent !important', // Override any other background styles
+});
 
 /**
  * Header bar container to display column headers
@@ -209,8 +210,8 @@ const Leaderboard = () => {
         </LeaderboardList>
         <ButtonContainer>
           <LeaderboardButton href="/home" variant="contained">
-            Back
-            {/* <TransparentAvatar src={BackArrowImage} alt="Back" /> */}
+            {/* Back */}
+            <TransparentAvatar src={BackArrowImage} alt="Back" />
           </LeaderboardButton>
       </ButtonContainer>
 
