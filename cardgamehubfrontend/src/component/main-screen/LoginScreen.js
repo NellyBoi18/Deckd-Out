@@ -102,11 +102,10 @@ const LogoImage = styled('img')({
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const [users, setUsers] = useState([]);
   const [loginStatus, setLoginStatus] = useContext(LoginStatusContext);
 
   // Fetch users from api. Don't worry. It's VERY SECURE.
-  const [users, setUsers] = useState([]);
   useEffect(() => {
     fetch("http://localhost:8080/user")
       .then(res => res.json())
