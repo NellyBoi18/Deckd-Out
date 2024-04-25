@@ -140,7 +140,7 @@ export default function HomeScreen() {
                     <Avatar alt="Default Profile Icon" src={DefaultProfileIcon} sx={{ width: 30, height: 30 }} />
               </Grid>
               <ButtonText variant="button" onClick={() =>
-                console.log("Username:", sessionStorage.getItem("username"))}>
+                window.location.href = '/logout'}>
                 {sessionStorage.getItem("username")}
               </ButtonText>
           </SecondaryRedButton>
