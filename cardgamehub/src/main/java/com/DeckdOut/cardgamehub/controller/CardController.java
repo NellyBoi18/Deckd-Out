@@ -59,14 +59,4 @@ public class CardController {
     public List<Card> findAllCards() {
         return cardService.findAllCards();
     }
-
-    /**
-     * Endpoint for removing all cards
-     * 
-     * @return a string indicating the success or failure of the operation
-     */
-    @PostMapping("/removeAllCards")
-    public String removeAllCards(){
-        return cardService.removeAllCards();
-    }
 }

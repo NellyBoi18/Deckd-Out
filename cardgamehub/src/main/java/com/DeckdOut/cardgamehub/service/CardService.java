@@ -65,19 +65,4 @@ public class CardService implements CardServiceInterface {
     public List<Card> findAllCards() {
         return cardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
-
-    /**
-     * Removes all cards
-     * 
-     * @return a string indicating the result of the operation
-     */
-    @Override
-    public String removeAllCards(){
-        List<Card> allCards = findAllCards();
-        for(int i = 0; i < allCards.size(); i++){
-            cardRepository.delete(allCards.get(i));
-        }
-        
-        return "Successful";
-    }
 }
