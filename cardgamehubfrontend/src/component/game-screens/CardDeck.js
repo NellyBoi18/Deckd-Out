@@ -5,11 +5,6 @@ const CardDeck = () => {
     const SUITS = ["diamonds", "clubs", "hearts", "spades"];
     const DECK_SIZE = RANKS.length * SUITS.length;
 
-    const rankToValue = (rank) => {
-        const faceValues = { 'A': 14, 'J': 11, 'Q': 12, 'K': 13 };
-        return faceValues[rank] || parseInt(rank);
-    };
-
     const createDeck = () => {
         let cards = [];
         for (let i = 0; i < DECK_SIZE; i++) {
@@ -51,14 +46,14 @@ const CardDeck = () => {
                 },
                 body: JSON.stringify({
                     suit: card.suit,
-                    value: rankToValue(card.rank),  
-                    owner: "DefaultOwner"
+                    value: card.rank, 
+                    owner: "DefaultOwner" 
                 })
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const data = await response.text();
+            const data = await response.json();
             console.log('Server response:', data);
         } catch (error) {
             console.error('Error sending card click data:', error);

@@ -25,8 +25,8 @@ public class CardService implements CardServiceInterface {
      */
     @Override
     public String addCard(Card card) {
-        if (cardRepository.findByOwner(card.getOwner()) != null)
-            return "Card with owner already exists";
+        // if (cardRepository.findByOwner(card.getOwner()) != null)
+        //     return "Card with owner already exists";
         Card result = cardRepository.save(card);
         return "Successful";
     }
