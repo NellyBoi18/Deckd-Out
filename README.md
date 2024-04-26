@@ -12,7 +12,7 @@ Deck’d Out
 
 <!--A one paragraph summary of what the software will do.-->
 
-This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: Spades and Euchre. Our application will allow the user to play different card games while keeping track of the score. There will also be user profiles, which will track the number of respective games the user has won and will be able to rank the users against each other.
+This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: Spades and Euchre. The application will allow the user to play different card games while keeping track of the score. There will also be user profiles, which will track the number of respective games the user has won and will be able to rank the users against each other.
 
 ### Customer
 
