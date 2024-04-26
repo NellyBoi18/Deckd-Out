@@ -33,6 +33,12 @@ public class Card {
     private String owner;
 
     /**
+     * Whether the card has been played
+     */
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean isPlayed;
+
+    /**
      * Constructs a new Card object with default values.
      */
     public Card() {
@@ -99,5 +105,23 @@ public class Card {
      */
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    /**
+     * Retrieves whether the card has been played.
+     *
+     * @return Whether the card has been played.
+     */
+    public boolean isPlayed() {
+        return isPlayed;
+    }
+
+    /**
+     * Sets whether the card has been played.
+     *
+     * @param played Whether the card has been played.
+     */
+    public void setPlayed(boolean played) {
+        isPlayed = played;
     }
 }
