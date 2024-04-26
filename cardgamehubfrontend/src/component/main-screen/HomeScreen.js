@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { styled } from '@mui/system';
 import { Container, Typography, Button, Grid, Avatar } from '@mui/material';
 import Logo from '../../assets/logo.svg';
@@ -88,19 +88,20 @@ const ButtonText = styled(Typography)({
 /**
  * Functional component representing the home screen
  */
-function HomeScreen() {
+export default function HomeScreen() {
+
   return (
     <RootContainer>
       <LogoImage src={Logo} alt="Logo" />
       <Grid container spacing={15} alignItems="center" justifyContent="center">
         <Grid item>
-          <PlayButton variant="contained">
+          <PlayButton href = "/spades" variant="contained">
             <Grid container alignItems="center" justifyContent="center" direction="column">
               <Grid item sx={{ marginBottom: '0.5rem' }}>
                 <Avatar alt="Spades Icon" src={SpadesIcon} sx={{ width: 80, height: 80, marginLeft: '0.5rem' }} />
               </Grid>
               <Grid item>
-                <ButtonText variant="button">Play Spades</ButtonText>
+                <ButtonText href="/spades" variant="button">Play Spades</ButtonText>
               </Grid>
             </Grid>
           </PlayButton>
@@ -130,15 +131,17 @@ function HomeScreen() {
           </SecondaryOrangeButton>
         </Grid>
         <Grid item>
-            <SecondaryRedButton variant="contained" sx={{ position: 'fixed', bottom: 0, right: 75, marginRight: '1rem', marginBottom: '1rem' }}>
+            <SecondaryRedButton href="/logout" variant="contained" sx={{ position: 'fixed', bottom: 0, right: 75, marginRight: '1rem', marginBottom: '1rem' }}>
               <Grid item sx={{ marginRight: '0.5rem' }}>
                     <Avatar alt="Default Profile Icon" src={DefaultProfileIcon} sx={{ width: 30, height: 30 }} />
               </Grid>
-            <ButtonText variant="button">username</ButtonText>
+              <ButtonText variant="button" >
+                {sessionStorage.getItem("username")}
+              </ButtonText>
           </SecondaryRedButton>
         </Grid>
         <Grid item>
-            <SecondaryRedButton variant="contained" sx={{ position: 'fixed', bottom: 0, right: 0, marginRight: '1rem', marginBottom: '1rem' }}>
+            <SecondaryRedButton href = "/logout" variant="contained" sx={{ position: 'fixed', bottom: 0, right: 0, marginRight: '1rem', marginBottom: '1rem' }}>
               <Grid item>
                     <Avatar alt="Settings Icon" src={SettingsIcon} sx={{ width: 30, height: 50 }} />
               </Grid>
@@ -149,4 +152,4 @@ function HomeScreen() {
   );
 }
 
-export default HomeScreen;
+

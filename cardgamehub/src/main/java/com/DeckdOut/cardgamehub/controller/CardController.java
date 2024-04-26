@@ -30,6 +30,27 @@ public class CardController {
     }
 
     /**
+     * Endpoint for removing a card.
+     *
+     * @param card The card object to be removed.
+     * @return A string indicating the success or failure of the operation.
+     */
+    @PostMapping("/remove")
+    public String removeCard(@RequestBody Card card) {
+        return cardService.removeCard(card);
+    }
+
+    /**
+     * Endpoint for removing all cards.
+     * 
+     * @return A string indicating the success or failure of the operation.
+     */
+    @PostMapping("/removeAll")
+    public String removeAllCards() {
+        return cardService.removeAllCards();
+    }
+
+    /**
      * Endpoint for retrieving all cards.
      *
      * @return A list of all cards stored in the system.
