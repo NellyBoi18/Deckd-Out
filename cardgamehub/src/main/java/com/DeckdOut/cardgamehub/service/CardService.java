@@ -50,6 +50,7 @@ public class CardService implements CardServiceInterface {
      * 
      * @return A string indicating the result of the operation.
      */
+    @Override
     public String removeAllCards() {
         cardRepository.deleteAll();
         return "Successful";
