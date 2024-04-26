@@ -64,7 +64,7 @@ public class CardService implements CardServiceInterface {
     public String removeAllCards(){
         List<Card> allCards = findAllCards();
         for(int i = 0; i < allCards.size(); i++){
-            removeCard(allCards.get(i));
+            cardRepository.delete(allCards.get(i));
         }
         
         return "Successful";
