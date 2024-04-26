@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const CardDeck = () => {
     const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -64,6 +64,28 @@ const CardDeck = () => {
             console.error('Error sending card click data:', error);
         }
     };
+
+    const handlePageLoad = () =>{
+        try{
+            const response = fetch("http://localhost:8080/card/removeAll", {
+                method: 'Post',
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            });
+            if(!response.ok){
+                throw new Error("Network response was not ok");
+            }
+            const data = response.text();
+            console.log('Server response:', data);
+        } catch (error){
+            console.error("Error emptying card table: ", error)
+        }
+    }
+
+    useEffect(() => {
+        handlePageLoad();
+    }, []);
 
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '20px' }}>
