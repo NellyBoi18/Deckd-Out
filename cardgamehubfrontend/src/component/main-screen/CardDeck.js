@@ -47,16 +47,22 @@ const CardDeck = () => {
                 body: JSON.stringify({
                     suit: card.suit,
                     value: card.rank, 
-                    owner: "DefaultOwner" 
+                    owner: "Jen" 
                 })
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const data = await response.json();
-            console.log('Server response:', data);
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                console.log('Server response:', data);
+            } else {
+                const text = await response.text();
+                console.log('Non-JSON response:', text);
+            }
         } catch (error) {
-            console.error('Error sending card click data:', error);
+            console.error('Error sending card click data: ', error);
         }
     };
 
