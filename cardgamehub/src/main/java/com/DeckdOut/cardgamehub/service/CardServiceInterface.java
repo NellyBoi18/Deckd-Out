@@ -25,6 +25,13 @@ public interface CardServiceInterface {
     public String removeCard(Card card);
 
     /**
+     * Removes all cards.
+     *
+     * @return A string indicating the result of the operation.
+     */
+    public String removeAllCards();
+
+    /**
      * Retrieves all cards.
      *
      * @return A list containing all cards.

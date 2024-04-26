@@ -46,6 +46,17 @@ public class CardService implements CardServiceInterface {
     }
 
     /**
+     * Removes all cards from the repository.
+     * 
+     * @return A string indicating the result of the operation.
+     */
+    @Override
+    public String removeAllCards() {
+        cardRepository.deleteAll();
+        return "Successful";
+    }
+
+    /**
      * Retrieves all cards from the repository.
      *
      * @return A list containing all cards, sorted by descending ID.
