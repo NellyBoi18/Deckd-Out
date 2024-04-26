@@ -30,4 +30,11 @@ public interface CardServiceInterface {
      * @return A list containing all cards.
      */
     public List<Card> findAllCards();
+
+    /**
+     * Removed all the cards
+     * 
+     * @return A string indicating the result of the operation
+     */
+    public String removeAllCards();
 }
