@@ -38,4 +38,9 @@ public class CardController {
     public List<Card> findAllCards() {
         return cardService.findAllCards();
     }
+
+    @PostMapping("/removeAllCards")
+    public String removeAllCards(){
+        return cardService.removeAllCards();
+    }
 }
