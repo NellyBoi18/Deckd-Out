@@ -20,6 +20,21 @@ This application will be a graphical user interface that will act as a hub for t
 
 In terms of the population who might eventually our system, it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. Many older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
 
+### Software Requirement Specification
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 RFC2119 RFC8174 when, and only when, they appear in all capitals, as shown here.
+
+### Definitions
+
+**Playing Card** - One of a set of 24 to 78 thin rectangular pieces of cardboard or plastic marked on one side to show its rank and suit and used in playing any of numerous games [1]\
+**Suit** - All the playing cards in a pack bearing the same symbol [1]\
+**Trump** - A card of a suit any of whose cards will win over a card that is not of this suit [1]\
+**Bid** - An announcement of what a cardplayer proposes to undertake [1]\
+**Trick** - The cards played in one round of a card game often used as a scoring unit [1]\
+**Card Game** - A game that uses a deck of cards [1]\
+**Spades (card game)** - A card game commonly played with four players in pairs with a standard 52-card deck. Spades are always trump. Other suits have no intrinsic value during play, but a card of the suit led in the current trick will beat a card of any other suit except a spade. The goal is to score 500 points to win. Points are accrued by winning at least the number of tricks bid in each hand and are lost by failing to take at least that many, or in some cases by taking too many. [2]\
+**Euchre** - A card game commonly played with four players in pairs with a 32-card deck. Each player is dealt five cards and the player making trump must take three tricks to win a hand. The team that reaches 10 points first wins. [2]
+
 ### User Requirements
 
 <!--This section lists the behavior that the users see. This information needs to be presented in a logical, organized fashion. It is most helpful if this section is organized in outline form: a bullet list of major topics (e.g., one for each kind of user, or each major piece of system functionality) each with some number of subtopics.-->
