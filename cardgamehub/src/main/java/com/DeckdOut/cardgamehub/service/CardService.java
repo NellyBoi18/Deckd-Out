@@ -28,7 +28,7 @@ public class CardService implements CardServiceInterface {
         // if (cardRepository.findByOwner(card.getOwner()) != null)
         //     return "Card with owner already exists";
         Card result = cardRepository.save(card);
-        return "Successful";
+        return "AddCard Successful";
     }
 
     /**
@@ -42,7 +42,7 @@ public class CardService implements CardServiceInterface {
         if (cardRepository.findByOwner(card.getOwner()) == null)
             return "Card with owner does not exist";
         cardRepository.delete(card);
-        return "Successful";
+        return "RemoveCard Successful";
     }
 
     /**
@@ -53,7 +53,7 @@ public class CardService implements CardServiceInterface {
     @Override
     public String removeAllCards() {
         cardRepository.deleteAll();
-        return "Successful";
+        return "RemoveAll Successful";
     }
 
     /**
