@@ -6,6 +6,10 @@ const CardDeck = () => {
     const SUITS = ["diamonds", "clubs", "hearts", "spades"];
     const DECK_SIZE = RANKS.length * SUITS.length;
 
+    const [winner, setWinner] = useState(null);
+    const [cardsJSON, setCardsJSON] = useState(null);
+
+
     const rankToValue = (rank) => {
         const faceValues = { 'A': 14, 'J': 11, 'Q': 12, 'K': 13 };
         return faceValues[rank] || parseInt(rank);
@@ -127,8 +131,36 @@ const CardDeck = () => {
         sendDeckDB();
     };
 
+    useEffect(() => {
+        const fetchCards = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/card');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setCardsJSON(data);
+                
+                // Check if any item has a "suit" attribute equal to "Victory"
+                const victoryCard = data.find(card => card.suit === 'Victory');
+                if (victoryCard) {
+                    setWinner(victoryCard.owner);
+                }
+            } catch (error) {
+                console.error('Error fetching card data:', error);
+            }
+        };
+
+        fetchCards();
+    }, []);
+
     return (
         <div>
+            {winner && (
+                <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                    <p>{`${winner} won!`}</p>
+                </div>
+            )}
             {!gameStarted && (
                 <div style={{ textAlign: 'center' }}>
                     <Button variant="contained" onClick={handleStart}>Start</Button>
