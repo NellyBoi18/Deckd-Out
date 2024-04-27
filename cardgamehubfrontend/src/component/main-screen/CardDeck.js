@@ -65,23 +65,20 @@ const CardDeck = () => {
         }
     };
 
-    const handlePageLoad = () => {
-        fetch("http://localhost:8080/card/removeAll", {
-            method: 'POST'
-        })
-        .then(response => {
+    const handlePageLoad = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/card/removeAll", {
+                method: 'POST'
+            });
             if (!response.ok) {
-                throw new Error("Network response was not ok");
+                throw new Error(`Server returned status: ${response.status}`);
             }
-            return response.text();
-        })
-        .then(data => {
+            const data = await response.text();
             console.log('Server response:', data);
-        })
-        .catch(error => {
-            console.error("Error emptying card table: ", error);
-        });
-    }
+        } catch (error) {
+            console.error('Error emptying card table:', error);
+        }
+    };    
 
     useEffect(() => {
         handlePageLoad();
