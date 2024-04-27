@@ -150,7 +150,7 @@ The leaderboard page will display the user's rank compared to other users.
 | [SR2](#130)  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Closed   |
 | [SR3](#131)  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Closed   |
 | [SR4](#132)  | Users should not be able to access other user's accounts. | High     | Open   |
-| [SR5](#133)  | Users should not be able to access the backend logic of the application. | Low     | Open   |
+| [SR5](#133)  | Users should not be able to access the backend logic of the application. | Low     | Closed   |
 | [SR6](#134)  | Users should not be able to access the database of the application. | High     | Open   |
 
 
@@ -160,14 +160,14 @@ The leaderboard page will display the user's rank compared to other users.
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| [SYSR1](#135)  | We are targeting Windows users with our application. | Med      | Open   |
-| [SYSR2](#136)  | We are targeting MacOS users with our application. | Med      | Open   |
-| [SYSR3](#137)  | We are targeting Linux users with our application. | Med      | Open   |
-| [SYSR4](#138)  | Web browsers that support JavaScript are required to run our application. | High      | Open   |
-| [SYSR5](#139)  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Open   |
-| [SYSR6](#140)  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Open   |
-| [SYSR7](#141)  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Open   |
-| [SYSR8](#142)  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Open   |
+| [SYSR1](#135)  | We are targeting Windows users with our application. | Med      | Closed   |
+| [SYSR2](#136)  | We are targeting MacOS users with our application. | Med      | Closed   |
+| [SYSR3](#137)  | We are targeting Linux users with our application. | Med      | Closed   |
+| [SYSR4](#138)  | Web browsers that support JavaScript are required to run our application. | High      | Closed   |
+| [SYSR5](#139)  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Closed   |
+| [SYSR6](#140)  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Closed   |
+| [SYSR7](#141)  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Closed   |
+| [SYSR8](#142)  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Closed   |
 
 ### Specification
 
@@ -222,15 +222,23 @@ Score Calculation:
 title: Deck'd Out Database ERD
 ---
 erDiagram
-    Users {
-        int ID PK, UK
-        varchar email "NOT NULL"
-        varchar username UK "NOT NULL"
-        varchar password "NOT NULL"
+    User {
+        int id PK "NOT NULL"
+        varchar(255) email "NOT NULL"
+        varchar(255) username UK "NOT NULL"
+        varchar(255) password "NOT NULL"
         int spades_num_games "DEFAULT 0"
         int spades_games_won "DEFAULT 0"
         int euchre_num_games "DEFAULT 0"
         int euchre_games_won "DEFAULT 0"
+    }
+
+    Card {
+        int id PK "NOT NULL"
+        boolean is_played "DEFAULT 0"
+        varchar(50) owner "NOT NULL"
+        varchar(50) suit "NOT NULL"
+        int value "NOT NULL"
     }
 
 ```
