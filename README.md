@@ -586,3 +586,10 @@ Open braces do not start a new line. Close braces do start a new line, and are i
 
 ##### Program Modules 
 Lines of code should be kept short, generally less than 80 or 100 characters wide. Each public class is contained in a separate file. Each file has the name of the public class contained within it.
+
+
+### References
+
+[1] - https://www.merriam-webster.com/
+
+[2] - https://en.wikipedia.org/
