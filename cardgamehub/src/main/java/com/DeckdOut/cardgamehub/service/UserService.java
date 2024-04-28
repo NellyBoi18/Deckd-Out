@@ -29,7 +29,7 @@ public class UserService implements UserServiceInterface {
         if(userRepository.findByUsername(user.getUsername()) != null) return "User with username already exists";
         if(userRepository.findByEmail(user.getEmail()) != null) return "User with email already exists";
         User result = userRepository.save(user);
-        return "Successful";
+        return "registerUser Successful";
     }
 
     /**
@@ -45,7 +45,7 @@ public class UserService implements UserServiceInterface {
         if(!user.getPassword().toString().equals(DBUser.getPassword().toString())) return "Password is incorrect" ;
 
         User result = userRepository.save(user);
-        return "Successful";
+        return "loginUser Successful";
     }
 
     @Override
