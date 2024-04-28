@@ -142,7 +142,7 @@ const CardDeck = () => {
                 setCardsJSON(data);
                 
                 // Check if any item has a "suit" attribute equal to "Victory"
-                const victoryCard = data.find(card => card.suit === 'Victory');
+                const victoryCard = data.find(card => card.suit === 'victory');
                 if (victoryCard) {
                     setWinner(victoryCard.owner);
                 }
