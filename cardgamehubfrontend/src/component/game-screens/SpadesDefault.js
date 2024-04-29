@@ -47,7 +47,7 @@ function SpadesDefault() {
                 <Button variant="contained" color="primary" onClick={dealCards}>Deal</Button>
                 <Button variant="contained" href="/home" color="primary" style={{ position: 'absolute', bottom: '20px', right: '20px' }}>Back</Button>
             </Box>
-            {/* Displaying cards - You can add a component here to show the player's cards */}
+            {/* add a component here to show the player's cards */}
         </div>
     );
 }
