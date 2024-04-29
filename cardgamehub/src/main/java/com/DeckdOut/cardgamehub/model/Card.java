@@ -38,9 +38,28 @@ public class Card {
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean isPlayed;
 
+        
+    /**
+     * Constructs a new Card object with specified values.
+     *
+     * @param id    The unique identifier of the card.
+     * @param suit  The suit of the card.
+     * @param value The value of the card.
+     * @param owner The owner of the card.
+     */
+    public Card(int id, String suit, int value, String owner, Boolean isPlayed) {
+        this.id = id;
+        this.suit = suit;
+        this.value = value;
+        this.owner = owner;
+        this.isPlayed = isPlayed;
+    }
+
     /**
      * Constructs a new Card object with default values.
+     * Default Constructor.
      */
+
     public Card() {
     }
 

@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
 
-const CardDeck = () => {
+// These functions are now defined outside the component and are exported
+export const createDeck = () => {
     const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     const SUITS = ["diamonds", "clubs", "hearts", "spades"];
-    const DECK_SIZE = RANKS.length * SUITS.length;
-
-    const createDeck = () => {
-        let cards = [];
-        for (let i = 0; i < DECK_SIZE; i++) {
-            cards.push({
-                suit: SUITS[Math.floor(i / RANKS.length)],
-                rank: RANKS[i % RANKS.length]
-            });
+    let cards = [];
+    for (let suit of SUITS) {
+        for (let rank of RANKS) {
+            cards.push({ suit, rank });
         }
-        return cards;
-    };
+    }
+    return cards;
+};
 
-    const shuffleDeck = (cards) => {
-        for (let i = cards.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [cards[i], cards[j]] = [cards[j], cards[i]];
-        }
-        return cards;
-    };
+export const shuffleDeck = (cards) => {
+    for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    return cards;
+};
 
+const CardDeck = () => {
     const [cards] = useState(shuffleDeck(createDeck()));
 
     const getSuitSymbol = (suit) => {
