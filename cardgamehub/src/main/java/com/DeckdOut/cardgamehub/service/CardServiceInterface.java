@@ -37,4 +37,11 @@ public interface CardServiceInterface {
      * @return A list containing all cards.
      */
     public List<Card> findAllCards();
+
+    /*
+     * Update an existing card from the repository to have isPlayed = true
+     * 
+     *  @return A string indicating the result of the operation.
+     */
+    public String updateCard(Card card);
 }
