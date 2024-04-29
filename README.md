@@ -12,13 +12,28 @@ Deck’d Out
 
 <!--A one paragraph summary of what the software will do.-->
 
-This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: Spades and Euchre. Our application will allow the user to play different card games while keeping track of the score. There will also be user profiles, which will track the number of respective games the user has won and will be able to rank the users against each other.
+This application will be a graphical user interface that will act as a hub for the user to access the two card games that we are developing: Spades and Euchre. The application will allow the user to play different card games while keeping track of the score. There will also be user profiles, which will track the number of respective games the user has won and will be able to rank the users against each other.
 
 ### Customer
 
 <!--A brief description of the customer for this software, both in general (the population who might eventually use such a system) and specifically for this document (the customer(s) who informed this document). Every project will have a customer from the CS506 instructional staff. Requirements should not be derived simply from discussion among team members. Ideally your customer should not only talk to you about requirements but also be excited later in the semester to use the system.-->
 
 In terms of the population who might eventually our system, it would be used by younger or middle-aged working men and women who enjoy card games, but are not intense enough to play at weekly in-person meetings. Then again, those intense individuals could also use our app and compete with others via the ranking system. Many older and younger individuals will likely either not understand or have access to the required technology to run our application, though technology like this is becoming more accessible every day.
+
+### Software Requirement Specification
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 RFC2119 RFC8174 when, and only when, they appear in all capitals, as shown here.
+
+### Definitions
+
+**Playing Card** - One of a set of 24 to 78 thin rectangular pieces of cardboard or plastic marked on one side to show its rank and suit and used in playing any of numerous games [1]\
+**Suit** - All the playing cards in a pack bearing the same symbol [1]\
+**Trump** - A card of a suit any of whose cards will win over a card that is not of this suit [1]\
+**Bid** - An announcement of what a cardplayer proposes to undertake [1]\
+**Trick** - The cards played in one round of a card game often used as a scoring unit [1]\
+**Card Game** - A game that uses a deck of cards [1]\
+**Spades (card game)** - A card game commonly played with four players in pairs with a standard 52-card deck. Spades are always trump. Other suits have no intrinsic value during play, but a card of the suit led in the current trick will beat a card of any other suit except a spade. The goal is to score 500 points to win. Points are accrued by winning at least the number of tricks bid in each hand and are lost by failing to take at least that many, or in some cases by taking too many. [2]\
+**Euchre** - A card game commonly played with four players in pairs with a 32-card deck. Each player is dealt five cards and the player making trump must take three tricks to win a hand. The team that reaches 10 points first wins. [2]
 
 ### User Requirements
 
@@ -135,7 +150,7 @@ The leaderboard page will display the user's rank compared to other users.
 | [SR2](#130)  | Users should be able to log into their account anytime they wish assuming they have the correct password. | High      | Closed   |
 | [SR3](#131)  | Incorrect username / password pairs should not be allowed to access accounts. | High     | Closed   |
 | [SR4](#132)  | Users should not be able to access other user's accounts. | High     | Open   |
-| [SR5](#133)  | Users should not be able to access the backend logic of the application. | Low     | Open   |
+| [SR5](#133)  | Users should not be able to access the backend logic of the application. | Low     | Closed   |
 | [SR6](#134)  | Users should not be able to access the database of the application. | High     | Open   |
 
 
@@ -145,14 +160,14 @@ The leaderboard page will display the user's rank compared to other users.
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| [SYSR1](#135)  | We are targeting Windows users with our application. | Med      | Open   |
-| [SYSR2](#136)  | We are targeting MacOS users with our application. | Med      | Open   |
-| [SYSR3](#137)  | We are targeting Linux users with our application. | Med      | Open   |
-| [SYSR4](#138)  | Web browsers that support JavaScript are required to run our application. | High      | Open   |
-| [SYSR5](#139)  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Open   |
-| [SYSR6](#140)  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Open   |
-| [SYSR7](#141)  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Open   |
-| [SYSR8](#142)  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Open   |
+| [SYSR1](#135)  | We are targeting Windows users with our application. | Med      | Closed   |
+| [SYSR2](#136)  | We are targeting MacOS users with our application. | Med      | Closed   |
+| [SYSR3](#137)  | We are targeting Linux users with our application. | Med      | Closed   |
+| [SYSR4](#138)  | Web browsers that support JavaScript are required to run our application. | High      | Closed   |
+| [SYSR5](#139)  | The application should be able to run on a computer with at least 4GB of RAM. | High      | Closed   |
+| [SYSR6](#140)  | The application should be able to run on a computer with at least 1GB of free storage space. | High      | Closed   |
+| [SYSR7](#141)  | The application should be able to run on a computer with at least a 2.0 GHz processor. | High      | Closed   |
+| [SYSR8](#142)  | The application should be able to run on a computer with at least a 1280x720 resolution screen. | High      | Closed   |
 
 ### Specification
 
@@ -207,15 +222,23 @@ Score Calculation:
 title: Deck'd Out Database ERD
 ---
 erDiagram
-    Users {
-        int ID PK, UK
-        varchar email "NOT NULL"
-        varchar username UK "NOT NULL"
-        varchar password "NOT NULL"
+    User {
+        int id PK "NOT NULL"
+        varchar(255) email "NOT NULL"
+        varchar(255) username UK "NOT NULL"
+        varchar(255) password "NOT NULL"
         int spades_num_games "DEFAULT 0"
         int spades_games_won "DEFAULT 0"
         int euchre_num_games "DEFAULT 0"
         int euchre_games_won "DEFAULT 0"
+    }
+
+    Card {
+        int id PK "NOT NULL"
+        boolean is_played "DEFAULT 0"
+        varchar(50) owner "NOT NULL"
+        varchar(50) suit "NOT NULL"
+        int value "NOT NULL"
     }
 
 ```
@@ -329,7 +352,9 @@ classDiagram
         + boolean isSpade()
         + String toString()
     }
-
+```
+```mermaid
+classDiagram
     class Deck {
         - ArrayList<Card> deck
         + Deck()
@@ -340,6 +365,34 @@ classDiagram
         + String toString()
     }
 
+    class Trick {
+        - String leadingSuit
+        - String trumpSuit
+        - Card winningCard
+        - ArrayList<Card> trickCards
+        - Player winningPlayer
+        + Trick(ArrayList<Card> trickCards)
+        + Card winnerOfTrick()
+        + Card winnerOfEuchreTrick()
+        + Card cardCompareEuchre(String leadingSuit, ArrayList<Card> trickCards)
+        + Player getWinningPlayer()
+        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
+    }
+
+    class SpadeGameLogic { 
+        String player1Name
+        String player2Name
+        String player3Name
+        String player4Name
+        Deck deck
+        int team1PT
+        int team2PT
+        int placeHldrBid
+        + void gameLogic()
+    }
+```
+```mermaid
+classDiagram
     class EuchreRound {
         - String declaredTrump
         - String flippedTrump
@@ -365,7 +418,9 @@ classDiagram
         + trickLogicSpades(ArrayList<Card> p1EuchreHand, ArrayList<Card> p2EuchreHand, ArrayList<Card> p3EuchreHand, ArrayList<Card> p4EuchreHand, Player euchreStartPlayer)
         + int[] playRoundEuchre()
     }
-
+```
+```mermaid
+classDiagram
     class SpadesRound { 
         - int p1SpadesBid
         - int p2SpadesBid
@@ -395,32 +450,6 @@ classDiagram
         + void setTeam1OvrspadesTrick(int num)
         + void setTeam2OvrspadesTrick(int num)
         + ArrayList<Card> getLegalCards(String spadesLeadingSuit)
-    }
-
-    class SpadeGameLogic { 
-        String player1Name
-        String player2Name
-        String player3Name
-        String player4Name
-        Deck deck
-        int team1PT
-        int team2PT
-        int placeHldrBid
-        + void gameLogic()
-    }
-
-    class Trick {
-        - String leadingSuit
-        - String trumpSuit
-        - Card winningCard
-        - ArrayList<Card> trickCards
-        - Player winningPlayer
-        + Trick(ArrayList<Card> trickCards)
-        + Card winnerOfTrick()
-        + Card winnerOfEuchreTrick()
-        + Card cardCompareEuchre(String leadingSuit, ArrayList<Card> trickCards)
-        + Player getWinningPlayer()
-        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
     }
 ```
 
@@ -563,3 +592,10 @@ Open braces do not start a new line. Close braces do start a new line, and are i
 
 ##### Program Modules 
 Lines of code should be kept short, generally less than 80 or 100 characters wide. Each public class is contained in a separate file. Each file has the name of the public class contained within it.
+
+
+### References
+
+[1] - https://www.merriam-webster.com/
+
+[2] - https://en.wikipedia.org/
