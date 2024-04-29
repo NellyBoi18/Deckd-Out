@@ -1,27 +1,9 @@
-import React, { useState } from 'react';
-import { Typography, Button, Box, AppBar, Toolbar } from '@mui/material';
-import { shuffleDeck, createDeck } from './CardDeck';
+import React, { useState, useEffect } from 'react';
+import { Button, Box, AppBar, Toolbar } from '@mui/material';
+import CardDeck from './CardDeck';
 import Logo from '../../assets/logo.svg';
 
 function SpadesDefault() {
-    const [dealtCards, setDealtCards] = useState({ player: [], cpu1: [], cpu2: [], cpu3: [] });
-
-    const dealCards = () => {
-      const deck = shuffleDeck(createDeck());
-      const hands = { player: [], cpu1: [], cpu2: [], cpu3: [] };
-      deck.forEach((card, index) => {
-          const playerKey = Object.keys(hands)[index % 4];
-          hands[playerKey].push(card);
-      });
-      setDealtCards(hands);
-      // Log each hand to the console
-      console.log("Player's hand:", hands.player);
-      console.log("CPU1's hand:", hands.cpu1);
-      console.log("CPU2's hand:", hands.cpu2);
-      console.log("CPU3's hand:", hands.cpu3);
-  };
-  
-
     return (
         <div style={{ backgroundColor: '#F1E5C2', minHeight: '100vh' }}>
             <AppBar position="static" style={{ backgroundColor: '#CC4124' }}>
@@ -43,8 +25,13 @@ function SpadesDefault() {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}
+
+
+                
             >
-                <Button variant="contained" color="primary" onClick={dealCards}>Deal</Button>
+
+                <CardDeck/>
+                
                 <Button variant="contained" href="/home" color="primary" style={{ position: 'absolute', bottom: '20px', right: '20px' }}>Back</Button>
             </Box>
             {/* add a component here to show the player's cards */}
