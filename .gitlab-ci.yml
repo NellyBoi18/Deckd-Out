@@ -32,9 +32,9 @@ build_spring_boot:
       # Declare the JUnit reports for GitLab to pick them up
       junit:
         - "cardgamehub/src/test/**/*Tests.java"
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  # only:
+  #   variables:
+  #     - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job runs tests for the Spring Boot application
 test_spring_boot:
@@ -42,9 +42,9 @@ test_spring_boot:
   script:
     - cd cardgamehub
     - mvn $MAVEN_CLI_OPTS test
-  only:
-    variables:
-      - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  # only:
+  #   variables:
+  #     - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 # This job installs node dependencies and builds the React app
 build_react:
