@@ -352,7 +352,9 @@ classDiagram
         + boolean isSpade()
         + String toString()
     }
-
+```
+```mermaid
+classDiagram
     class Deck {
         - ArrayList<Card> deck
         + Deck()
@@ -363,6 +365,34 @@ classDiagram
         + String toString()
     }
 
+    class Trick {
+        - String leadingSuit
+        - String trumpSuit
+        - Card winningCard
+        - ArrayList<Card> trickCards
+        - Player winningPlayer
+        + Trick(ArrayList<Card> trickCards)
+        + Card winnerOfTrick()
+        + Card winnerOfEuchreTrick()
+        + Card cardCompareEuchre(String leadingSuit, ArrayList<Card> trickCards)
+        + Player getWinningPlayer()
+        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
+    }
+
+    class SpadeGameLogic { 
+        String player1Name
+        String player2Name
+        String player3Name
+        String player4Name
+        Deck deck
+        int team1PT
+        int team2PT
+        int placeHldrBid
+        + void gameLogic()
+    }
+```
+```mermaid
+classDiagram
     class EuchreRound {
         - String declaredTrump
         - String flippedTrump
@@ -388,7 +418,9 @@ classDiagram
         + trickLogicSpades(ArrayList<Card> p1EuchreHand, ArrayList<Card> p2EuchreHand, ArrayList<Card> p3EuchreHand, ArrayList<Card> p4EuchreHand, Player euchreStartPlayer)
         + int[] playRoundEuchre()
     }
-
+```
+```mermaid
+classDiagram
     class SpadesRound { 
         - int p1SpadesBid
         - int p2SpadesBid
@@ -418,32 +450,6 @@ classDiagram
         + void setTeam1OvrspadesTrick(int num)
         + void setTeam2OvrspadesTrick(int num)
         + ArrayList<Card> getLegalCards(String spadesLeadingSuit)
-    }
-
-    class SpadeGameLogic { 
-        String player1Name
-        String player2Name
-        String player3Name
-        String player4Name
-        Deck deck
-        int team1PT
-        int team2PT
-        int placeHldrBid
-        + void gameLogic()
-    }
-
-    class Trick {
-        - String leadingSuit
-        - String trumpSuit
-        - Card winningCard
-        - ArrayList<Card> trickCards
-        - Player winningPlayer
-        + Trick(ArrayList<Card> trickCards)
-        + Card winnerOfTrick()
-        + Card winnerOfEuchreTrick()
-        + Card cardCompareEuchre(String leadingSuit, ArrayList<Card> trickCards)
-        + Player getWinningPlayer()
-        + Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards)
     }
 ```
 
