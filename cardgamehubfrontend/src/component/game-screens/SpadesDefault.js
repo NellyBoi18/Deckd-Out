@@ -39,7 +39,7 @@ function SpadesDefault() {
         fontFamily: "'Times New Roman', serif",
         position: 'relative',
         fontSize: '18px',
-        cursor: 'pointer', // You may or may not want the pointer effect
+        cursor: 'pointer', 
     };
 
 
@@ -61,7 +61,7 @@ function SpadesDefault() {
                     ...cardStyle,
                     color: card.suit === 'diamonds' || card.suit === 'hearts' ? 'red' : 'black',
                 }}
-                // onClick={() => handleCardClick(card)} // Include if you want a click handler
+                // onClick={() => handleCardClick(card)} 
             >
                 <div style={{ position: 'absolute', top: '5px', left: '5px' }}>
                     <div style={{ fontSize: '24px' }}>{card.rank}</div>
@@ -75,7 +75,10 @@ function SpadesDefault() {
             </div>
         );
     };
-
+    
+    /**
+     * Renders the back of a card with a horizontal overlap.
+     */
     const renderCardBack = (index, isHorizontal = true) => {
         const offsetStyle = isHorizontal
             ? { left: `${index * 15}px` }
@@ -93,10 +96,12 @@ function SpadesDefault() {
             </div>
         );
     };
+
+
     const renderCardBackHorizontal = (index) => {
         const offsetStyle = { 
             left: `${index * 15}px`, 
-            zIndex: index, // Ensures that cards are stacked with the correct card on top
+            zIndex: index, 
         };
     
         return (
@@ -127,8 +132,8 @@ function SpadesDefault() {
             position: 'absolute',
             left: '13%',
             top: '15%',
-            transform: 'translateY(-50%) rotate(90deg)', // Rotate the hand to be horizontal
-            transformOrigin: 'bottom left', // Ensures that the rotation happens relative to the bottom left corner
+            transform: 'translateY(-50%) rotate(90deg)', 
+            transformOrigin: 'bottom left', 
         },
         cpu2: {
             position: 'absolute',
@@ -142,8 +147,8 @@ function SpadesDefault() {
             position: 'absolute',
             right: '4%',
             top: '15%',
-            transform: 'translateY(-50%) rotate(90deg)', // Rotate the hand to be horizontal
-            transformOrigin: 'bottom right', // Ensures that the rotation happens relative to the bottom right corner
+            transform: 'translateY(-50%) rotate(90deg)', 
+            transformOrigin: 'bottom right', 
         }
     }
     
@@ -175,7 +180,7 @@ function SpadesDefault() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                position: 'relative'  // Ensure absolute positioning within
+                position: 'relative'  
             }}>
                 <Button variant="contained" color="primary" onClick={dealCards}>Deal</Button>
                 {isDealt && (
