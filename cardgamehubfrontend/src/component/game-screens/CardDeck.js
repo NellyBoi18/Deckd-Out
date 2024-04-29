@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// These functions are now defined outside the component and are exported
 export const createDeck = () => {
     const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     const SUITS = ["diamonds", "clubs", "hearts", "spades"];
@@ -21,18 +20,20 @@ export const shuffleDeck = (cards) => {
     return cards;
 };
 
+export const getSuitSymbol = (suit) => {
+    const symbols = {
+        diamonds: '♦',
+        clubs: '♣',
+        hearts: '♥',
+        spades: '♠'
+    };
+    return symbols[suit];
+};
+
 const CardDeck = () => {
     const [cards] = useState(shuffleDeck(createDeck()));
 
-    const getSuitSymbol = (suit) => {
-        const symbols = {
-            diamonds: '♦',
-            clubs: '♣',
-            hearts: '♥',
-            spades: '♠'
-        };
-        return symbols[suit];
-    };
+
 
     const handleCardClick = async (card) => {
         console.log(`Clicked on ${card.rank} of ${card.suit}`);
@@ -95,3 +96,4 @@ const CardDeck = () => {
 };
 
 export default CardDeck;
+
