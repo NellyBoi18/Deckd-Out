@@ -1,7 +1,11 @@
 package com.DeckdOut.cardgamehub;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.DeckdOut.cardgamehub.model.Card;
 import com.DeckdOut.cardgamehub.repository.CardRepository;
@@ -16,17 +20,26 @@ import java.util.List;
 /**
  * JUnit test class for the CardService class.
  */
-// @SpringBootTest
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class CardServiceTests {  // TODO SEE BELOW!!!
+
+    @Autowired
+    private CardService cardService;
+
+    @MockBean
+    private CardRepository cardRepository;
+
+    @BeforeEach
+    void setUp() {
+        reset(cardRepository);
+    }
 
     /**
      * Tests the addCard method of the CardService class when adding a card successfully.
      */
-    // @Test
+    @Test
     public void testAddCard_Successful() {
-        // Mock CardRepository
-        CardRepository cardRepository = mock(CardRepository.class);
-        CardService cardService = new CardService();
 
         // Create a new card
         Card card = new Card();
@@ -42,7 +55,7 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
         String result = cardService.addCard(card);
 
         // Verify that the card was saved and the correct message is returned
-        assertEquals("Successful", result);
+        assertEquals("AddCard Successful", result);
         verify(cardRepository, times(1)).save(card);
     }
 
@@ -51,11 +64,8 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
     /**
      * Tests the removeCard method of the CardService class when removing a card successfully.
      */
-    // @Test
+    @Test
     public void testRemoveCard_Successful() {
-        // Mock CardRepository
-        CardRepository cardRepository = mock(CardRepository.class);
-        CardService cardService = new CardService();
 
         // Create a new card
         Card card = new Card();
@@ -70,18 +80,15 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
         String result = cardService.removeCard(card);
 
         // Verify that the card was removed and the correct message is returned
-        assertEquals("Successful", result);
+        assertEquals("RemoveCard Successful", result);
         verify(cardRepository, times(1)).delete(card);
     }
 
     /**
      * Tests the removeCard method of the CardService class when attempting to remove a non-existing card.
      */
-    // @Test
+    @Test
     public void testRemoveCard_NonExistingCard() { // Not sure if this test is correct
-        // Mock CardRepository
-        CardRepository cardRepository = mock(CardRepository.class);
-        CardService cardService = new CardService();
 
         // Create a new card
         Card card = new Card();
@@ -96,7 +103,7 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
         String result = cardService.removeCard(card);
 
         // Verify that the card was not removed and the correct message is returned
-        assertEquals("Card does not exist", result);
+        assertEquals("Card with owner does not exist", result);
         verify(cardRepository, never()).delete(card);
     }
 
@@ -105,9 +112,6 @@ public class CardServiceTests {  // TODO SEE BELOW!!!
      */
     // @Test
     public void testFindAllCards() {
-        // Mock CardRepository
-        CardRepository cardRepository = mock(CardRepository.class);
-        CardService cardService = new CardService();
 
         // Create a list of cards
         List<Card> cards = new ArrayList<>();
