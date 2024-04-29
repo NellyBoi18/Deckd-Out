@@ -31,8 +31,7 @@ build_spring_boot:
     reports:
       # Declare the JUnit reports for GitLab to pick them up
       junit:
-        # THE CURRENT DATABASE TEST DOES NOT WORK because gitlab runner does not have access to the database
-        # - "cardgamehub/src/test/**/*Tests.java"
+        - "cardgamehub/src/test/**/*Tests.java"
   only:
     variables:
       - $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
