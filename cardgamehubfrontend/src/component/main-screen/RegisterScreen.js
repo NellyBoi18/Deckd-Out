@@ -150,7 +150,7 @@ export default function RegisterScreen() {
           } else if (data === "User with email already exists"){
             alert("User with email already exists.")
             return;
-          } else if (data === "Successful"){
+          } else if (data === "registerUser Successful"){
             //const data = await response.json();
             console.log('Registration successful:', data.msg);
             // Redirect user to home
@@ -162,7 +162,7 @@ export default function RegisterScreen() {
             console.log(loginStatus.loggedInUsername)
             // Redirect user to home
             console.log(sessionStorage.getItem("username"))
-            //window.location.href = '/home';
+            window.location.href = '/home';
           } else{
             alert("Something went wrong.");
             console.log(data);
