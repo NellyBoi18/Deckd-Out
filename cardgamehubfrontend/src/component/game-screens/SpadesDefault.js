@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { Button, Box, AppBar, Toolbar } from '@mui/material';
 import CardDeck from './CardDeck';
 import Logo from '../../assets/logo.svg';
@@ -25,9 +24,6 @@ function SpadesDefault() {
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}
-
-
-                
             >
 
                 <CardDeck/>
