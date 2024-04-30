@@ -34,7 +34,7 @@ const LeaderboardContainer = styled(Container)(({ theme }) => ({
   height: '100vh',
   background: `url(${BurstImage}) center/cover no-repeat, ${'#EC8F47'}`,
   overflow: 'hidden',
-  position: 'absolute', // Make it cover the entire viewport
+  position: 'absolute', 
   top: 0,
   left: 0,
   right: 0,
@@ -50,8 +50,8 @@ const LeaderboardContent = styled(Box)(({ theme }) => ({
   height: '500px',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center', // This should center the children
-  justifyContent: 'space-between', // This will push the button to the bottom
+  alignItems: 'center', 
+  justifyContent: 'space-between', 
 }));
 
 const LeaderboardTitleContainer = styled(Box)({
@@ -59,7 +59,7 @@ const LeaderboardTitleContainer = styled(Box)({
   alignItems: 'center',
   justifyContent: 'center',
   margin: '0 auto',
-  marginTop: '-75px', // Adjust this value as needed to move the title up
+  marginTop: '-75px',
 });
 
 /**
@@ -69,7 +69,7 @@ const LeaderboardHeader = styled('header')({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'column', 
-  justifyContent: 'center', // Changed to center the title and trophies
+  justifyContent: 'center', 
   width: '100%',
   marginBottom: '20px',
 });
@@ -82,7 +82,7 @@ const LeaderboardTitle = styled(Typography)({
   fontSize: '3.2em',
   color: '#F1E5C2',
   borderRadius: '25px',
-  padding: '10px 20px', // Adjust padding as needed
+  padding: '10px 20px', 
   // Removed 'position' and 'top' properties to keep the element in the normal document flow
 });
 
@@ -96,7 +96,7 @@ const LeaderboardItem = styled('li')(({ theme, isTopUser }) => ({
   padding: theme.spacing(1),
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between', // Aligns items evenly along the main axis
+  justifyContent: 'space-between', 
 }));
 
 /**
@@ -106,8 +106,8 @@ const LeaderboardList = styled('ul')({
   listStyle: 'none',
   padding: 0,
   width: '100%',
-  maxHeight: 'calc(100% - 160px)', // Adjust the maximum height as needed
-  overflowY: 'auto', // Add vertical scrollbar when content overflows
+  maxHeight: 'calc(100% - 160px)', 
+  overflowY: 'auto', 
 });
 
 const ButtonContainer = styled(Box)(({ theme }) => ({
@@ -126,19 +126,19 @@ const LeaderboardButton = styled(Button)(({ theme }) => ({
   backgroundColor: '#CC4124',
   color: '#FFFFFF',
   boxShadow: 'none',
-  borderRadius: '10px', // Set border radius to make it a square box
+  borderRadius: '10px', 
   '&:hover': {
     backgroundColor: '#AB331C',
     boxShadow: 'none',
   },
   '&::before': {
     content: '""',
-    backgroundImage: `url(${BackArrowImage})`, // Set arrow back icon as background image
+    backgroundImage: `url(${BackArrowImage})`, 
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
-    width: '75px', // Set width and height of the arrow icon
+    width: '75px',
     height: '30px',
-    marginRight: '0px', // Adjust spacing between the arrow icon and text
+    marginRight: '0px', 
   },
 }));
 
