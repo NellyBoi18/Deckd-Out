@@ -33,6 +33,7 @@ public class UserServiceTests {
     @MockBean
     private UserRepository userRepository;
 
+    // Reset the UserRepository mock before each test
     @BeforeEach
     void setUp() {
         reset(userRepository);
