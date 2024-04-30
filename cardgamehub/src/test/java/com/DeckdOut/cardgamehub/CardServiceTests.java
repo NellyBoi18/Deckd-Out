@@ -11,8 +11,7 @@ import com.DeckdOut.cardgamehub.model.Card;
 import com.DeckdOut.cardgamehub.repository.CardRepository;
 import com.DeckdOut.cardgamehub.service.CardService;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;

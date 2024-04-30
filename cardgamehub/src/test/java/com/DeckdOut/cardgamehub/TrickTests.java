@@ -1,13 +1,11 @@
 package com.DeckdOut.cardgamehub;
 
+import com.DeckdOut.cardgamehub.ObjectCode.*;
+
+import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
-import org.junit.jupiter.api.Test;
-import com.DeckdOut.cardgamehub.ObjectCode.*;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Assertions;
 
 /**
  * JUnit test class for testing the Trick class.
