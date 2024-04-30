@@ -1,3 +1,5 @@
+package com.DeckdOut.cardgamehub.ObjectCode;
+
 /**
  * Class for the logic in a game of Spades
  */
@@ -40,7 +42,7 @@
         team2PT = player2.getBid() + player4.getBid();
 
         while(team1PT < 500 || team2PT < 500){
-            Round round = new Round(team1PT, team2PT, player1, player2, player3, player4);
+            SpadesRound round = new SpadesRound(team1PT, team2PT, player1, player2, player3, player4);
             int[] points = round.playRoundSpades();
             team1PT =+ points[1];
             team2PT =+ points[2];

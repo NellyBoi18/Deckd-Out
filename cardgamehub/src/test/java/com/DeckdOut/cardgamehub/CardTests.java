@@ -1,15 +1,15 @@
 package com.DeckdOut.cardgamehub;
 
+import org.springframework.boot.test.context.SpringBootTest;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assertions;
 
-import com.DeckdOut.cardgamehub.model.Player;
-import com.DeckdOut.cardgamehub.model.Card;
+import com.DeckdOut.cardgamehub.ObjectCode.*;
 
-
-
-public class cardTest{
+@SpringBootTest
+public class CardTests{
       
     public static Player player;
     public static Card card1;

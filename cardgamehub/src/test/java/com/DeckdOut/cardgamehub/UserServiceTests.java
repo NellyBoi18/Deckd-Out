@@ -18,13 +18,18 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JUnit test class for the UserService class.
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class UserServiceTests {
 
+    // Injects the UserService instance from the Spring context
     @Autowired
     private UserService userService;
 
+    // Mocks the UserRepository dependency
     @MockBean
     private UserRepository userRepository;
 

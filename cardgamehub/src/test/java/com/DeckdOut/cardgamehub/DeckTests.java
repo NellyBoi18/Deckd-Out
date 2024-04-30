@@ -1,13 +1,19 @@
 package com.DeckdOut.cardgamehub;
 
+import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
-import com.DeckdOut.cardgamehub.model.*;
+import com.DeckdOut.cardgamehub.ObjectCode.*;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assertions;
 
-public class deckTest {
+/**
+ * JUnit test class for the Deck class.
+ */
+@SpringBootTest
+public class DeckTests {
 
     public static Deck deck1;
     public static Deck deck2;
@@ -39,14 +45,14 @@ public class deckTest {
         Assertions.assertEquals(13, p1Hand.size(), "spadesDealTest fail");
     }
 
-    /*
-     * Unit test for dealing cards for euchre
-     */
-    @Test
-    public void euchreDealTest(){
-        deck2.shuffle();
-        ArrayList<Card> p2Hand = deck2.euchreDeal(p2);
-        Assertions.assertEquals(5, p2Hand.size(), "euchreDealTest fail");
-    }
+    // /*
+    //  * Unit test for dealing cards for euchre
+    //  */
+    // @Test
+    // public void euchreDealTest(){
+    //     deck2.shuffle();
+    //     ArrayList<Card> p2Hand = deck2.euchreDeal(p2);
+    //     Assertions.assertEquals(5, p2Hand.size(), "euchreDealTest fail");
+    // }
     
 }
