@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CustomCard from './CustomCard';
+import CustomCardFlipped from './CustomCardFlipped';
 
 const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const SUITS = ["diamonds", "clubs", "hearts", "spades"];
@@ -46,7 +47,6 @@ export const assignOwner = (cards) => {
 };
 
 const CardDeck = () => {
-    const [cards] = useState(assignOwner(shuffleDeck(createDeck())));
 
     // const getSuitSymbol = (suit) => {
     //     const symbols = {
@@ -85,9 +85,9 @@ const CardDeck = () => {
 //
 const [dealtCards, setDealtCards] = useState({ player: [], cpu1: [], cpu2: [], cpu3: [] });
 const [gameStart, setGameStart] = useState(false);
+const deck = assignOwner(shuffleDeck(createDeck()));
 
 const dealCards = () => {
-    const deck = assignOwner(shuffleDeck(createDeck()));
     const hands = { player: [], cpu1: [], cpu2: [], cpu3: [] };
 
     deck.forEach(card => {
@@ -112,9 +112,9 @@ const dealCards = () => {
     setDealtCards(hands);
 };
 
-// useEffect(() => { // testing purposes
-//     console.log(dealtCards);
-// }, [dealtCards]);    
+useEffect(() => { // testing purposes
+    console.log("DEALT LIST: " + dealtCards);
+}, [dealtCards]);    
 
 const removeDeckDB = () => {
     fetch("http://localhost:8080/card/removeAll", {
@@ -136,7 +136,7 @@ const removeDeckDB = () => {
 
 const sendDeckDB = () => {
     console.log("sendDeckDB");
-    cards.forEach(card => {
+    deck.forEach(card => {
         fetch('http://localhost:8080/card/add', {
             method: 'POST',
             headers: {
@@ -189,7 +189,7 @@ return (
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <h3>CPU1's Cards: </h3>
-                        {dealtCards.cpu1.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu1.map((card, index) => (<CustomCardFlipped key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
 
@@ -197,7 +197,7 @@ return (
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <h3>CPU2's Cards: </h3>
-                        {dealtCards.cpu2.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu2.map((card, index) => (<CustomCardFlipped key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
 
@@ -205,7 +205,7 @@ return (
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <h3>CPU3's Cards: </h3>
-                        {dealtCards.cpu3.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu3.map((card, index) => (<CustomCardFlipped key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
             </div>
