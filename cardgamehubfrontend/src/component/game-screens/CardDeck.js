@@ -79,6 +79,20 @@ const CardDeck = () => {
         } catch (error) {
             console.error('Error sending card click data:', error);
         }
+        try{
+            const response = await fetch('http://localhost:8080/card/checkvictory', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            console.log("Winner is ");
+        } catch (error){
+            console.error('Error retrieving victory:', error);
+        }
     };
 
 
