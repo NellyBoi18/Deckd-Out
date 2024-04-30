@@ -53,9 +53,8 @@ public class EuchreRound {
      * @return the winner of the trick
      */
     public Player trickLogicEuchre(Player euchreStartPlayer){
-        //TODO get cards in trick depending on starting player, remove cards from hand
         //NOTE: same thing as spades, just convert variables
-
+        player.pickCard(); //get from frontend
 
         //create the trick
         ArrayList<Card> trickCards = new ArrayList<>();
