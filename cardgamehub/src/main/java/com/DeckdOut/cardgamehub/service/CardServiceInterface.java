@@ -44,4 +44,11 @@ public interface CardServiceInterface {
      *  @return A string indicating the result of the operation.
      */
     public String updateCard(Card card);
+
+    /*
+     * Gets winner of a trick
+     * 
+     *  @return A string indicating the result of the operation.
+     */
+    public String getWinner();
 }
