@@ -152,16 +152,18 @@ export default function RegisterScreen() {
             return;
           } else if (data === "registerUser Successful"){
             console.log('Registration successful:', data.msg);
-            // Redirect user to home
+
+            //Logs user in with sessionstorage
             setLoginStatus({
               isLoggedIn: true,
               loggedInUsername: username,
             });
             sessionStorage.setItem("username", username);
             console.log(loginStatus.loggedInUsername)
+
             // Redirect user to home
             console.log(sessionStorage.getItem("username"))
-            //window.location.href = '/home';
+            window.location.href = '/home';
           } else{
             alert("Something went wrong.");
             console.log(data);
