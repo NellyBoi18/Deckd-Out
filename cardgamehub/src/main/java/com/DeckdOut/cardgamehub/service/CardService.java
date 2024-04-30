@@ -143,8 +143,7 @@ public class CardService implements CardServiceInterface {
         Card winningCard = cardCompareSpades(userCard.getSuit(), trick);
         winningCard.setSuit("victory");
 
-        CardController cardController = new CardController();
-        return cardController.addCard(winningCard);
+        return addCard(winningCard);
     }
 
 
@@ -183,14 +182,14 @@ public class CardService implements CardServiceInterface {
         Card highestCard = null;
         int maxCardVal = 0;
         for(int i = 0; i < 4; i++){
-            if(trickCards.get(i).getSuit().equals("Spades")){
+            if(trickCards.get(i).getSuit().equals("spades")){
                 spadePresent = true;
             }
         }
 
         if(spadePresent){
             for(int i = 0; i < 4; i++){
-                if(trickCards.get(i).getSuit().equals("Spades")){
+                if(trickCards.get(i).getSuit().equals("spades")){
                     if(maxCardVal < trickCards.get(i).getValue()){
                         maxCardVal = trickCards.get(i).getValue();
                         highestCard = trickCards.get(i);
