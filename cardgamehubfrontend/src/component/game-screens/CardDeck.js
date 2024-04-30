@@ -48,15 +48,15 @@ export const assignOwner = (cards) => {
 const CardDeck = () => {
     const [cards] = useState(assignOwner(shuffleDeck(createDeck())));
 
-    const getSuitSymbol = (suit) => {
-        const symbols = {
-            diamonds: '♦',
-            clubs: '♣',
-            hearts: '♥',
-            spades: '♠'
-        };
-        return symbols[suit];
-    };
+    // const getSuitSymbol = (suit) => {
+    //     const symbols = {
+    //         diamonds: '♦',
+    //         clubs: '♣',
+    //         hearts: '♥',
+    //         spades: '♠'
+    //     };
+    //     return symbols[suit];
+    // };
 
     const handleCardClick = async (card) => {
         console.log(`Clicked on ${card.rank} of ${card.suit}`);
