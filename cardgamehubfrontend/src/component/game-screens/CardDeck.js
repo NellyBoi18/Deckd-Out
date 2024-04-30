@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CustomCard from './CustomCard';
 import CustomCardFlipped from './CustomCardFlipped';
@@ -47,7 +47,6 @@ export const assignOwner = (cards) => {
 };
 
 const CardDeck = () => {
-    const [cards] = useState(assignOwner(shuffleDeck(createDeck())));
 
     // const getSuitSymbol = (suit) => {
     //     const symbols = {
@@ -86,9 +85,9 @@ const CardDeck = () => {
 //
 const [dealtCards, setDealtCards] = useState({ player: [], cpu1: [], cpu2: [], cpu3: [] });
 const [gameStart, setGameStart] = useState(false);
+const deck = assignOwner(shuffleDeck(createDeck()));
 
 const dealCards = () => {
-    const deck = assignOwner(shuffleDeck(createDeck()));
     const hands = { player: [], cpu1: [], cpu2: [], cpu3: [] };
 
     deck.forEach(card => {
@@ -113,9 +112,9 @@ const dealCards = () => {
     setDealtCards(hands);
 };
 
-// useEffect(() => { // testing purposes
-//     console.log(dealtCards);
-// }, [dealtCards]);    
+useEffect(() => { // testing purposes
+    console.log("DEALT LIST: " + dealtCards);
+}, [dealtCards]);    
 
 const removeDeckDB = () => {
     fetch("http://localhost:8080/card/removeAll", {
@@ -137,7 +136,7 @@ const removeDeckDB = () => {
 
 const sendDeckDB = () => {
     console.log("sendDeckDB");
-    cards.forEach(card => {
+    deck.forEach(card => {
         fetch('http://localhost:8080/card/add', {
             method: 'POST',
             headers: {
