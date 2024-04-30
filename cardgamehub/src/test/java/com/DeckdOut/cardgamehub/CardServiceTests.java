@@ -11,8 +11,7 @@ import com.DeckdOut.cardgamehub.model.Card;
 import com.DeckdOut.cardgamehub.repository.CardRepository;
 import com.DeckdOut.cardgamehub.service.CardService;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -25,12 +24,15 @@ import java.util.List;
 @SpringBootTest
 public class CardServiceTests {
 
+    // Injects the cardService instance from the Spring context
     @Autowired
     private CardService cardService;
 
+    // Mocks the CardRepository dependency
     @MockBean
     private CardRepository cardRepository;
 
+    // Reset the CardRepository mock before each test
     @BeforeEach
     void setUp() {
         reset(cardRepository);
@@ -81,29 +83,28 @@ public class CardServiceTests {
         assertEquals("AddCard Successful", result);
     }
 
- /**
- * Tests the updateCard method of the CardService class when updating an existing card successfully.
- */
-@Test
-public void testUpdateCard_Successful() {
-    // Create an existing card
-    Card existingCard = new Card();
-    existingCard.setOwner("existingOwner");
-    existingCard.setValue(6);
-    existingCard.setSuit("Hearts");
-    existingCard.setPlayed(true);
+    /**
+     * Tests the updateCard method of the CardService class when updating an existing card successfully.
+     */
+    @Test
+    public void testUpdateCard_Successful() {
+        // Create an existing card
+        Card existingCard = new Card();
+        existingCard.setOwner("existingOwner");
+        existingCard.setValue(6);
+        existingCard.setSuit("Hearts");
+        existingCard.setPlayed(true);
 
-    // Mock CardRepository behavior to return the existing card when searching by owner, suit, and value
-    when(cardRepository.findByOwner("existingOwner")).thenReturn(existingCard);
+        // Mock CardRepository behavior to return the existing card when searching by owner, suit, and value
+        when(cardRepository.findByOwner("existingOwner")).thenReturn(existingCard);
 
-    // Test updateCard method
-    String result = cardService.updateCard(existingCard);
+        // Test updateCard method
+        String result = cardService.updateCard(existingCard);
 
-    // Verify that the card was updated and the correct message is returned
-    assertEquals("Card not found", result);
-    assertTrue(existingCard.isPlayed());
-}
-
+        // Verify that the card was updated and the correct message is returned
+        assertEquals("Card not found", result);
+        assertTrue(existingCard.isPlayed());
+    }
 
     /**
      * Tests the updateCard method of the CardService class when attempting to update a non-existing card.

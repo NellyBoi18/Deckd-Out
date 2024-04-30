@@ -1,3 +1,5 @@
+package com.DeckdOut.cardgamehub.ObjectCode;
+
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -95,7 +97,7 @@ public class SpadesRound {
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                // p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand
@@ -134,7 +136,7 @@ public class SpadesRound {
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                // p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand
@@ -158,7 +160,7 @@ public class SpadesRound {
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                // p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand
@@ -181,7 +183,7 @@ public class SpadesRound {
             boolean done1 = false;
             Card p1SpadesCard = null;
             while(!done1) {
-                p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
+                // p1SpadesCard = p1Spades.pickCard();  //GET FROM FRONTEND
                 done1 = legalCardCheck(p1SpadesCard);
             }
             p1Spades.removePlayedCard(p1SpadesCard); //remove played card from hand

@@ -1,3 +1,5 @@
+package com.DeckdOut.cardgamehub.ObjectCode;
+
 import java.util.ArrayList;
 
 /**

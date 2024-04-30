@@ -1,3 +1,5 @@
+package com.DeckdOut.cardgamehub.ObjectCode;
+
 /**
  * Stores the card suit, card value, card owner, and if the card is dealt
  */
