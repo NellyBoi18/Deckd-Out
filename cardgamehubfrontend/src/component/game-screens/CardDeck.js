@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
+import { Button, Box } from '@mui/material';
 import CustomCard from './CustomCard';
+import FlippedCustomCard from './FlippedCustomCard';
 
 const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const SUITS = ["diamonds", "clubs", "hearts", "spades"];
@@ -47,16 +48,6 @@ export const assignOwner = (cards) => {
 
 const CardDeck = () => {
     const [cards] = useState(assignOwner(shuffleDeck(createDeck())));
-
-    // const getSuitSymbol = (suit) => {
-    //     const symbols = {
-    //         diamonds: '♦',
-    //         clubs: '♣',
-    //         hearts: '♥',
-    //         spades: '♠'
-    //     };
-    //     return symbols[suit];
-    // };
 
     const handleCardClick = async (card) => {
         console.log(`Clicked on ${card.rank} of ${card.suit}`);
@@ -112,10 +103,6 @@ const dealCards = () => {
     setDealtCards(hands);
 };
 
-// useEffect(() => { // testing purposes
-//     console.log(dealtCards);
-// }, [dealtCards]);    
-
 const removeDeckDB = () => {
     fetch("http://localhost:8080/card/removeAll", {
         method: 'POST'
@@ -170,6 +157,40 @@ const handleStart = () => {
     setGameStart(true);
 };
 
+const handStyles = {
+    player: {
+        position: 'absolute',
+        bottom: '15%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        display: 'flex',
+        flexWrap: 'nowrap',
+        overflowX: 'auto'
+    },
+    cpu1: {
+        position: 'absolute',
+        left: '12%',
+        top: '25%',
+        transform: 'translateY(-50%) rotate(90deg)', 
+        transformOrigin: 'bottom left', 
+    },
+    cpu2: {
+        position: 'absolute',
+        top: '20%',
+        left: '52%',
+        transform: 'translateX(-50%)',
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    cpu3: {
+        position: 'absolute',
+        left: '63%',
+        top: '65%',
+        transform: 'translateY(-50%) rotate(90deg)', 
+        transformOrigin: 'bottom right', 
+    }
+}
+
 return (
     <div>
         {!gameStart && (
@@ -178,36 +199,40 @@ return (
         {gameStart && (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {/* Player's Cards */}
+                <Box sx={handStyles.player}>
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <h3>Player's Cards: </h3>
                         {dealtCards.player.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
+                </Box>
 
                 {/* CPU1's Cards */}
+                <Box sx={handStyles.cpu1}>
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <h3>CPU1's Cards: </h3>
-                        {dealtCards.cpu1.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu1.map((card, index) => (<FlippedCustomCard key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
+                </Box>
 
                 {/* CPU2's Cards */}
+                <Box sx={handStyles.cpu2}>
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <h3>CPU2's Cards: </h3>
-                        {dealtCards.cpu2.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu2.map((card, index) => (<FlippedCustomCard key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
+                </Box>
 
                 {/* CPU3's Cards */}
+                <Box sx={handStyles.cpu3}>
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <h3>CPU3's Cards: </h3>
-                        {dealtCards.cpu3.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu3.map((card, index) => (<FlippedCustomCard key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
+                </Box>
             </div>
         )}
     </div>
