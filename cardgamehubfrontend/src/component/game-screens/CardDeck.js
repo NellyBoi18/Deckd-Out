@@ -47,6 +47,9 @@ export const assignOwner = (cards) => {
 };
 
 const CardDeck = () => {
+    const [winner, setWinner] = useState(null);
+    const [gameFinished, setGameFinished] = useState(false);
+    const [gameStart, setGameStart] = useState(false);
 
     // const getSuitSymbol = (suit) => {
     //     const symbols = {
@@ -58,8 +61,51 @@ const CardDeck = () => {
     //     return symbols[suit];
     // };
 
+    const grabWinner = async () => {
+        if (gameStart) {
+            try {
+                const response = await fetch('http://localhost:8080/card');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                
+                // Check if any item has a "suit" attribute equal to "Victory"
+                console.log("CHECKING...");
+                const victoryCard = data.find(card => card.suit === 'victory');
+                if (victoryCard) {
+                    setWinner(victoryCard.owner);
+                    setGameFinished(true);
+                    console.log("SET TO GAME FINISHED IS TRUE");
+                }
+            } catch (error) {
+                console.error('Error fetching card data:', error);
+            }
+        }
+    };
+
+    const checkVictory = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/card/checkvictory', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.text();
+            console.log('Server response:', data);
+        } catch (error) {
+            console.error('Error victory check:', error);
+        }
+
+        grabWinner();
+    };
+
     const handleCardClick = async (card) => {
-        console.log(`Clicked on ${card.rank} of ${card.suit}`);
+        console.log(`Clicked on ${card.rank} of ${card.suit} owned by ${card.owner}`);
         try {
             const response = await fetch('http://localhost:8080/card/update', {
                 method: 'POST',
@@ -68,7 +114,8 @@ const CardDeck = () => {
                 },
                 body: JSON.stringify({
                     suit: card.suit,
-                    value: rankToValue(card.rank),  
+                    value: rankToValue(card.rank),
+                    owner: card.owner
                 })
             });
             if (!response.ok) {
@@ -79,12 +126,15 @@ const CardDeck = () => {
         } catch (error) {
             console.error('Error sending card click data:', error);
         }
+
+        checkVictory();
+
     };
 
 
 //
 const [dealtCards, setDealtCards] = useState({ player: [], cpu1: [], cpu2: [], cpu3: [] });
-const [gameStart, setGameStart] = useState(false);
+
 const deck = assignOwner(shuffleDeck(createDeck()));
 
 const dealCards = () => {
@@ -172,6 +222,12 @@ const handleStart = () => {
 
 return (
     <div>
+        {winner && gameStart && gameFinished && (
+                <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                    <h2>{`${winner} won!`}</h2>
+                </div>
+        )}
+
         {!gameStart && (
             <Button variant="contained" color="primary" onClick={handleStart}>Start</Button>
         )}
