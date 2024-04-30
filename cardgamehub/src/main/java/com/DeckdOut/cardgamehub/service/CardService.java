@@ -212,4 +212,9 @@ public class CardService implements CardServiceInterface {
         }
     }
 
+    public static void main(String[] args) {
+        CardService cardService = new CardService();
+        String result = cardService.getWinner();
+        System.out.println(result);
+    }
 }
