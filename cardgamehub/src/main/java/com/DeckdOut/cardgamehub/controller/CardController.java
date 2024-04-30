@@ -61,6 +61,16 @@ public class CardController {
         return cardService.updateCard(card);
     }
 
+     /**
+     * Endpoint for getting winner of trick
+     *
+     * @return A list of all cards stored in the system.
+     */
+    @PostMapping("/checkvictory")
+    public String checkVictory() {
+        return cardService.getWinner();
+    }
+
 
     /**
      * Endpoint for retrieving all cards.
@@ -73,15 +83,6 @@ public class CardController {
     }
 
 
-    /**
-     * Endpoint for getting winner of trick
-     *
-     * @return A list of all cards stored in the system.
-     */
-    @PostMapping("/checkvictory")
-    public String checkVictory() {
-        return cardService.getWinner();
-    }
-
+   
 
 }
