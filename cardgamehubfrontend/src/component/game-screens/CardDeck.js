@@ -61,21 +61,20 @@ const CardDeck = () => {
     const handleCardClick = async (card) => {
         console.log(`Clicked on ${card.rank} of ${card.suit}`);
         try {
-            const response = await fetch('http://localhost:8080/card/add', {
+            const response = await fetch('http://localhost:8080/card/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     suit: card.suit,
-                    value: card.rank, 
-                    owner: "DefaultOwner" 
+                    value: rankToValue(card.rank),  
                 })
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const data = await response.json();
+            const data = await response.text();
             console.log('Server response:', data);
         } catch (error) {
             console.error('Error sending card click data:', error);

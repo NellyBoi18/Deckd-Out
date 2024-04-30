@@ -62,7 +62,7 @@ const CardDeck = () => {
     const handleCardClick = async (card) => {
         console.log(`Clicked on ${card.rank} of ${card.suit} owned by ${card.owner}`);
         try {
-            const response = await fetch('http://localhost:8080/card/add', {
+            const response = await fetch('http://localhost:8080/card/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

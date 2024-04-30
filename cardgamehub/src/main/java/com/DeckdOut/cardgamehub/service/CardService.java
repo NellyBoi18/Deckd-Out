@@ -25,8 +25,6 @@ public class CardService implements CardServiceInterface {
      */
     @Override
     public String addCard(Card card) {
-        // if (cardRepository.findByOwner(card.getOwner()) != null)
-        //     return "Card with owner already exists";
         Card result = cardRepository.save(card);
         return "AddCard Successful";
     }
@@ -47,7 +45,7 @@ public class CardService implements CardServiceInterface {
 
     /**
      * Removes all cards from the repository.
-     * 
+     *
      * @return A string indicating the result of the operation.
      */
     @Override
@@ -64,5 +62,23 @@ public class CardService implements CardServiceInterface {
     @Override
     public List<Card> findAllCards() {
         return cardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+    }
+
+    /*
+     * Update an existing card from the repository to have isPlayed = true
+     * 
+     *  @return A string indicating the result of the operation.
+     */
+    @Override
+    public String updateCard(Card card) {
+        Card existingCard = cardRepository.findBySuitAndValue(card.getSuit(), card.getValue());
+        
+        if (existingCard != null) {
+            existingCard.setPlayed(true);
+            cardRepository.save(existingCard);
+            return "Card updated successfully";
+        } else {
+            return "Card not found";
+        }
     }
 }

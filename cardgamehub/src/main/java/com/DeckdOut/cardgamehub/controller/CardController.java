@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 /**
  * Controller class responsible for handling HTTP requests related to cards in the card game hub application.
@@ -49,6 +52,17 @@ public class CardController {
     public String removeAllCards() {
         return cardService.removeAllCards();
     }
+
+    /*
+     * Endpoint for updating card
+     * 
+     * @return A string indicating the success of failure of the opertaion.
+     */
+    @PostMapping("/update")
+    public String updateCard(@RequestBody Card card){
+        return cardService.updateCard(card);
+    }
+
 
     /**
      * Endpoint for retrieving all cards.
