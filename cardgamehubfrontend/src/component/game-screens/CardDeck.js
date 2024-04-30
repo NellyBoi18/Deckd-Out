@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import CustomCard from './CustomCard';
+import CustomCardFlipped from './CustomCardFlipped';
 
 const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const SUITS = ["diamonds", "clubs", "hearts", "spades"];
@@ -189,7 +190,7 @@ return (
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <h3>CPU1's Cards: </h3>
-                        {dealtCards.cpu1.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu1.map((card, index) => (<CustomCardFlipped key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
 
@@ -197,7 +198,7 @@ return (
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <h3>CPU2's Cards: </h3>
-                        {dealtCards.cpu2.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu2.map((card, index) => (<CustomCardFlipped key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
 
@@ -205,7 +206,7 @@ return (
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <h3>CPU3's Cards: </h3>
-                        {dealtCards.cpu3.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                        {dealtCards.cpu3.map((card, index) => (<CustomCardFlipped key={index} card={card} onClick={handleCardClick} />))}
                     </div>
                 </div>
             </div>
