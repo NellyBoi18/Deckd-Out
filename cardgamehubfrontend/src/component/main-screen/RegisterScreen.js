@@ -4,7 +4,6 @@
  */
 
 import React, { useState, useContext } from 'react';
-//import { Form, Button } from "react-bootstrap";
 import { styled } from '@mui/system';
 import { Container, Typography, Button } from '@mui/material';
 import Logo from '../../assets/logo.svg';
@@ -111,7 +110,7 @@ export default function RegisterScreen() {
      * @param {Event} e - The event object.
      */
     const handleRegister = async (e) => {
-      e.preventDefault(); // Prevent default form submission
+      e.preventDefault(); // To prevent default form submission
       if (!username) {
         alert('You must provide a username!');
       } else if(!password){
@@ -124,7 +123,7 @@ export default function RegisterScreen() {
           alert('Your passwords do not match!');
       } else {
         try {
-
+          //fetch to user register API
           const response = await fetch('http://localhost:8080/user/register', {
             method: 'POST',
             headers: {
@@ -142,6 +141,7 @@ export default function RegisterScreen() {
           });
           const data = await response.text();
           console.log(data)
+          //handle responses
           if (data.status === '500') {
             throw new Error('Network response was not ok');
           } else if (data === "User with username already exists"){
@@ -150,8 +150,7 @@ export default function RegisterScreen() {
           } else if (data === "User with email already exists"){
             alert("User with email already exists.")
             return;
-          } else if (data === "Successful"){
-            //const data = await response.json();
+          } else if (data === "registerUser Successful"){
             console.log('Registration successful:', data.msg);
             // Redirect user to home
             setLoginStatus({
@@ -202,7 +201,7 @@ export default function RegisterScreen() {
                     id="password" 
                     name="password" 
                     placeholder="Password" 
-                    // required 
+                    required 
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <InputField 
@@ -210,7 +209,7 @@ export default function RegisterScreen() {
                     id="confirm_password" 
                     name="confirm_password" 
                     placeholder="Confirm Password" 
-                    // required 
+                    required 
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
                 <RegisterButton 
