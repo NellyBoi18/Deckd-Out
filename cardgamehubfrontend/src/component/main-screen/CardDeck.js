@@ -30,7 +30,23 @@ const CardDeck = () => {
         return cards;
     };
 
-    const [cards] = useState(shuffleDeck(createDeck()));
+    const assignOwner = (cards) => {
+        const owners = ['Player', 'CPU1', 'CPU2', 'CPU3'];
+        const cardsPerOwner = DECK_SIZE / owners.length;
+        let currentOwnerIndex = 0;
+        
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].owner = owners[currentOwnerIndex];
+            if ((i + 1) % cardsPerOwner === 0) {
+                currentOwnerIndex++;
+            }
+        }
+        
+        return cards;
+    };
+
+    // const [cards] = useState(shuffleDeck(createDeck()));
+    const [cards] = useState(assignOwner(shuffleDeck(createDeck())));
     const [gameStarted, setGameStarted] = useState(false);
 
     const getSuitSymbol = (suit) => {
@@ -44,7 +60,7 @@ const CardDeck = () => {
     };
 
     const handleCardClick = async (card) => {
-        console.log(`Clicked on ${card.rank} of ${card.suit}`);
+        console.log(`Clicked on ${card.rank} of ${card.suit} owned by ${card.owner}`);
         try {
             const response = await fetch('http://localhost:8080/card/update', {
                 method: 'POST',
@@ -54,6 +70,7 @@ const CardDeck = () => {
                 body: JSON.stringify({
                     suit: card.suit,
                     value: rankToValue(card.rank),  
+                    owner: card.owner
                 })
             });
             if (!response.ok) {
@@ -95,7 +112,7 @@ const CardDeck = () => {
                 body: JSON.stringify({
                     suit: card.suit,
                     value: rankToValue(card.rank),  
-                    owner: "DefaultOwner"
+                    owner: card.owner
                 })
             })
             .then(response => {
@@ -120,7 +137,6 @@ const CardDeck = () => {
     // }, []);
 
     const handleStart = () => {
-        console.log("START");
         setGameStarted(true);
         removeDeckDB();
         sendDeckDB();
@@ -129,9 +145,7 @@ const CardDeck = () => {
     return (
         <div>
             {!gameStarted && (
-                <div style={{ textAlign: 'center' }}>
-                    <Button variant="contained" onClick={handleStart}>Start</Button>
-                </div>
+                <Button variant="contained" color="primary" onClick={handleStart}>Start</Button>
             )}
             {gameStarted && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '20px' }}>

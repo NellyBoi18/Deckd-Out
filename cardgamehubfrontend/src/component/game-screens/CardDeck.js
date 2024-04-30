@@ -1,47 +1,62 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import CustomCard from './CustomCard';
+
+const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+const SUITS = ["diamonds", "clubs", "hearts", "spades"];
+
+const rankToValue = (rank) => {
+    const faceValues = { 'A': 14, 'J': 11, 'Q': 12, 'K': 13 };
+    return faceValues[rank] || parseInt(rank);
+};
+
+// These functions are now defined outside the component and are exported
+export const createDeck = () => {
+    let cards = [];
+    for (let suit of SUITS) {
+        for (let rank of RANKS) {
+            cards.push({ suit, rank });
+        }
+    }
+    return cards;
+};
+
+export const shuffleDeck = (cards) => {
+    for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    return cards;
+};
+
+export const assignOwner = (cards) => {
+    const DECK_SIZE = RANKS.length * SUITS.length;
+    const owners = ['Player', 'CPU1', 'CPU2', 'CPU3'];
+    const cardsPerOwner = DECK_SIZE / owners.length;
+    let currentOwnerIndex = 0;
+    
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].owner = owners[currentOwnerIndex];
+        if ((i + 1) % cardsPerOwner === 0) {
+            currentOwnerIndex++;
+        }
+    }
+    
+    return cards;
+};
 
 const CardDeck = () => {
-    const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-    const SUITS = ["diamonds", "clubs", "hearts", "spades"];
-    const DECK_SIZE = RANKS.length * SUITS.length;
+    const [cards] = useState(assignOwner(shuffleDeck(createDeck())));
 
-    const rankToValue = (rank) => {
-        const faceValues = { 'A': 14, 'J': 11, 'Q': 12, 'K': 13 };
-        return faceValues[rank] || parseInt(rank);
-    };
-
-    const createDeck = () => {
-        let cards = [];
-        for (let i = 0; i < DECK_SIZE; i++) {
-            cards.push({
-                suit: SUITS[Math.floor(i / RANKS.length)],
-                rank: RANKS[i % RANKS.length]
-            });
-        }
-        return cards;
-    };
-
-    const shuffleDeck = (cards) => {
-        for (let i = cards.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [cards[i], cards[j]] = [cards[j], cards[i]];
-        }
-        return cards;
-    };
-
-    const [cards] = useState(shuffleDeck(createDeck()));
-    const [gameStarted, setGameStarted] = useState(false);
-
-    const getSuitSymbol = (suit) => {
-        const symbols = {
-            diamonds: '♦',
-            clubs: '♣',
-            hearts: '♥',
-            spades: '♠'
-        };
-        return symbols[suit];
-    };
+    // const getSuitSymbol = (suit) => {
+    //     const symbols = {
+    //         diamonds: '♦',
+    //         clubs: '♣',
+    //         hearts: '♥',
+    //         spades: '♠'
+    //     };
+    //     return symbols[suit];
+    // };
 
     const handleCardClick = async (card) => {
         console.log(`Clicked on ${card.rank} of ${card.suit}`);
@@ -66,13 +81,76 @@ const CardDeck = () => {
         }
     };
 
-    const removeDeckDB = () => {
-        fetch("http://localhost:8080/card/removeAll", {
-            method: 'POST'
+
+//
+const [dealtCards, setDealtCards] = useState({ player: [], cpu1: [], cpu2: [], cpu3: [] });
+const [gameStart, setGameStart] = useState(false);
+
+const dealCards = () => {
+    const deck = assignOwner(shuffleDeck(createDeck()));
+    const hands = { player: [], cpu1: [], cpu2: [], cpu3: [] };
+
+    deck.forEach(card => {
+        switch (card.owner) {
+            case 'Player':
+                hands.player.push(card);
+                break;
+            case 'CPU1':
+                hands.cpu1.push(card);
+                break;
+            case 'CPU2':
+                hands.cpu2.push(card);
+                break;
+            case 'CPU3':
+                hands.cpu3.push(card);
+                break;
+            default:
+                break;
+        }
+    });
+
+    setDealtCards(hands);
+};
+
+// useEffect(() => { // testing purposes
+//     console.log(dealtCards);
+// }, [dealtCards]);    
+
+const removeDeckDB = () => {
+    fetch("http://localhost:8080/card/removeAll", {
+        method: 'POST'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server returned status: ${response.status}`);
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Server response:', data);
+    })
+    .catch(error => {
+        console.error('Error emptying card table:', error);
+    });
+};
+
+const sendDeckDB = () => {
+    console.log("sendDeckDB");
+    cards.forEach(card => {
+        fetch('http://localhost:8080/card/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                suit: card.suit,
+                value: rankToValue(card.rank),  
+                owner: card.owner
+            })
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Server returned status: ${response.status}`);
+                throw new Error('Network response was not ok');
             }
             return response.text();
         })
@@ -80,95 +158,60 @@ const CardDeck = () => {
             console.log('Server response:', data);
         })
         .catch(error => {
-            console.error('Error emptying card table:', error);
+            console.error('Error sending card data:', error);
         });
-    };
-    
-    const sendDeckDB = () => {
-        console.log("sendDeckDB");
-        cards.forEach(card => {
-            fetch('http://localhost:8080/card/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    suit: card.suit,
-                    value: rankToValue(card.rank),  
-                    owner: "DefaultOwner"
-                })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
-                console.log('Server response:', data);
-            })
-            .catch(error => {
-                console.error('Error sending card data:', error);
-            });
-        });
-    };
-    
-    // useEffect(() => {
-    //     removeDeckDB();
-    //     sendDeckDB();
-    //     console.log("Cards: " + cardNum);
-    // }, []);
+    });
+};
 
-    const handleStart = () => {
-        console.log("START");
-        setGameStarted(true);
-        removeDeckDB();
-        sendDeckDB();
-    };
+const handleStart = () => {
+    dealCards();
+    removeDeckDB();
+    sendDeckDB();
+    setGameStart(true);
+};
 
-    return (
-        <div>
-            {!gameStarted && (
-                <div style={{ textAlign: 'center' }}>
-                    <Button variant="contained" onClick={handleStart}>Start</Button>
+return (
+    <div>
+        {!gameStart && (
+            <Button variant="contained" color="primary" onClick={handleStart}>Start</Button>
+        )}
+        {gameStart && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {/* Player's Cards */}
+                <div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <h3>Player's Cards: </h3>
+                        {dealtCards.player.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                    </div>
                 </div>
-            )}
-            {gameStarted && (
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '20px' }}>
-                    {cards.map((card, index) => (
-                        <div key={index} style={{
-                            height: "140px",
-                            width: "100px",
-                            margin: "10px",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            background: "#fff",
-                            border: "1px solid #000",
-                            borderRadius: "8px",
-                            boxShadow: "0 2px 10px rgba(0,0,0,0.3)",
-                            color: card.suit === 'diamonds' || card.suit === 'hearts' ? 'red' : 'black',
-                            fontFamily: "'Times New Roman', serif",
-                            position: 'relative',
-                            fontSize: '18px',
-                            cursor: 'pointer'
-                        }} onClick={() => handleCardClick(card)}>
-                            <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
-                                <div style={{ fontSize: '24px' }}>{card.rank}</div>
-                                <div style={{ fontSize: '18px' }}>{getSuitSymbol(card.suit)}</div>
-                            </div>
-                            <div style={{ fontSize: '48px' }}>{getSuitSymbol(card.suit)}</div>
-                            <div style={{ position: 'absolute', bottom: '10px', right: '10px', transform: 'rotate(180deg)' }}>
-                                <div style={{ fontSize: '24px' }}>{card.rank}</div>
-                                <div style={{ fontSize: '18px' }}>{getSuitSymbol(card.suit)}</div>
-                            </div>
-                        </div>
-                    ))}
+
+                {/* CPU1's Cards */}
+                <div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <h3>CPU1's Cards: </h3>
+                        {dealtCards.cpu1.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                    </div>
                 </div>
-            )}
-        </div>
-    );
+
+                {/* CPU2's Cards */}
+                <div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <h3>CPU2's Cards: </h3>
+                        {dealtCards.cpu2.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                    </div>
+                </div>
+
+                {/* CPU3's Cards */}
+                <div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <h3>CPU3's Cards: </h3>
+                        {dealtCards.cpu3.map((card, index) => (<CustomCard key={index} card={card} onClick={handleCardClick} />))}
+                    </div>
+                </div>
+            </div>
+        )}
+    </div>
+);
 };
 
 export default CardDeck;
