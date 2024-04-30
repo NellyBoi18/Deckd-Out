@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 
+/**
+ * Component representing a deck of cards.
+ * @returns {JSX.Element} The JSX element for the CardDeck component.
+ */
 const CardDeck = () => {
+    // Array of ranks in a standard deck of cards
     const RANKS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+    // Array of suits in a standard deck of cards
     const SUITS = ["diamonds", "clubs", "hearts", "spades"];
+    // Total number of cards in the deck
     const DECK_SIZE = RANKS.length * SUITS.length;
 
+    // Function to convert rank to value
     const rankToValue = (rank) => {
         const faceValues = { 'A': 14, 'J': 11, 'Q': 12, 'K': 13 };
         return faceValues[rank] || parseInt(rank);
     };
 
+    // Function to create a deck of cards
     const createDeck = () => {
         let cards = [];
         for (let i = 0; i < DECK_SIZE; i++) {
@@ -22,6 +31,7 @@ const CardDeck = () => {
         return cards;
     };
 
+    // Function to shuffle the deck
     const shuffleDeck = (cards) => {
         for (let i = cards.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -30,6 +40,7 @@ const CardDeck = () => {
         return cards;
     };
 
+    // Function to assign owners to cards
     const assignOwner = (cards) => {
         const owners = ['Player', 'CPU1', 'CPU2', 'CPU3'];
         const cardsPerOwner = DECK_SIZE / owners.length;
@@ -45,10 +56,12 @@ const CardDeck = () => {
         return cards;
     };
 
-    // const [cards] = useState(shuffleDeck(createDeck()));
+    // State for the cards in the deck
     const [cards] = useState(assignOwner(shuffleDeck(createDeck())));
+    // State for tracking whether the game has started
     const [gameStarted, setGameStarted] = useState(false);
 
+    // Function to get the symbol corresponding to the card's suit
     const getSuitSymbol = (suit) => {
         const symbols = {
             diamonds: '♦',
@@ -59,8 +72,8 @@ const CardDeck = () => {
         return symbols[suit];
     };
 
+    // Function to handle card click
     const handleCardClick = async (card) => {
-        console.log(`Clicked on ${card.rank} of ${card.suit} owned by ${card.owner}`);
         try {
             const response = await fetch('http://localhost:8080/card/update', {
                 method: 'POST',
@@ -83,6 +96,7 @@ const CardDeck = () => {
         }
     };
 
+    // Function to remove deck data from the server
     const removeDeckDB = () => {
         fetch("http://localhost:8080/card/removeAll", {
             method: 'POST'
@@ -101,8 +115,8 @@ const CardDeck = () => {
         });
     };
     
+    // Function to send deck data to the server
     const sendDeckDB = () => {
-        console.log("sendDeckDB");
         cards.forEach(card => {
             fetch('http://localhost:8080/card/add', {
                 method: 'POST',
@@ -129,24 +143,22 @@ const CardDeck = () => {
             });
         });
     };
-    
-    // useEffect(() => {
-    //     removeDeckDB();
-    //     sendDeckDB();
-    //     console.log("Cards: " + cardNum);
-    // }, []);
 
+    // Function to handle game start
     const handleStart = () => {
         setGameStarted(true);
         removeDeckDB();
         sendDeckDB();
     };
 
+    // Render the component
     return (
         <div>
+            {/* Render start button if game not started */}
             {!gameStarted && (
                 <Button variant="contained" color="primary" onClick={handleStart}>Start</Button>
             )}
+            {/* Render cards if game started */}
             {gameStarted && (
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '20px' }}>
                     {cards.map((card, index) => (
@@ -168,6 +180,7 @@ const CardDeck = () => {
                             fontSize: '18px',
                             cursor: 'pointer'
                         }} onClick={() => handleCardClick(card)}>
+                            {/* Render card content */}
                             <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
                                 <div style={{ fontSize: '24px' }}>{card.rank}</div>
                                 <div style={{ fontSize: '18px' }}>{getSuitSymbol(card.suit)}</div>
