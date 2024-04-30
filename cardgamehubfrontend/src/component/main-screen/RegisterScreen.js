@@ -151,7 +151,6 @@ export default function RegisterScreen() {
             alert("User with email already exists.")
             return;
           } else if (data === "registerUser Successful"){
-          } else if (data === "registerUser Successful"){
             //const data = await response.json();
             console.log('Registration successful:', data.msg);
 
