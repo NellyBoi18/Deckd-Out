@@ -1,9 +1,16 @@
+/**
+ * LogoutScreen component for handling user logout functionality.
+ * This component displays a logout button and a back button.
+ */
 import React, { useContext } from "react";
 import { Button, Container, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 
 import LoginStatusContext from "../contexts/LoginStatusContext";
 
+/**
+ * Root container styled component for centering the content vertically in the viewport.
+ */
 const RootContainer = styled(Container)({
   display: 'flex',
   flexDirection: 'column',
@@ -12,6 +19,9 @@ const RootContainer = styled(Container)({
   height: '100vh',
 });
 
+/**
+ * Logout button styled component for displaying the logout button.
+ */
 const LogoutButton = styled(Button)({
   marginTop: '1rem',
   backgroundColor: '#CC4124',
@@ -25,6 +35,9 @@ const LogoutButton = styled(Button)({
   },
 });
 
+/**
+ * Back button styled component for displaying the back button.
+ */
 const BackButton = styled(Button)({
   marginTop: '1rem',
   backgroundColor: '#EC8F47',
@@ -38,11 +51,18 @@ const BackButton = styled(Button)({
   },
 });
 
+/**
+ * LogoutScreen component function.
+ * @returns JSX.Element
+ */
 export default function LogoutScreen() {
   const [, setLoginStatus] = useContext(LoginStatusContext);
 
+  /**
+   * Handles logout functionality.
+   * Clears login status and redirects to the login screen.
+   */
   const handleLogout = () => {
-    // Clear login status and redirect to login screen
     setLoginStatus({
       isLoggedIn: false,
       loggedInUsername: 'Not Logged In',
@@ -51,8 +71,11 @@ export default function LogoutScreen() {
     window.location.href = '/login';
   };
 
+  /**
+   * Handles back functionality.
+   * Redirects to the home screen.
+   */
   const handleBack = () => {
-    // Redirect to home screen
     window.location.href = '/home';
   };
 
