@@ -1,3 +1,5 @@
+package com.DeckdOut.cardgamehub.ObjectCode;
+
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -239,7 +241,7 @@ public class EuchreRound {
         //index 1: string of suit that player wants to pick, "Pass" if no good suit to pick
 
         //get trump decisions for all players
-        p1Choice = p1Euchre.getSuitDecision(flippedTrump); //GET FROM FRONTEND
+        // p1Choice = p1Euchre.getSuitDecision(flippedTrump); //GET FROM FRONTEND
         p2Choice = p2Euchre.cpuSuitDecision(p2Euchre, flippedTrump); 
         p3Choice = p3Euchre.cpuSuitDecision(p3Euchre, flippedTrump); 
         p4Choice = p4Euchre.cpuSuitDecision(p4Euchre, flippedTrump);

@@ -1,10 +1,12 @@
+package com.DeckdOut.cardgamehub.ObjectCode;
+
 import java.util.ArrayList;
 
 /**
  * Class pertaining to the player including information such as username, bid, and hand.
  */
 public class Player {
-    private String userName; //username of the player TODO: GET FROM FRONTEND 
+    private String userName; //username of the player
     private int bid; // how many tricks the player thinks they will win in a round 
     private ArrayList<Card> hand; // the player's hand of cards
 
@@ -17,16 +19,16 @@ public class Player {
         this.userName = userName; 
     }
 
-    /**
-     * Returns the card that the user chooses to play (Note: card FROM frontend)
-     * 
-     * @param card the card that is picked by the player (from frontend)
-     * @return the card object that the user has picked
-     */
-    //THIS METHOD NEEDS TO BE IN FRONTEND, NOT IN BACKEND
-    public Card pickCard(Player player) {
-        return cardFromFrontend;
-    }
+    // /**
+    //  * Returns the card that the user chooses to play (Note: card FROM frontend)
+    //  * 
+    //  * @param card the card that is picked by the player (from frontend)
+    //  * @return the card object that the user has picked
+    //  */
+    // //THIS METHOD NEEDS TO BE IN FRONTEND, NOT IN BACKEND
+    // public Card pickCard(Player player) {
+    //     return cardFromFrontend;
+    // }
 
     /**
      * Setter method for the bid of the player
