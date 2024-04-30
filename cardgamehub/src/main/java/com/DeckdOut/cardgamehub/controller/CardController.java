@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 /**
@@ -73,4 +71,18 @@ public class CardController {
     public List<Card> findAllCards() {
         return cardService.findAllCards();
     }
+
+
+    /**
+     * Endpoint for getting winner of trick
+     *
+     * @return A list of all cards stored in the system.
+     */
+    @PostMapping("/checkvictory")
+    public String checkVictory() {
+        return cardService.getWinner();
+    }
+
+
 }
+

@@ -1,11 +1,14 @@
 package com.DeckdOut.cardgamehub.service;
 
+import com.DeckdOut.cardgamehub.APICallers.CardAPICaller;
+import com.DeckdOut.cardgamehub.controller.CardController;
 import com.DeckdOut.cardgamehub.model.Card;
 import com.DeckdOut.cardgamehub.repository.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -81,4 +84,133 @@ public class CardService implements CardServiceInterface {
             return "Card not found";
         }
     }
+
+
+
+    /*
+     * Gets winner of a trick
+     * 
+     *  @return A string indicating the result of the operation.
+     */
+    @Override
+    public String getWinner() {
+        Card[] cards1 = CardAPICaller.getCardsFromAPI();
+        ArrayList<Card> cards = new ArrayList<>();
+        for(Card card : cards1) {
+            cards.add(card);
+        }
+        ArrayList<Card> trick = new ArrayList<>();
+        Card userCard = new Card();
+  
+
+        ArrayList<Card> hand1 = new ArrayList<>();
+        ArrayList<Card> hand2 = new ArrayList<>();
+        ArrayList<Card> hand3 = new ArrayList<>();
+        ArrayList<Card> hand4 = new ArrayList<>();
+        for(Card card : cards) {
+            if(card.getOwner().equals("Player")) {
+                hand1.add(card);
+            }
+            else if(card.getOwner().equals("CPU1")) {
+                hand2.add(card);
+            }
+            else if(card.getOwner().equals("CPU2")) {
+                hand3.add(card);
+            }
+            else if(card.getOwner().equals("CPU3")) {
+                hand4.add(card);
+            }
+        }
+
+        //adds player 1 card
+        for(Card card : hand1) {
+            if(card.isPlayed()) {
+                trick.add(card);
+                userCard = card;
+                break;
+            }
+        }
+        //trick logic
+        //get cpu cards to trick
+        Card cpu1Card = cpuCardLogic(userCard, hand2);
+        trick.add(cpu1Card);
+        Card cpu2Card = cpuCardLogic(userCard, hand3);
+        trick.add(cpu2Card);
+        Card cpu3Card = cpuCardLogic(userCard, hand4);
+        trick.add(cpu3Card);
+
+        //get user card to trick
+        Card winningCard = cardCompareSpades(userCard.getSuit(), trick);
+        winningCard.setSuit("victory");
+
+        CardController cardController = new CardController();
+        return cardController.addCard(winningCard);
+    }
+
+
+    /*
+     * Decides CPU's card to play. Helper function for the getWinner() method.
+     * 
+     * @param userCard The person's card in question
+     * @param hand the hand of the player in question
+     *  @return the card that is the best card for the player to play
+     */
+    public Card cpuCardLogic(Card userCard, ArrayList<Card> hand) {
+        String leadingSuit = userCard.getSuit();
+
+        //first leading suit
+        for(Card card : hand) {
+            if(card.getSuit().equals(leadingSuit)) {
+                return card;
+            }
+        }
+
+        //else return first card in hand
+        return hand.get(0);
+    } 
+
+
+    /**
+     * Compares the played cards in a trick based on the suit first, then the value of the card.
+     * For Spades game only
+     * 
+     * @param leadingSuit string variable of the leading suit played
+     * @param trickCards ArrayList variable of Card objects of the played cards in the trick
+     * @return the card the wins the trick
+     */
+    public Card cardCompareSpades(String leadingSuit, ArrayList<Card> trickCards) {
+        boolean spadePresent = false;
+        Card highestCard = null;
+        int maxCardVal = 0;
+        for(int i = 0; i < 4; i++){
+            if(trickCards.get(i).getSuit().equals("Spades")){
+                spadePresent = true;
+            }
+        }
+
+        if(spadePresent){
+            for(int i = 0; i < 4; i++){
+                if(trickCards.get(i).getSuit().equals("Spades")){
+                    if(maxCardVal < trickCards.get(i).getValue()){
+                        maxCardVal = trickCards.get(i).getValue();
+                        highestCard = trickCards.get(i);
+                    }
+                }
+            }
+            return highestCard;
+        }
+        else{
+            for(int i = 0; i < 4; i++){
+                if(trickCards.get(i).getSuit().equals(leadingSuit)){
+                    if(maxCardVal < trickCards.get(i).getValue()){
+                        maxCardVal = trickCards.get(i).getValue();
+                        highestCard = trickCards.get(i);
+                    }
+                }
+            }
+            return highestCard;
+        }
+    }
+
 }
+
