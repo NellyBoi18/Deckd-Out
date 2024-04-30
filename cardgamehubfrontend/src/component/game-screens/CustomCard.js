@@ -1,4 +1,6 @@
+// Component representing a custom card
 const CustomCard = ({ card, onClick }) => {
+    // Function to get the symbol corresponding to the card's suit
     const getSuitSymbol = (suit) => {
         const symbols = {
             diamonds: '♦',
@@ -9,8 +11,10 @@ const CustomCard = ({ card, onClick }) => {
         return symbols[suit];
     };
 
+    // Render the custom card
     return (
         <div style={{
+            // Styling for the card
             height: "70px",
             width: "50px",
             margin: "10px",
@@ -28,6 +32,7 @@ const CustomCard = ({ card, onClick }) => {
             fontSize: '18px',
             cursor: 'pointer'
         }} onClick={() => onClick(card)}>
+            {/* Render the rank and suit of the card */}
             <div style={{ position: 'absolute', top: '5px', left: '5px' }}>
                 <div style={{ fontSize: '12px' }}>{card.rank}</div>
                 <div style={{ fontSize: '9px' }}>{getSuitSymbol(card.suit)}</div>
