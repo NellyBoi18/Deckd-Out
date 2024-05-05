@@ -19,6 +19,19 @@ jobs:
     runs-on: ubuntu-latest
     container: maven:latest
 
+    services:
+      db:
+        image: mysql/mysql-server:latest
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
+          MYSQL_DATABASE: DeckdOut
+          MYSQL_ROOT_HOST: '%'
+        volumes:
+          - DeckdOut:/var/lib/mysql
+        ports:
+          - "3306:3306"
+
     steps:
     - name: Cache Maven packages
       uses: actions/cache@v4
@@ -45,6 +58,19 @@ jobs:
     runs-on: ubuntu-latest
     container: maven:latest
     needs: [build_mvn]
+
+    services:
+      db:
+        image: mysql/mysql-server:latest
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
+          MYSQL_DATABASE: DeckdOut
+          MYSQL_ROOT_HOST: '%'
+        volumes:
+          - DeckdOut:/var/lib/mysql
+        ports:
+          - "3306:3306"
 
     steps:
     - name: Cache Maven packages
