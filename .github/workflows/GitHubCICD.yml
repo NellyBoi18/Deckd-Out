@@ -22,8 +22,7 @@ jobs:
     services:
       db:
         image: mysql/mysql-server:latest
-        restart: always
-        environment:
+        env:
           MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
           MYSQL_DATABASE: DeckdOut
           MYSQL_ROOT_HOST: '%'
@@ -62,8 +61,7 @@ jobs:
     services:
       db:
         image: mysql/mysql-server:latest
-        restart: always
-        environment:
+        env:
           MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
           MYSQL_DATABASE: DeckdOut
           MYSQL_ROOT_HOST: '%'
