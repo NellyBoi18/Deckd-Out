@@ -20,7 +20,7 @@ jobs:
     container: maven:latest
 
     services:
-      db:
+      localhost:
         image: mysql/mysql-server:latest
         env:
           MYSQL_ROOT_PASSWORD: verySecurePlainTextPass123
